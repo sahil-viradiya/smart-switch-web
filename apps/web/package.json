@@ -1,0 +1,28 @@
+{
+  "name": "@smart-switch/web",
+  "version": "1.0.0",
+  "description": "Smart Switch architectural marketing website built with Next.js App Router",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "type-check": "tsc --noEmit",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@smart-switch/shared-config": "*",
+    "@smart-switch/shared-types": "*",
+    "@smart-switch/shared-validation": "*",
+    "next": "^14.2.14",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.4"
+  }
+}

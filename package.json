@@ -1,0 +1,21 @@
+{
+  "name": "smart-switch-website",
+  "version": "1.0.0",
+  "description": "Smart Switch — Architectural Smart Electrical Controls Marketing Website",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@smart-switch/web",
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm run start --workspace=@smart-switch/web",
+    "type-check": "npm run type-check --workspaces --if-present",
+    "clean": "rm -rf node_modules apps/web/.next apps/web/node_modules packages/*/node_modules"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "zod": "^3.23.8"
+  }
+}
