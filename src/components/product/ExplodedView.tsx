@@ -37,15 +37,15 @@ export function ExplodedView({ layers }: { layers: readonly Layer[] }) {
               </li>
             ))}
           </ol>
-          <p className="small">Illustration only. Final design, materials and sizes are confirmed by engineering.</p>
+          <p className="small">Illustration only. See the catalogue for the real panels.</p>
         </div>
 
         <div className="xv__visual" aria-hidden="true">
           <div className="xv__iso">
             {layers.map((l, i) => (
               <div key={l.id} className={`xv__layer xv__layer--${l.id}${i === active ? ' is-active' : ''}`} style={{ ['--i' as string]: i } as React.CSSProperties}>
-                {l.id === 'paddles' && (<><span className="xv__paddle" /><span className="xv__paddle" /></>)}
-                {l.id === 'board' && <span className="xv__trace" />}
+                {l.id === 'touch' && (<><span className="xv__pad" /><span className="xv__pad" /><span className="xv__pad" /><span className="xv__pad" /></>)}
+                {l.id === 'module' && <span className="xv__trace" />}
                 {l.id === 'frame' && (<><span className="xv__screw xv__screw--a" /><span className="xv__screw xv__screw--b" /></>)}
               </div>
             ))}

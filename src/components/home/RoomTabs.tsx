@@ -55,8 +55,8 @@ export function RoomTabs({ rooms }: { rooms: readonly RoomTab[] }) {
           <h3 className="h-section">{room.headline}</h3>
           <p className="lead">{room.text}</p>
           <dl className="rt__suggest">
-            <div><dt>Suggested plate</dt><dd>{room.suggestion.plate}</dd></div>
-            <div><dt>Suggested finish</dt><dd>{room.suggestion.finish}</dd></div>
+            <div><dt>Suggested panel</dt><dd>{room.suggestion.panel}</dd></div>
+            <div><dt>Series</dt><dd>{room.suggestion.series}</dd></div>
           </dl>
           <ul className="rt__tips">{room.tips.map((t) => <li key={t}>{t}</li>)}</ul>
           <div className="row">

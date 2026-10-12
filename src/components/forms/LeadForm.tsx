@@ -6,6 +6,7 @@ import { InquiryError, currentSource, submitInquiry } from '@/lib/inquiry-client
 import { buildMailto, fieldErrors } from '@/lib/forms';
 import { APP_CONFIG } from '@/config';
 import type { InquiryType, PropertyType } from '@/types';
+import { getProduct, getSeries } from '@/content/catalog';
 import { Field } from './Field';
 import { FormSuccess, SubmitError } from './FormSuccess';
 
@@ -57,9 +58,17 @@ export function LeadForm() {
 
   // Flow: /request-demo?intent=architect pre-selects the inquiry type.
   useEffect(() => {
-    const intent = new URLSearchParams(window.location.search).get('intent');
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get('intent');
     const mapped = intent ? INTENTS[intent] : undefined;
     if (mapped && !touchedInquiry.current) setData((d) => ({ ...d, inquiryType: mapped }));
+    // Flow: "Ask about this panel" in the catalogue pre-fills the message.
+    const product = getProduct(params.get('product') ?? '');
+    const seriesId = params.get('series') === 'edge' ? 'edge' : 'color';
+    if (product) {
+      const text = `I am interested in the ${getSeries(seriesId).name} series ${product.module} panel with ${product.title}.`;
+      setData((d) => (d.message ? d : { ...d, message: text }));
+    }
   }, []);
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) => {

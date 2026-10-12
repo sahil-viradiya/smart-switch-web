@@ -12,15 +12,17 @@ somewhere else.
 | **Font sizes, weights, letter-spacing, line-height** | `src/theme/typography.ts` | Headline scale lives here. |
 | **Radius, container width, gutters, section spacing, header height, button size** | `src/theme/layout.ts` | Lengths are rem (scale with the screen). |
 | **Easings, durations, hero carousel timing, intro length** | `src/theme/motion.ts` | CSS and JS read the same values. |
-| **Product finishes / SVG art colours** | `src/theme/art.ts` | Finish names are in `src/content/product.ts`. |
+| **Catalogue: panels, prices, sizes, series, accessories** | `src/content/catalog/` (see `docs/catalogue-data.md`) | `products.data.ts` and the images are generated from the price-list PDFs. Sizes, materials and versions live in `options.ts`, series copy in `series.ts`, add-ons in `accessories.ts`. |
+| **Show prices on the site, page size, price format** | `src/config/catalog.ts` | `showPrices` is `false` by default. |
 | **Page names, SEO titles & descriptions, header nav, footer columns, sitemap priority** | `src/config/pages.ts` | Nav, breadcrumbs, footer, `<title>` and sitemap are all derived from it. |
 | **URL paths** | `src/config/routes.ts` | |
 | **Button labels & destinations** (Book a Demo, Contact us, …) | `src/config/cta.ts` | Render with `<CtaLink cta={CTA.BOOK_DEMO} />`. |
 | **Brand name, tagline, email, phone, WhatsApp number, address, legal entity** | `src/config/site.ts` | Real phone/WhatsApp/email set. Confirm the email spelling; address is empty (hidden). |
 | **Where inquiries are saved** (Excel file or Google Sheet), rate limit, timezone | `.env.local` (see `.env.example`) and `docs/inquiry-sheet.md` | Server-side only. |
 | **Sheet columns** | `src/server/inquiries/rows.ts` | |
-| **Product numbers** (voltage, load, box depth, warranty, connectivity) | `src/config/specs.ts` | All provisional. Copy interpolates `SPEC`. |
-| **Real photos / product renders** | drop files in `public/images/`, register in `src/config/images.ts` | Falls back to SVG placeholders when empty. |
+| **Product numbers** (ratings, sizes, warranty) | `src/config/specs.ts` | Confirmed facts in `PRODUCT_SPECS`, unpublished ones in `UNPUBLISHED_SPECS` (shown as to be confirmed). Copy interpolates `SPEC`. |
+| **Product film** (file, poster, accessible description) | `src/config/images.ts` → `VIDEOS.film` | Heading, intro and caption are `FILM_COPY` in `src/content/home.ts`. Rebuild the video with `python scripts/film/make_film.py` (edit its `STORYBOARD` to change shots), or drop in your own MP4 (silent, H.264, under 3 MB). It plays only while on screen and can be paused. |
+| **Room photos** | `public/images/scenes/`, register in `src/config/images.ts` | Each scene can carry a marker label and position. Panel images are managed by the catalogue (see above). |
 | **Page copy and data** (features, use cases, FAQ, product, rooms, hotspots, gallery, personas, stats, compatibility roadmap, wall-checker questions, construction layers) | `src/content/*.ts` | Typed data; sections render from it. |
 | **Hotspot positions, gallery images, room tabs** | `src/content/home.ts`, `src/content/rooms.ts` | Gallery items reference product variants/finishes or scenes, so real images from `config/images.ts` flow through automatically. |
 | **Scroll-scene timing** (how long each pinned scene lasts) | the `height` prop on `<ScrollScene/>` (in vh) in `components/home/*`, `components/product/ExplodedView.tsx` | Progress is exposed to CSS as `--p`. |

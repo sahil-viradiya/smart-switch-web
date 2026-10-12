@@ -1,11 +1,9 @@
-import { SPEC } from '@/config';
-
 export interface Layer { id: string; name: string; text: string }
 
-/** Illustration of how a Smart Switch is built, front to back. Design intent, not a final parts list. */
+/** A simple illustration of how a panel is put together, front to back. Not an engineering drawing. */
 export const LAYERS: readonly Layer[] = [
-  { id: 'plate', name: 'Faceplate', text: 'A flat plate in your chosen finish, with the fixings hidden.' },
-  { id: 'paddles', name: 'Paddle module', text: 'The mechanical paddles. A light guide carries the status LED to the surface.' },
-  { id: 'board', name: 'Control and relay board', text: 'The switching and the smart features. Local switching is designed to act on the circuit directly.' },
-  { id: 'frame', name: 'Mounting frame and wall box', text: `Sits in a standard gang box at least ${SPEC.boxDepth} deep (provisional).` },
+  { id: 'panel', name: 'Glass or acrylic panel', text: 'The front you touch, with a slim border around it.' },
+  { id: 'touch', name: 'Touch and light layer', text: 'Senses your touch and lights each icon or touch point.' },
+  { id: 'module', name: 'Control module', text: 'Switches the load and connects the panel over Wi-Fi or Zigbee.' },
+  { id: 'frame', name: 'Mounting frame and wall box', text: 'Fixes the panel into the wall box.' },
 ];

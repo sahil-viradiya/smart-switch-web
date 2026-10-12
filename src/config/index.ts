@@ -5,3 +5,4 @@ export * from './pages';
 export * from './cta';
 export * from './navigation';
 export * from './images';
+export * from './catalog';

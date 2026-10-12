@@ -3,9 +3,11 @@
 import { useRef, useState } from 'react';
 import { ScrollScene } from '@/components/motion/ScrollScene';
 import { ICONS, type IconName } from '@/components/art/Icons';
+import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { scrollToSceneProgress } from '@/lib/scroll';
+import type { SeriesId } from '@/types';
 
-interface Feature { title: string; text: string; icon: IconName }
+interface Feature { title: string; text: string; icon: IconName; art?: { series: SeriesId; id: string } }
 
 /**
  * Pinned feature wheel: scrolling rotates the cards along an arc and updates the detail panel.
@@ -51,9 +53,16 @@ export function FeatureWheel({ features }: { features: readonly Feature[] }) {
               const Icon = ICONS[f.icon];
               return (
                 <button type="button" tabIndex={-1} key={f.title} className={`fw__card${i === active ? ' is-active' : ''}`} style={{ ['--i' as string]: i } as React.CSSProperties} onClick={() => jump(i)}>
-                  <span className="fw__card-icon"><Icon size={22} /></span>
-                  <strong>{f.title}</strong>
-                  <span className="fw__card-num">0{i + 1}</span>
+                  {f.art && (
+                    <ProductStage className="stage--card fw__card-art" glow={false}>
+                      <ProductImage series={f.art.series} productId={f.art.id} sizes="240px" />
+                    </ProductStage>
+                  )}
+                  <span className="fw__card-row">
+                    <span className="fw__card-icon"><Icon size={18} /></span>
+                    <strong>{f.title}</strong>
+                    <span className="fw__card-num">0{i + 1}</span>
+                  </span>
                 </button>
               );
             })}

@@ -16,7 +16,7 @@ export default function FaqPage() {
   };
   return (
     <>
-      <PageHero eyebrow="FAQ" title={['Frequently asked questions']} lead="Wiring, installation, connectivity, warranty and availability. Anything unconfirmed is marked provisional." crumbs={[{ label: PAGES.FAQ.name }]} />
+      <PageHero eyebrow="FAQ" title={['Frequently asked questions']} lead="Wiring, installation, connectivity, warranty and availability. Anything we have not confirmed is marked to be confirmed." crumbs={[{ label: PAGES.FAQ.name }]} />
       <section className="sec sec--paper" aria-label="Frequently asked questions">
         <div className="container--narrow"><Reveal><FaqAccordion /></Reveal></div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

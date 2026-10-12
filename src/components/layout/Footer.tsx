@@ -10,7 +10,7 @@ export function Footer() {
         <div className="footer__grid">
           <div>
             <Logo />
-            <p className="footer__about">Smart wall switches with mechanical paddles, for homes and studios.</p>
+            <p className="footer__about">Smart touch switches in glass and acrylic, for homes and studios.</p>
             <Newsletter />
           </div>
           <nav className="footer__col" aria-label="Explore">
@@ -25,7 +25,7 @@ export function Footer() {
 
         <div className="footer__contact">
           <div>
-            <span className="eyebrow">Get in touch</span>
+            <span className="eyebrow">Contact</span>
             <h2 style={{ marginTop: 14 }}>Get in touch</h2>
           </div>
           <div className="footer__cards">

@@ -4,6 +4,7 @@ import '@/styles/base.css';
 import '@/styles/components.css';
 import '@/styles/sections.css';
 import '@/styles/scroll.css';
+import '@/styles/catalog.css';
 import '@/styles/animations.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -12,6 +13,7 @@ import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { IntroSplash } from '@/components/layout/IntroSplash';
 import { ScrollProgress } from '@/components/motion/ScrollProgress';
 import { APP_CONFIG } from '@/config';
+import { openGraph } from '@/lib/seo';
 import { ThemeStyle } from '@/theme/ThemeStyle';
 import { colors } from '@/theme';
 
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: APP_CONFIG.DEFAULT_META_TITLE, template: `%s | ${APP_CONFIG.BRAND_NAME}` },
   description: APP_CONFIG.DEFAULT_META_DESCRIPTION,
-  openGraph: { type: 'website', siteName: APP_CONFIG.BRAND_NAME, title: APP_CONFIG.DEFAULT_META_TITLE, description: APP_CONFIG.DEFAULT_META_DESCRIPTION },
+  openGraph: { ...openGraph(APP_CONFIG.DEFAULT_META_TITLE, APP_CONFIG.DEFAULT_META_DESCRIPTION, '/'), siteName: APP_CONFIG.BRAND_NAME },
   twitter: { card: 'summary_large_image' },
 };
 

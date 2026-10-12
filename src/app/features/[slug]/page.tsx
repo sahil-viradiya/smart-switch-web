@@ -5,12 +5,14 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { SpecTable } from '@/components/ui/SpecTable';
 import { CtaSection } from '@/components/ui/CtaBand';
-import { SwitchArt, SwitchStage } from '@/components/art/SwitchArt';
+import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { ArrowRight } from '@/components/art/Icons';
 import { FEATURES, getFeature } from '@/content/features';
-import { FINISHES } from '@/content/product';
 import { CtaLink } from '@/components/ui/CtaLink';
 import { ROUTES, CTA, PAGES } from '@/config';
+import { openGraph } from '@/lib/seo';
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return FEATURES.map((f) => ({ slug: f.slug }));
@@ -19,7 +21,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const f = getFeature(params.slug);
   if (!f) return {};
-  return { title: f.title, description: f.summary, alternates: { canonical: ROUTES.FEATURES_SLUG(f.slug) } };
+  return { title: f.title, description: f.summary, alternates: { canonical: ROUTES.FEATURES_SLUG(f.slug) }, openGraph: openGraph(f.title, f.summary, ROUTES.FEATURES_SLUG(f.slug)) };
 }
 
 export default function FeaturePage({ params }: { params: { slug: string } }) {
@@ -35,9 +37,9 @@ export default function FeaturePage({ params }: { params: { slug: string } }) {
         crumbs={[{ label: PAGES.FEATURES.name, href: PAGES.FEATURES.path }, { label: f.title }]}
         actions={<CtaLink cta={CTA.VIEW_PRODUCT} arrow />}
         art={
-          <SwitchStage className="stage--wide">
-            <SwitchArt gangs={f.slug === 'modular-design' ? 3 : f.slug === 'tactile-precision' ? 1 : 2} finish={FINISHES[f.slug === 'electrical-safety' ? 2 : 0]!} />
-          </SwitchStage>
+          <ProductStage className="stage--wide">
+            <ProductImage series={f.art.series} productId={f.art.id} sizes="(max-width: 1050px) 90vw, 560px" priority />
+          </ProductStage>
         }
       />
 
@@ -62,7 +64,6 @@ export default function FeaturePage({ params }: { params: { slug: string } }) {
             <div className="form-card" style={{ boxShadow: 'none' }}>
               <h2 className="h-sub">Key facts</h2>
               <div style={{ marginTop: 12 }}><SpecTable rows={f.facts} caption={`${f.title} facts`} /></div>
-              <p className="small" style={{ marginTop: 16 }}>Provisional values are waiting for lab confirmation and may change before release.</p>
             </div>
           </Reveal>
         </div>

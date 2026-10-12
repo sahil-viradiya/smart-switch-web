@@ -4,13 +4,12 @@ import { LOGO_MARK } from './logo-mark';
 
 /** Colours come from CSS variables (set by the theme), so the logo follows theme changes. */
 export function LogoMark({ className = 'logo__mark' }: { className?: string }) {
-  const p = LOGO_MARK.paddle;
+  const { ring, dot } = LOGO_MARK;
   return (
     <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <rect x="1.5" y="1.5" width="37" height="37" rx="11" stroke="currentColor" strokeWidth="1.5" />
-      <rect x={p.x} y={p.y} width={p.w} height={p.h} rx="5" stroke="currentColor" strokeWidth="1.5" />
-      <path d={LOGO_MARK.top} fill="var(--gold)" />
-      <circle cx="20" cy="14" r="1.6" fill="var(--black)" />
+      <rect x="1.5" y="1.5" width="37" height="37" rx="5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx={ring.cx} cy={ring.cy} r={ring.r} stroke="var(--gold)" strokeWidth="1.5" />
+      <circle cx={dot.cx} cy={dot.cy} r={dot.r} fill="var(--gold)" />
     </svg>
   );
 }

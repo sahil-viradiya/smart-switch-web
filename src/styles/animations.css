@@ -3,7 +3,7 @@
    Everything below is disabled by the reduced-motion block at the end.
    ========================================================================== */
 
-@keyframes line-rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes line-rise { from { transform: translateY(105%) skewY(6deg); } to { transform: none; } }
 @keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes ghost-fill { 0% { color: transparent; } 100% { color: rgb(var(--white-rgb) / 0.07); } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
@@ -14,7 +14,6 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes breath { 0%, 100% { box-shadow: 0 20px 60px rgb(var(--ink-rgb) / 0.35), 0 0 0 10px rgb(var(--gold-rgb) / 0.1); } 50% { box-shadow: 0 20px 60px rgb(var(--ink-rgb) / 0.35), 0 0 0 22px rgb(var(--gold-rgb) / 0.04); } }
 @keyframes cue-line { 0%, 100% { transform: scaleX(0.3); opacity: 0.5; } 50% { transform: scaleX(1); opacity: 1; } }
-@keyframes led-glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 
 /* Scroll reveal (enabled only when JS added .js to <html>, so content never stays hidden without JS) */
 .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity var(--dur-reveal) var(--ease-out) var(--d, 0s), transform var(--dur-reveal) var(--ease-out) var(--d, 0s); will-change: opacity, transform; }
@@ -22,8 +21,6 @@
 .js .reveal--scale { transform: scale(0.96) translateY(18px); }
 .js .reveal--fade { transform: none; }
 
-.switch-art .led { animation: led-glow 3.6s ease-in-out infinite; }
-.switch-art .led:nth-of-type(2n) { animation-delay: -1.2s; }
 
 /* Intro splash (once per session) */
 .intro { position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; background: var(--black); pointer-events: none; animation: intro-exit var(--intro-duration) linear forwards; }

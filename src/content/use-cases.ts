@@ -1,4 +1,4 @@
-import { SPEC } from '@/config/specs';
+import type { SeriesId } from '@/types';
 
 export interface UseCase {
   slug: string;
@@ -10,7 +10,8 @@ export interface UseCase {
   solutions: { title: string; description: string }[];
   recommendations: { label: string; value: string }[];
   scene: 'living' | 'hall' | 'studio';
-  gangs: 1 | 2 | 3;
+  /** Product shown beside the recommendations. */
+  product: { series: SeriesId; id: string };
   next: { slug: string; title: string };
 }
 
@@ -18,70 +19,70 @@ export const USE_CASES: readonly UseCase[] = [
   {
     slug: 'residential-homes',
     title: 'Family homes',
-    headline: ['Switches that match', 'in every room.'],
+    headline: ['One panel', 'for the whole room.'],
     category: 'Homes',
-    summary: 'Living rooms, bedrooms and hallways with one set of matching switches.',
+    summary: 'Lights, fan and curtains on one panel, in matching styling for every room.',
     overview:
-      'In many homes the switches come from different years and different ranges. Smart Switch gives every room the same plate, with a real paddle and a small status light.',
+      'A living room often has a bank of separate switches for lights, a fan and curtains. A 6M or 8M panel can hold all of them on one touch panel.',
     solutions: [
-      { title: 'One plate for several circuits', description: 'Put downlights, wall lights and a lamp circuit on one multi-gang plate instead of three separate switches.' },
-      { title: 'A light that does not glare', description: 'The status LED is dim, so it will not light up a bedroom the way a touchscreen does.' },
-      { title: 'Hallways and stairs', description: 'Multi-way switching is planned with your electrician before the plates are ordered.' },
+      { title: 'Lights and fan together', description: 'Panels such as "6 switches + 1 fan control" put the room lights and the fan on one panel.' },
+      { title: 'Scenes', description: 'A 2M panel with four scene buttons gives you one-touch settings for the room.' },
+      { title: 'Curtains and dimming', description: 'Single and dual curtain controls and phase-cut dimmers come in 2M panels.' },
     ],
     recommendations: [
-      { label: 'Finish', value: 'Architectural White or Matte Charcoal' },
-      { label: 'Plates', value: '2-gang and 3-gang' },
-      { label: 'Wiring', value: 'Neutral wire in the back-box' },
+      { label: 'Series', value: 'Color or Edge' },
+      { label: 'Sizes', value: '6M or 8M for living rooms, 2M for scenes' },
+      { label: 'Version', value: 'Wi-Fi is the simplest' },
       { label: 'Installer', value: 'Licensed electrician' },
     ],
     scene: 'living',
-    gangs: 3,
+    product: { series: 'color', id: '6m-6-switch-1-fan' },
     next: { slug: 'architectural-renovations', title: 'Renovations' },
   },
   {
     slug: 'architectural-renovations',
     title: 'Renovations',
-    headline: ['Upgrade the switch,', 'keep the wall.'],
+    headline: ['New control,', 'same wall.'],
     category: 'Renovation',
-    summary: 'Plates that fit older walls without enlarging the box.',
+    summary: 'Replace a row of old switches with one matching panel.',
     overview:
-      'Older houses often have shallow boxes, fragile plaster and strict design briefs. Smart Switch is made to fit standard gang boxes, so the wall opening does not need to change.',
+      'When you renovate, you often want to keep the wall and change the controls. Smart Switch panels replace separate switches and sockets with a single, flat panel.',
     solutions: [
-      { title: 'Hidden fixings', description: 'The faceplate has no visible screws, which helps cover an uneven wall opening.' },
-      { title: 'Finishes that suit old details', description: 'Brushed Aluminum and Matte Charcoal sit well next to brass, bronze and timber.' },
-      { title: 'Works in thick walls', description: 'Stone and masonry weaken Wi-Fi. The paddle is designed to switch locally, so the switch still does its main job.' },
+      { title: 'Two-way switching', description: 'A 2M panel with a two-way switch handles lights that are controlled from two places, such as a hallway.' },
+      { title: 'Sockets on the same panel', description: 'Panels such as "1 socket (6A) + 2 switches" combine a socket and switches, so the wall has fewer plates.' },
+      { title: 'Choose the finish', description: 'Both series come in glass or acrylic with a slim border, in several colours and finishes. Ask us for the current options.' },
     ],
     recommendations: [
-      { label: 'Finish', value: 'Brushed Aluminum or Matte Charcoal' },
-      { label: 'Back-box', value: `Standard gang box, ${SPEC.boxDepth} minimum depth` },
+      { label: 'Series', value: 'Edge for a simple look' },
+      { label: 'Sizes', value: '2M to 6M for most walls' },
       { label: 'Before ordering', value: 'Have the wiring checked' },
       { label: 'Installer', value: 'Licensed electrician' },
     ],
     scene: 'hall',
-    gangs: 2,
+    product: { series: 'edge', id: '2m-2-switch-1-2way' },
     next: { slug: 'commercial-studios', title: 'Studios and offices' },
   },
   {
     slug: 'commercial-studios',
     title: 'Studios and offices',
-    headline: ['The same switch', 'on every floor.'],
+    headline: ['The same panel', 'in every room.'],
     category: 'Studios and offices',
-    summary: 'One consistent switch for studios, galleries and small offices.',
+    summary: 'A consistent control panel for studios, galleries and small offices.',
     overview:
-      'A studio or office usually wants one standard across many rooms. Smart Switch gives meeting rooms, galleries and private offices the same plate and the same feel.',
+      'Offices and studios want the same controls in every room. The same sizes and styling are available throughout, and you can control everything from the app.',
     solutions: [
-      { title: 'One standard for many rooms', description: 'The same plate and finish in every space keeps the interior consistent.' },
-      { title: 'Check the loads first', description: `We review the lighting load on each project against the provisional rating of ${SPEC.loadPerGang} per gang.` },
-      { title: 'Simple to run', description: 'Basic switching is designed to be local, so staff can use it without any set-up.' },
+      { title: 'One standard for many rooms', description: 'Use the same series and finish in every space so the interior stays consistent.' },
+      { title: 'Sockets and USB charging', description: 'Panels with sockets and a double USB charger (A-type and C-type) are available.' },
+      { title: 'Control from the app', description: 'Manage lights and appliances from an Android or iOS phone or tablet.' },
     ],
     recommendations: [
-      { label: 'Finish', value: 'Matte Charcoal or Brushed Aluminum' },
-      { label: 'Load check', value: `${SPEC.loadPerGang} per gang (provisional)` },
-      { label: 'Project size', value: 'Send your switch schedule for a review' },
+      { label: 'Series', value: 'Edge or Color' },
+      { label: 'Sizes', value: '4M to 12M, depending on the number of controls' },
+      { label: 'Ratings', value: '6A or 16A to suit each load' },
       { label: 'Installer', value: 'Licensed electrician' },
     ],
     scene: 'studio',
-    gangs: 2,
+    product: { series: 'edge', id: '6m-6-switch' },
     next: { slug: 'residential-homes', title: 'Family homes' },
   },
 ];

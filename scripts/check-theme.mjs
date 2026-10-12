@@ -22,7 +22,7 @@ const rules = [
   { name: 'named colour', re: /\b(?:color|background(?:-color)?|fill|stroke|border-color)\s*[:=]\s*['"]?(?:white|black|red|gold|gray|grey|blue|green)\b/, allow: ['theme/'], hint: 'use a theme token' },
   { name: 'font-family literal', re: /font-family\s*:\s*(?!var\(|inherit)\S/, allow: ['theme/'], hint: 'font is set in src/theme/typography.ts' },
   { name: 'hard-coded route path', re: /href=(?:"|\{?['"`])\/(?!\/)[a-z]/, allow: ['config/'], hint: 'use ROUTES / PAGES / CTA from @/config' },
-  { name: 'spec value', re: /\b(?:110V|240V|35 ?mm|24[- ]month|10A resistive)/, allow: ['config/specs.ts'], hint: 'reference SPEC from @/config' },
+  { name: 'spec value', re: /\b(?:10[- ]years?\b|6A and 16A|2M, 3M)/, allow: ['config/specs.ts'], hint: 'reference SPEC from @/config' },
   { name: 'inline CTA label', re: />\s*(?:Book a Demo|Contact us|Explore the switch|View the product|Request a spec kit|Read the FAQ|Back to home|Plan this space|Ask about this product|Explore configurations)\s*</, allow: ['config/'], hint: 'use CTA from @/config (config/cta.ts)' },
   { name: 'contact detail', re: /optimanex|91972|97255 ?58828|smartswitch\.io|\(800\) 555|Innovation Way/, allow: ['config/site.ts'], hint: 'reference APP_CONFIG from @/config' },
 ];

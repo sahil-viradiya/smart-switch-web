@@ -11,7 +11,7 @@ import { APP_CONFIG } from './site';
 import { ROUTES } from './routes';
 
 export type PageKey =
-  | 'HOME' | 'PRODUCT' | 'FEATURES' | 'HOW_IT_WORKS' | 'USE_CASES' | 'REQUEST_DEMO'
+  | 'HOME' | 'PRODUCT' | 'CATALOGUE' | 'FEATURES' | 'HOW_IT_WORKS' | 'USE_CASES' | 'REQUEST_DEMO'
   | 'CONTACT' | 'FAQ' | 'ABOUT' | 'PRIVACY' | 'TERMS' | 'COOKIES';
 
 export interface PageDef {
@@ -35,11 +35,15 @@ export const PAGES: Record<PageKey, PageDef> = {
   HOME: { path: ROUTES.HOME, name: 'Home', title: APP_CONFIG.DEFAULT_META_TITLE, description: APP_CONFIG.DEFAULT_META_DESCRIPTION, nav: true, priority: 1 },
   PRODUCT: {
     path: ROUTES.PRODUCT, name: 'Product', title: 'Smart Switch Product', nav: true, footer: 'explore', priority: 0.9,
-    description: 'Mechanical paddles, a status light and 1, 2 and 3-gang plates in three finishes. Specifications are provisional.',
+    description: 'Touch panels in the Color and Edge series, with glass or acrylic fronts, six sizes and Wi-Fi or Zigbee versions.',
+  },
+  CATALOGUE: {
+    path: ROUTES.CATALOGUE, name: 'Catalogue', title: 'Product catalogue', footer: 'explore', priority: 0.9,
+    description: 'Browse every panel configuration by size, function, series, panel material and version.',
   },
   FEATURES: {
     path: ROUTES.FEATURES, name: 'Technology', title: 'Technology', nav: true, footer: 'explore', priority: 0.7,
-    description: 'How Smart Switch is built: the paddle mechanism, electrical safety, the plate system and connectivity.',
+    description: 'How Smart Switch works: touch control, app and voice, Wi-Fi and Zigbee, and the range of sizes and functions.',
   },
   HOW_IT_WORKS: {
     path: ROUTES.HOW_IT_WORKS, name: 'How It Works', title: 'How It Works', footer: 'explore', priority: 0.7,
@@ -63,10 +67,10 @@ export const PAGES: Record<PageKey, PageDef> = {
   },
   ABOUT: {
     path: ROUTES.ABOUT, name: 'About', title: 'About', footer: 'company', priority: 0.7,
-    description: 'Why we built Smart Switch and what we care about.',
+    description: 'Why we built Smart Switch, the touch panels we make and what we care about when we design them.',
   },
-  PRIVACY: { path: ROUTES.PRIVACY, name: 'Privacy Policy', shortName: 'Privacy', title: 'Privacy Policy', footer: 'legal', priority: 0.3, description: 'How Smart Switch handles personal information.' },
-  TERMS: { path: ROUTES.TERMS, name: 'Terms & Conditions', shortName: 'Terms', title: 'Terms & Conditions', footer: 'legal', priority: 0.3, description: 'Terms of use for the Smart Switch website.' },
+  PRIVACY: { path: ROUTES.PRIVACY, name: 'Privacy Policy', shortName: 'Privacy', title: 'Privacy Policy', footer: 'legal', priority: 0.3, description: 'How Smart Switch collects, uses and protects the personal information you send us through this website.' },
+  TERMS: { path: ROUTES.TERMS, name: 'Terms & Conditions', shortName: 'Terms', title: 'Terms & Conditions', footer: 'legal', priority: 0.3, description: 'The terms of use for the Smart Switch website, including how product information and enquiries are handled.' },
   COOKIES: { path: ROUTES.COOKIES, name: 'Cookie Policy', shortName: 'Cookies', title: 'Cookie Policy', footer: 'legal', priority: 0.3, description: 'How Smart Switch uses cookies and browser storage.' },
 };
 

@@ -9,6 +9,7 @@ Scope: a standalone product marketing website. No API, database or auth.
 - [x] **Phase 5 — Design system:** dark + gold tokens, Inter, ui primitives, responsive layout (see `docs/design-brief.md`)
 - [x] **Phase 6 — Animation:** hero line reveal + outlined text, self-drawing house outline, scene rotation, hotspots, scroll reveals, orbit diagram, intro splash; honours `prefers-reduced-motion`
 - [x] **Phase 6b — Scroll storytelling & content depth:** pinned scroll scenes (zoom reveal, feature wheel, exploded view), counters/gauge, marquee, parallax/tilt, clickable hotspot room, room tabs, lightbox gallery, wall checker, compare table, planned contents, personas, connectivity roadmap, newsletter handoff, section dots, progress line, back-to-top
+- [x] **Phase 6c — Real product data:** catalogue extracted from the Color and Edge price lists (85 configurations, panel images), `/catalogue` browser, configurator and all copy rebuilt around touch panels in glass and acrylic; prices stored but hidden by default
 - [ ] **Phase 7 (partly done: titles, canonicals, FAQ JSON-LD, skip link, focus states) — SEO/a11y/perf:** OG images, structured data, keyboard + WCAG 2.1 AA audit, Lighthouse pass
 - [ ] **Phase 8 — Deploy:** Vercel (or static host), env vars, final README
 
@@ -16,6 +17,8 @@ Scope: a standalone product marketing website. No API, database or auth.
 ## Open items before launch
 - Confirm the contact email spelling, postal address (optional) and legal entity in `config/site.ts`.
 - Choose inquiry storage (`docs/inquiry-sheet.md`); use Google Sheets if hosting on a serverless platform.
-- Replace SVG placeholder art with real renders/photography (`components/art`).
+- Replace the composited room photos in `public/images/scenes/` with real installation photography when available.
+- Confirm finishes and colours, the supply voltage range and any certifications, then move them from `UNPUBLISHED_SPECS` into `PRODUCT_SPECS`.
+- Decide whether to show prices (`src/config/catalog.ts`).
 - Have counsel review privacy/terms/cookies drafts.
 - Upgrade Next.js (npm audit reports advisories for 14.x).

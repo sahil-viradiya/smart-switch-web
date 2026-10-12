@@ -6,11 +6,13 @@ import { Reveal } from '@/components/ui/Reveal';
 import { CtaSection } from '@/components/ui/CtaBand';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { SceneArt } from '@/components/art/SceneArt';
-import { SwitchArt, SwitchStage } from '@/components/art/SwitchArt';
+import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { ArrowRight } from '@/components/art/Icons';
 import { USE_CASES, getUseCase } from '@/content/use-cases';
-import { FINISHES } from '@/content/product';
 import { CTA, PAGES, ROUTES, demoIntentHref } from '@/config';
+import { openGraph } from '@/lib/seo';
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return USE_CASES.map((u) => ({ slug: u.slug }));
@@ -19,7 +21,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const u = getUseCase(params.slug);
   if (!u) return {};
-  return { title: u.title, description: u.summary, alternates: { canonical: ROUTES.USE_CASES_SLUG(u.slug) } };
+  return { title: u.title, description: u.summary, alternates: { canonical: ROUTES.USE_CASES_SLUG(u.slug) }, openGraph: openGraph(u.title, u.summary, ROUTES.USE_CASES_SLUG(u.slug)) };
 }
 
 export default function UseCasePage({ params }: { params: { slug: string } }) {
@@ -53,7 +55,7 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="stack stack--lg">
-              <SwitchStage className="stage--sq"><SwitchArt gangs={u.gangs} finish={FINISHES[u.slug === 'architectural-renovations' ? 2 : 0]!} /></SwitchStage>
+              <ProductStage className="stage--wide"><ProductImage series={u.product.series} productId={u.product.id} sizes="(max-width: 1050px) 90vw, 520px" /></ProductStage>
               <div className="info-card">
                 <h3>What we would suggest</h3>
                 <dl style={{ display: 'grid', gap: 10, marginTop: 6 }}>
@@ -81,7 +83,7 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <CtaSection title="Planning this kind of project?" text="Send a few details and we will suggest a configuration and finish." />
+      <CtaSection title="Planning this kind of project?" text="Send a few details and we will suggest a series, sizes and functions." />
     </>
   );
 }

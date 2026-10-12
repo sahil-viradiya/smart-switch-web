@@ -40,9 +40,6 @@ export const leadSchema = z.object({
       'OTHER',
     ])
     .optional(),
-  gangCountInterest: z
-    .array(z.enum(['1_GANG', '2_GANG', '3_GANG', 'DIMMER']))
-    .optional(),
   estimatedUnits: z
     .number()
     .int()

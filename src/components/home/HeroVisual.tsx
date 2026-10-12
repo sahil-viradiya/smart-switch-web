@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { SceneArt, type SceneName } from '@/components/art/SceneArt';
+import { IMAGES } from '@/config/images';
 import { motion } from '@/theme';
 import { Lightbox } from '@/components/media/Lightbox';
 import { GALLERY } from '@/content/home';
@@ -76,23 +77,20 @@ export function HeroVisual() {
             <SceneArt scene={s.name} />
           </div>
         ))}
-        <span className="hotspot" style={{ left: '55%', top: '15%' }}>
-          <span className="hotspot__dot" />
-          <span className="hotspot__label">Dimmable lighting</span>
-        </span>
-        <span className="hotspot hotspot--left" style={{ left: '82%', top: '49%' }}>
-          <span className="hotspot__dot" />
-          <span className="hotspot__label">Tactile paddles</span>
-        </span>
-        <span className="hotspot" style={{ left: '30%', top: '73%' }}>
-          <span className="hotspot__dot" />
-          <span className="hotspot__label">Local fail-safe</span>
-        </span>
+        {SCENES.map((sc, i) => {
+          const m = IMAGES.scenes[sc.name].marker;
+          return m && i === index ? (
+            <span key={sc.name} className="hotspot hotspot--left" style={{ left: `${m.x}%`, top: `${m.y}%` }}>
+              <span className="hotspot__dot" />
+              <span className="hotspot__label">{m.label}</span>
+            </span>
+          ) : null;
+        })}
       </div>
 
       <div className="hero__chip hero__chip--status glass-chip">
-        <small>Smart Switch</small>
-        <strong>Flush with the wall</strong>
+        <small>Touch panels</small>
+        <strong>Glass or acrylic</strong>
       </div>
       <div className="hero__chip hero__chip--scene glass-chip" aria-live="polite">
         <small>Showing</small>

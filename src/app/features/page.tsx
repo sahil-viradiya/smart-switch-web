@@ -20,7 +20,7 @@ export default function TechnologyPage() {
       <PageHero
         eyebrow="Technology"
         title={['How it is built']}
-        lead="Four things decide how Smart Switch behaves: how it feels, how it is protected, how it fits and how it connects."
+        lead="Four things decide how a Smart Switch panel works: how it feels to touch, how you control it, how it connects and which size fits your wall."
         crumbs={[{ label: PAGES.FEATURES.name }]}
         actions={<CtaLink cta={CTA.VIEW_PRODUCT} arrow />}
       />
@@ -55,7 +55,7 @@ export default function TechnologyPage() {
           <Reveal className="stack stack--lg">
             <span className="eyebrow">System</span>
             <h2 id="system-title" className="h-section">How the parts connect</h2>
-            <p className="lead">The four areas depend on each other. Radios, standards and ratings are provisional and will be confirmed for each regional hardware version.</p>
+            <p className="lead">The four areas depend on each other. Together they decide how a panel looks, how it is controlled and how it connects.</p>
             <div><CtaLink cta={CTA.READ_FAQ} variant="outline-dark" arrow /></div>
           </Reveal>
           <Reveal variant="scale" delay={0.1}><OrbitDiagram /></Reveal>

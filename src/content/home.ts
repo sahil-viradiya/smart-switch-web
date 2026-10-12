@@ -1,18 +1,18 @@
 import { ROUTES, SPEC, demoIntentHref } from '@/config';
+import { MODULES, SERIES, productsInSeries } from '@/content/catalog';
 import type { MediaItem } from '@/types';
-import { FINISHES, VARIANTS } from './product';
 
-export const MARQUEE_WORDS = ['Tactile', 'Dimmable', 'Flush', 'Modular', 'Local', 'Open'] as const;
+export const MARQUEE_WORDS = ['Touch', 'Glass', 'Acrylic', 'Wi-Fi', 'Zigbee', 'Custom'] as const;
 
-/** Facts taken from the product data, never invented statistics. */
+/** Facts taken from the product catalogue, never invented statistics. */
 export const STATS = [
-  { value: VARIANTS.length, label: 'Configurations', text: '1, 2 and 3-gang plates, plus a dimmer.' },
-  { value: FINISHES.length, label: 'Finishes', text: 'Charcoal, White and Brushed Aluminum.' },
-  { value: Math.max(...VARIANTS.map((v) => v.gangs)), label: 'Circuits on one plate', text: 'Up to three separate paddles on a single faceplate.' },
-  { value: SPEC.warrantyMonths, label: 'Months of warranty', text: 'Planned. Final terms are confirmed at launch.', provisional: true },
+  { value: SERIES.length, label: 'Series', text: 'Color and Edge, with the same sizes and functions.' },
+  { value: MODULES.length, label: 'Panel sizes', text: 'From the compact 2M to the 12M panel.' },
+  { value: Math.max(...SERIES.map((s) => productsInSeries(s.id).length)), label: 'Configurations', text: 'In each series. All come in Wi-Fi or Zigbee, and most in glass or acrylic.' },
+  { value: SPEC.warrantyYears, label: 'Years of warranty', text: 'On the panels.' },
 ] as const;
 
-export const GAUGE = { value: 10, max: 10, unit: ' A', label: 'Resistive load per gang', note: 'Provisional rating, waiting for lab confirmation.' } as const;
+export const GAUGE = { value: 16, max: 16, unit: ' A', label: 'Highest switch and socket rating', note: `Switches and sockets come in ${SPEC.ratings} versions.` } as const;
 
 export interface Hotspot {
   id: string;
@@ -23,27 +23,35 @@ export interface Hotspot {
   link: { label: string; href: string };
 }
 
-/** Clickable points on the room scene. Coordinates are % of the image. */
+/** Clickable points on the living room photo. Coordinates are % of the image. */
 export const HOTSPOTS: readonly Hotspot[] = [
-  { id: 'paddles', x: 81, y: 49, title: 'Tactile paddles', text: 'A real mechanical paddle. It is meant to feel the same whether you press the middle or the edge, and it is easy to find in the dark.', link: { label: 'About the feel', href: ROUTES.FEATURES_SLUG('tactile-precision') } },
-  { id: 'dimmer', x: 50, y: 14, title: 'Dimmable lighting', text: 'The dimmer version has a paddle and a dimming control for dimmable loads. Which loads work is confirmed for each version.', link: { label: 'See the dimmer', href: `${ROUTES.PRODUCT}#configure` } },
-  { id: 'led', x: 18, y: 46, title: 'Status light', text: 'A small LED shows the state of the switch. It is dim enough that it will not light up a bedroom.', link: { label: 'About the feel', href: ROUTES.FEATURES_SLUG('tactile-precision') } },
-  { id: 'local', x: 36, y: 76, title: 'Local-first control', text: 'The paddle is designed to switch the circuit directly, so everyday lighting does not depend on Wi-Fi or the cloud.', link: { label: 'About connectivity', href: ROUTES.FEATURES_SLUG('smart-ecosystem') } },
-  { id: 'box', x: 88, y: 64, title: 'Standard wall box', text: `It is made for standard gang boxes at least ${SPEC.boxDepth} deep (provisional), so fitting it to an existing wall is straightforward.`, link: { label: 'How installation works', href: ROUTES.HOW_IT_WORKS } },
+  { id: 'icons', x: 54, y: 32, title: 'Backlit touch icons', text: 'Each function has its own icon. Touch it to switch the light or appliance. On the Color series you can change the icon colours.', link: { label: 'About touch control', href: ROUTES.FEATURES_SLUG('touch-control') } },
+  { id: 'fan', x: 65.5, y: 33.5, title: 'Fan control', text: 'Many panels include a fan control next to the switches, so the fan and the lights share one panel.', link: { label: 'Sizes and functions', href: ROUTES.FEATURES_SLUG('sizes-and-functions') } },
+  { id: 'panel', x: 85, y: 39.5, title: 'Glass or acrylic panel', text: 'The panel is glass or acrylic with a slim border. Some panels, such as sockets, are only offered in acrylic.', link: { label: 'Browse the range', href: ROUTES.CATALOGUE } },
+  { id: 'app', x: 48, y: 66, title: 'App control', text: 'Control the panel from an Android or iOS phone or tablet, including when you are away from home.', link: { label: 'App, voice and remote', href: ROUTES.FEATURES_SLUG('app-and-voice') } },
+  { id: 'voice', x: 80, y: 62, title: 'Voice control', text: 'Works with voice assistants such as Alexa and Google Home, so you can switch things by speaking.', link: { label: 'App, voice and remote', href: ROUTES.FEATURES_SLUG('app-and-voice') } },
 ];
 
 export const GALLERY: readonly MediaItem[] = [
-  { kind: 'scene', scene: 'living', caption: 'Living room, 3-gang plate', alt: 'Living room with a Smart Switch on the wall' },
-  { kind: 'switch', variant: '2_GANG', finish: 'MATTE_CHARCOAL', caption: '2-gang in Matte Charcoal', alt: 'Two-gang Smart Switch in Matte Charcoal' },
-  { kind: 'scene', scene: 'bedroom', caption: 'Bedroom with the status light', alt: 'Bedroom with a Smart Switch beside the bed' },
-  { kind: 'switch', variant: '3_GANG', finish: 'ARCHITECTURAL_WHITE', caption: '3-gang in Architectural White', alt: 'Three-gang Smart Switch in Architectural White' },
-  { kind: 'scene', scene: 'studio', caption: 'Studio', alt: 'Studio with a Smart Switch by the shelving' },
-  { kind: 'switch', variant: 'DIMMER', finish: 'MATTE_CHARCOAL', caption: 'Dimmer in Matte Charcoal', alt: 'Dimmer Smart Switch in Matte Charcoal' },
-  { kind: 'scene', scene: 'hall', caption: 'Hallway', alt: 'Hallway with a Smart Switch' },
-  { kind: 'switch', variant: '1_GANG', finish: 'BRUSHED_ALUMINUM', caption: '1-gang in Brushed Aluminum', alt: 'One-gang Smart Switch in Brushed Aluminum' },
-  { kind: 'switch', variant: '2_GANG', finish: 'BRUSHED_ALUMINUM', caption: '2-gang in Brushed Aluminum', alt: 'Two-gang Smart Switch in Brushed Aluminum' },
-  { kind: 'switch', variant: '3_GANG', finish: 'MATTE_CHARCOAL', caption: '3-gang in Matte Charcoal', alt: 'Three-gang Smart Switch in Matte Charcoal' },
+  { kind: 'scene', scene: 'living', caption: 'Living room, 8M Color panel', alt: 'Living room with a Color series panel on the wall' },
+  { kind: 'product', series: 'color', productId: '2m-4-switch-scene-control', caption: 'Color, 2M scene control', alt: 'Color series 2M panel with four scene buttons' },
+  { kind: 'scene', scene: 'bedroom', caption: 'Bedroom, 4M Edge panel', alt: 'Bedroom with an Edge series panel on the wall' },
+  { kind: 'product', series: 'edge', productId: '4m-4-switch', caption: 'Edge, 4M with 4 switches', alt: 'Edge series 4M panel with four touch points' },
+  { kind: 'scene', scene: 'studio', caption: 'Studio, 6M Edge panel', alt: 'Studio with an Edge series panel on the wall' },
+  { kind: 'product', series: 'color', productId: '6m-6-switch-1-fan', caption: 'Color, 6M with a fan control', alt: 'Color series 6M panel with six switches and a fan control' },
+  { kind: 'scene', scene: 'hall', caption: 'Hallway, 2M Edge panel', alt: 'Hallway with an Edge series panel on the wall' },
+  { kind: 'product', series: 'edge', productId: '12m-12-switch', caption: 'Edge, 12M with 12 switches', alt: 'Edge series 12M panel with twelve touch points' },
+  { kind: 'product', series: 'color', productId: '2m-single-curtain-switch', caption: 'Color, 2M curtain control', alt: 'Color series 2M panel with curtain controls' },
+  { kind: 'product', series: 'edge', productId: '2m-double-usb-charger-a-type-c-type', caption: 'Edge, 2M USB charger', alt: 'Edge series 2M double USB charger panel' },
 ];
+
+/** Copy around the product film (the file itself is registered in `config/images.ts`). */
+export const FILM_COPY = {
+  eyebrow: 'Watch',
+  title: ['The range', 'in motion.'] as [string, string],
+  lead: 'A short silent film of Color and Edge panels, on the wall in four rooms and close up. It plays while you watch and pauses when you scroll away.',
+  note: 'Panels shown: Color 8M, Edge 4M, Edge 6M, Color 2M, Edge 2M and Edge 12M.',
+} as const;
 
 export interface Persona {
   id: string;
@@ -57,32 +65,33 @@ export interface Persona {
 export const PERSONAS: readonly Persona[] = [
   {
     id: 'homeowner', title: 'Homeowners', eyebrow: 'For your home',
-    text: 'Matching switches in every room, with a real paddle that works the way you expect.',
-    points: ['Pick the plate size and finish for each room', 'A status light that will not glare at night', 'Fitted by your own licensed electrician'],
+    text: 'Matching touch panels in every room, controlled from the wall, your phone or your voice.',
+    points: ['Choose a size for each room', 'Pick Wi-Fi or Zigbee', 'Fitted by your own licensed electrician'],
     cta: { label: 'Plan my home', href: demoIntentHref('homeowner') },
   },
   {
     id: 'architect', title: 'Architects and designers', eyebrow: 'For your specification',
-    text: 'One plate across a whole project, three finishes, and specifications that say what is confirmed and what is not.',
-    points: ['Ask for a spec kit and finish samples', 'Provisional ratings are marked as provisional', 'Flush multi-gang plates for new builds and renovations'],
-    cta: { label: 'Request a spec kit', href: demoIntentHref('architect') },
+    text: 'Two series, six sizes and a full list of configurations, so you can specify exactly what each wall needs.',
+    points: ['Browse all configurations', 'Ask for specs and samples', 'Custom icons on the Color series'],
+    cta: { label: 'Ask for specs and samples', href: demoIntentHref('architect') },
   },
   {
     id: 'installer', title: 'Electricians', eyebrow: 'For the install',
-    text: 'The requirements are listed up front, so what you find on site matches what was planned.',
-    points: ['Neutral wire and box depth checklist', 'Standard gang boxes', 'Ask questions before you quote'],
+    text: 'The configurations, ratings and versions are listed in full, so you can plan the job before you quote.',
+    points: [`${SPEC.ratings} versions`, 'Wi-Fi and Zigbee versions', 'Ask questions before you quote'],
     cta: { label: 'Talk to our team', href: demoIntentHref('installer') },
   },
 ];
 
-export interface Standard { name: string; role: string; status: string }
+export interface ControlOption { name: string; role: string; status: string }
 
-/** Connectivity plans. Statuses are deliberately cautious and no platform badge is claimed. */
-export const STANDARDS: readonly Standard[] = [
-  { name: 'Wi-Fi 2.4 GHz', role: 'Network link for remote control and schedules', status: 'Provisional' },
-  { name: 'Bluetooth LE', role: 'Pairing and first-time set-up', status: 'Provisional' },
-  { name: 'Matter', role: 'Control from different platforms, over Wi-Fi', status: 'Planned' },
-  { name: 'Thread', role: 'Matter over Thread', status: 'Under evaluation' },
-  { name: 'Apple Home, Google Home, Alexa', role: 'Intended to work through Matter. No platform badge yet', status: 'Not claimed' },
-  { name: 'Local switching', role: 'The paddle works without a network', status: 'Design goal' },
+/** The ways a panel can be controlled and connected, with any condition that applies. */
+export const CONTROL_OPTIONS: readonly ControlOption[] = [
+  { name: 'Touch', role: 'Touch the icon or touch point on the panel', status: 'All panels' },
+  { name: 'App', role: 'Android and iOS phones and tablets', status: 'All panels' },
+  { name: 'Voice', role: 'Alexa and Google Home', status: 'All panels' },
+  { name: 'Wi-Fi version', role: 'Connects to your home Wi-Fi', status: 'Every configuration' },
+  { name: 'Zigbee version', role: 'Connects through a Zigbee gateway', status: 'Gateway needed' },
+  { name: 'IR blaster and remote', role: 'Infrared control and a handheld remote', status: 'IR blaster: Wi-Fi only' },
 ];
+

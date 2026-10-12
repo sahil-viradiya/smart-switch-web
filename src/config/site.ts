@@ -7,7 +7,7 @@
  */
 export const APP_CONFIG = {
   BRAND_NAME: 'Smart Switch',
-  BRAND_TAGLINE: 'Smart wall switches',
+  BRAND_TAGLINE: 'Smart touch switches',
   LEGAL_COMPANY_NAME: 'Smart Switch',
   SUPPORT_EMAIL: 'hell@optimanex.com',
   SALES_EMAIL: 'hell@optimanex.com',
@@ -18,9 +18,9 @@ export const APP_CONFIG = {
   /** Digits only, country code first -  used for wa.me links. */
   WHATSAPP_NUMBER: '919725558828',
   ADDRESS_LINES: [] as readonly string[],
-  DEFAULT_META_TITLE: 'Smart Switch | Wall switches with real paddles',
+  DEFAULT_META_TITLE: 'Smart Switch | Smart touch switches in glass and acrylic',
   DEFAULT_META_DESCRIPTION:
-    'Smart Switch is a wall switch with mechanical paddles, a small status light and optional smart features. Specifications are provisional while testing is finished.',
+    'Smart touch switches in glass or acrylic, in two series and six sizes. Control them from the wall, an app, your voice or a remote, with Wi-Fi or Zigbee versions.',
   COPYRIGHT_YEAR: 2026,
 } as const;
 

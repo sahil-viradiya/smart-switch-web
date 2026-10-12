@@ -7,7 +7,7 @@ import { WallChecker } from '@/components/tools/WallChecker';
 import { CHECK_QUESTIONS } from '@/content/tools';
 import { CtaSection } from '@/components/ui/CtaBand';
 import { pageMeta } from '@/lib/seo';
-import { SPEC, CTA, PAGES } from '@/config';
+import { CTA, PAGES } from '@/config';
 
 export const metadata = pageMeta('HOW_IT_WORKS');
 
@@ -15,32 +15,32 @@ const STEPS = [
   {
     who: 'You and your designer',
     title: 'Plan the wall',
-    text: 'Decide which rooms and circuits you want to control, then pick a configuration and finish.',
-    points: ['Choose 1, 2 or 3-gang plates, or the dimmer.', 'Pick a finish for each room.', 'Note any multi-way circuits for your electrician.'],
+    text: 'Decide which rooms and functions you want, then pick a series, a size and a version.',
+    points: ['Choose Color or Edge.', 'Pick a size for each wall box, from 2M to 12M.', 'Choose Wi-Fi or Zigbee, and glass or acrylic where both are offered.'],
   },
   {
     who: 'Licensed electrician',
     title: 'Check and install',
-    text: 'Your electrician checks the wall box and wiring, fits each switch and tests it.',
+    text: 'Your electrician checks the wiring and wall boxes, fits each panel and tests it.',
     points: [
-      'Confirm a neutral wire is present in the back-box.',
-      `Confirm the box is a standard gang box with ${SPEC.boxDepth} minimum depth (provisional).`,
-      `Confirm supply is ${SPEC.voltage} (provisional).`,
-      'Isolate the circuit and fit it following your local electrical code.',
+      'Check the wiring in each wall box before you order.',
+      'Match the 6A or 16A versions to the load on each circuit.',
+      'Set up the gateway first if you chose the Zigbee version.',
+      'Isolate the circuit and fit the panel following your local electrical code.',
     ],
   },
   {
     who: 'Day to day',
     title: 'Use it',
-    text: 'Press the paddle like any other switch. The smart features run in the background.',
-    points: ['Mechanical paddles with a small status light.', 'Local switching, designed to work without the internet.', 'Ready for open standards later.'],
+    text: 'Touch the panel, or use the app, your voice or a remote.',
+    points: ['Touch the icon or touch point on the panel.', 'Use the Android or iOS app from anywhere.', 'Ask a voice assistant such as Alexa or Google Home.'],
   },
 ];
 
 export default function HowItWorksPage() {
   return (
     <>
-      <PageHero eyebrow="How it works" title={['Plan, install, use']} lead="Here is how a Smart Switch installation goes, from choosing plates to using the switch." crumbs={[{ label: PAGES.HOW_IT_WORKS.name }]} />
+      <PageHero eyebrow="How it works" title={['Plan, install, use']} lead="Here is how a Smart Switch installation goes, from choosing panels to using them." crumbs={[{ label: PAGES.HOW_IT_WORKS.name }]} />
 
       <section className="sec sec--paper" aria-labelledby="steps-title">
         <div className="container">

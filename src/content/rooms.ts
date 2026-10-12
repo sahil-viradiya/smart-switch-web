@@ -1,5 +1,5 @@
 import { ROUTES } from '@/config';
-import type { SceneName } from '@/types';
+import type { SceneName, SeriesId } from '@/types';
 
 export interface RoomTab {
   id: string;
@@ -7,38 +7,43 @@ export interface RoomTab {
   scene: SceneName;
   headline: string;
   text: string;
-  suggestion: { plate: string; finish: string };
+  suggestion: { panel: string; series: string };
   tips: string[];
   link: { label: string; href: string };
+  product: { series: SeriesId; id: string };
 }
 
 export const ROOM_TABS: readonly RoomTab[] = [
   {
-    id: 'living', name: 'Living room', scene: 'living', headline: 'Several lights, one plate',
-    text: 'Put the downlights, wall lights and a lamp circuit on one faceplate so the wall has a single, tidy switch.',
-    suggestion: { plate: '3-gang', finish: 'Matte Charcoal or Architectural White' },
-    tips: ['Use the dimmer beside the sofa for evening light', 'Line the plate up with door handle height', 'Check the box has a neutral wire'],
+    id: 'living', name: 'Living room', scene: 'living', headline: 'Lights and fan on one panel',
+    text: 'A large panel can hold the room lights, a fan control and a socket, so the wall has one panel instead of several.',
+    suggestion: { panel: '8M, for example 6 switches + 1 fan control', series: 'Color' },
+    tips: ['Choose icon colours in the app (Color series)', 'Pick 6A or 16A switches to suit each load', 'Wi-Fi is the simplest version'],
     link: { label: 'Family homes', href: ROUTES.USE_CASES_SLUG('residential-homes') },
+    product: { series: 'color', id: '8m-6-switch-1-fan' },
   },
   {
-    id: 'bedroom', name: 'Bedroom', scene: 'bedroom', headline: 'Easy to use at night',
-    text: 'A dim status light instead of a bright screen, and a paddle you can find without looking.',
-    suggestion: { plate: '2-gang', finish: 'Architectural White' },
-    tips: ['Mount it where you can reach it from the bed', 'Use the dimmer for a reading light', 'The status light is designed to stay dim'],
+    id: 'bedroom', name: 'Bedroom', scene: 'bedroom', headline: 'Lights, dimming and curtains',
+    text: 'Use a 4M panel for the main lights, or a 2M panel with dimmers or a curtain control next to the bed.',
+    suggestion: { panel: '4M with 4 switches, or 2M dimmer', series: 'Edge' },
+    tips: ['Phase-cut dimmers come in 2M panels', 'Curtain controls come in single and dual versions', 'Use the app or voice at night'],
     link: { label: 'Family homes', href: ROUTES.USE_CASES_SLUG('residential-homes') },
+    product: { series: 'edge', id: '4m-4-switch' },
   },
   {
-    id: 'hall', name: 'Hallway & stairs', scene: 'hall', headline: 'One plate instead of three',
-    text: 'Replace a row of mismatched switches with one plate, and plan any multi-way wiring with your electrician.',
-    suggestion: { plate: '2-gang or 3-gang', finish: 'Brushed Aluminum' },
-    tips: ['Plan multi-way switching before ordering', 'Check the box depth first in older walls', 'Brushed Aluminum looks good beside brass and bronze'],
+    id: 'hall', name: 'Hallway & stairs', scene: 'hall', headline: 'Two-way switching',
+    text: 'A 2M panel with a two-way switch controls the same light from two places, which is useful in a hallway or on stairs.',
+    suggestion: { panel: '2M with a two-way switch', series: 'Edge' },
+    tips: ['Plan the two-way wiring with your electrician', 'Check the wall box before ordering', 'A doorbell panel is also available in 2M and 3M'],
     link: { label: 'Renovations', href: ROUTES.USE_CASES_SLUG('architectural-renovations') },
+    product: { series: 'edge', id: '2m-2-switch-1-2way' },
   },
   {
-    id: 'studio', name: 'Studio & office', scene: 'studio', headline: 'The same switch in every room',
-    text: 'Use one plate and one finish in meeting rooms, galleries and offices so they all match.',
-    suggestion: { plate: '2-gang', finish: 'Matte Charcoal or Brushed Aluminum' },
-    tips: ['Check lighting loads against the provisional rating', 'Send a switch schedule for a review', 'Use the same finish on every floor'],
+    id: 'studio', name: 'Studio & office', scene: 'studio', headline: 'The same panel in every room',
+    text: 'Use one series and one size family across the whole space, with sockets and USB charging where you need them.',
+    suggestion: { panel: '6M with 6 switches', series: 'Edge' },
+    tips: ['Add a double USB charger panel', 'Match the rating (6A or 16A) to the equipment', 'Control everything from the app'],
     link: { label: 'Studios and offices', href: ROUTES.USE_CASES_SLUG('commercial-studios') },
+    product: { series: 'edge', id: '6m-6-switch' },
   },
 ];

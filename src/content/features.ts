@@ -16,93 +16,100 @@ export interface Feature {
   details: { heading: string; description: string }[];
   facts: FeatureFact[];
   related: { slug: string; title: string };
-  icon: 'paddle' | 'bolt' | 'grid' | 'orbit';
+  icon: 'touch' | 'app' | 'connect' | 'grid';
+  /** Product shown beside the heading. */
+  art: { series: 'color' | 'edge'; id: string };
 }
 
 export const FEATURES: readonly Feature[] = [
   {
-    slug: 'tactile-precision',
-    title: 'Tactile feel',
-    headline: ['A switch you', 'can feel.'],
-    eyebrow: 'Mechanics',
-    summary: 'Mechanical paddles and a small status light, with no touch panel.',
+    slug: 'touch-control',
+    title: 'Touch control',
+    headline: ['Control the light', 'with a touch.'],
+    eyebrow: 'Touch',
+    summary: 'A glass or acrylic panel with a light-touch control for every function.',
     overview:
-      'People press a wall switch thousands of times. Smart Switch keeps a real mechanical paddle for that, and puts the smart parts behind it.',
+      'Smart Switch panels have no buttons to press. You touch the icon or touch point for each function, and the panel lights it up so you can see what is on.',
     details: [
-      { heading: 'A paddle you can find in the dark', description: 'The paddles are large and weighted evenly, so a press at the edge feels the same as one in the middle.' },
-      { heading: 'A quiet click', description: 'We are tuning the mechanism to keep the click soft. The final sound and feel will be measured in lab testing.' },
-      { heading: 'A status light, not a screen', description: 'A small LED shows whether the circuit is on. It is dim enough for a bedroom at night.' },
+      { heading: 'One touch per function', description: 'Each switch, fan control, dimmer or curtain control has its own icon or touch point on the panel.' },
+      { heading: 'Glass or acrylic', description: 'Both materials have a slim border. A few panels, such as single sockets and the USB charger, are only offered in acrylic.' },
+      { heading: 'Two looks', description: 'Color has backlit icons with colours you can change. Edge has round touch points and a precise finish.' },
     ],
     facts: [
-      { label: 'Control', value: 'Mechanical paddle', provisional: false },
-      { label: 'Indicator', value: 'Small status LED', provisional: false },
-      { label: 'Travel, force and life', value: 'To be measured in lab testing', provisional: true },
+      { label: 'Control', value: 'Touch', provisional: false },
+      { label: 'Panel', value: 'Glass or acrylic', provisional: false },
+      { label: 'Series', value: 'Color and Edge', provisional: false },
     ],
-    related: { slug: 'modular-design', title: 'Plates and finishes' },
-    icon: 'paddle',
+    related: { slug: 'app-and-voice', title: 'App, voice and remote' },
+    icon: 'touch',
+    art: { series: 'color', id: '2m-4-switch-scene-control' },
   },
   {
-    slug: 'electrical-safety',
-    title: 'Electrical safety',
-    headline: ['Safety comes', 'first.'],
-    eyebrow: 'Safety',
-    summary: 'Built around protection, and installed only by licensed electricians.',
+    slug: 'app-and-voice',
+    title: 'App, voice and remote',
+    headline: ['Control it from', 'anywhere.'],
+    eyebrow: 'Control',
+    summary: 'Use the app, a voice assistant or a handheld remote as well as the panel.',
     overview:
-      'Mains voltage leaves no room for shortcuts. Smart Switch is designed around protection and professional installation. Protection ratings and certifications are still being tested, so we do not claim any yet.',
+      'You can switch things from the wall, but you do not have to. The panels also work from a phone or tablet, with voice assistants and with a remote.',
     details: [
-      { heading: 'Flame-retardant housing', description: 'The housing is designed around a flame-retardant plastic. We will publish the exact rating once certified testing confirms it.' },
-      { heading: 'Over-current and surge protection', description: 'Protecting the load and the electronics from supply faults is a design goal. Lab results are still to come.' },
-      { heading: 'Licensed installation only', description: 'A certified, licensed electrician must fit it, following your local electrical code.' },
+      { heading: 'App', description: 'Control your lights and appliances from an Android or iOS phone or tablet, including when you are away from home.' },
+      { heading: 'Voice', description: 'Works with voice assistants such as Alexa and Google Home, so you can switch things on and off by speaking.' },
+      { heading: 'Remote and IR', description: 'A handheld remote (R1-R2) is available. An IR blaster lets a Wi-Fi panel send infrared commands to devices such as air conditioners.' },
     ],
     facts: [
-      { label: 'Supply', value: SPEC.voltage, provisional: true },
-      { label: 'Load per gang', value: SPEC.loadPerGang, provisional: true },
-      { label: 'Certifications', value: 'In testing. None claimed yet', provisional: true },
+      { label: 'App', value: 'Android and iOS', provisional: false },
+      { label: 'Voice', value: 'Alexa and Google Home', provisional: false },
+      { label: 'Remote', value: 'Remote R1-R2 (accessory)', provisional: false },
+      { label: 'IR blaster', value: 'Wi-Fi panels only', provisional: false },
+    ],
+    related: { slug: 'wifi-and-zigbee', title: 'Wi-Fi and Zigbee' },
+    icon: 'app',
+    art: { series: 'color', id: '6m-6-switch-1-fan' },
+  },
+  {
+    slug: 'wifi-and-zigbee',
+    title: 'Wi-Fi and Zigbee',
+    headline: ['Two versions,', 'one panel.'],
+    eyebrow: 'Connectivity',
+    summary: 'Choose a Wi-Fi panel or a Zigbee panel. Every configuration comes in both.',
+    overview:
+      'Each configuration is offered as a Wi-Fi version and a Zigbee version. They look the same on the wall and differ in how they connect.',
+    details: [
+      { heading: 'Wi-Fi version', description: 'Connects to your home Wi-Fi. It works with the IR blaster.' },
+      { heading: 'Zigbee version', description: 'Connects through a Zigbee gateway, which you buy separately. The gateway comes as an Ethernet or a USB model.' },
+      { heading: 'Price', description: 'The Zigbee version usually costs more per panel than the Wi-Fi version.' },
+    ],
+    facts: [
+      { label: 'Versions', value: 'Wi-Fi or Zigbee', provisional: false },
+      { label: 'Gateway', value: 'Zigbee only (Ethernet or USB)', provisional: false },
+      { label: 'IR blaster', value: 'Wi-Fi only', provisional: false },
+    ],
+    related: { slug: 'sizes-and-functions', title: 'Sizes and functions' },
+    icon: 'connect',
+    art: { series: 'edge', id: '4m-4-switch' },
+  },
+  {
+    slug: 'sizes-and-functions',
+    title: 'Sizes and functions',
+    headline: ['Six sizes,', 'many functions.'],
+    eyebrow: 'Range',
+    summary: 'Panels from 2M to 12M with switches, sockets, fan control and more.',
+    overview:
+      `There are six panel sizes, ${SPEC.moduleSizes}. Larger panels hold more controls, and you can combine switches with sockets and a fan control on the same panel.`,
+    details: [
+      { heading: 'What a panel can hold', description: 'Switches, sockets, fan control, curtain control, dimmers, a 4-button scene control, a USB charger and a doorbell.' },
+      { heading: 'Ratings', description: `Switches and sockets come in ${SPEC.ratings} versions. Choose the rating to suit the load on each circuit.` },
+      { heading: 'Matching panels', description: 'Every size uses the same styling, so a bedroom, a hallway and a living room can all match.' },
+    ],
+    facts: [
+      { label: 'Sizes', value: SPEC.moduleSizes, provisional: false },
+      { label: 'Ratings', value: SPEC.ratings, provisional: false },
       { label: 'Installation', value: 'Licensed electrician required', provisional: false },
     ],
-    related: { slug: 'tactile-precision', title: 'Tactile feel' },
-    icon: 'bolt',
-  },
-  {
-    slug: 'modular-design',
-    title: 'Plates and finishes',
-    headline: ['One system', 'for every wall.'],
-    eyebrow: 'Design',
-    summary: '1, 2 and 3-gang plates and a dimmer, in three finishes.',
-    overview:
-      'Rooms differ but the wall should not look different in each one. Every Smart Switch plate shares the same faceplate and finishes, so mixed layouts still match.',
-    details: [
-      { heading: 'Flush plates', description: 'The faceplate sits flat on the wall and the fixings are hidden.' },
-      { heading: 'Standard wall boxes', description: `Made for standard gang boxes at least ${SPEC.boxDepth} deep. The figure is provisional and is confirmed for each regional version.` },
-      { heading: 'Three finishes', description: 'Matte Charcoal, Architectural White and Brushed Aluminum, chosen to sit next to door hardware, joinery and fittings.' },
-    ],
-    facts: [
-      { label: 'Configurations', value: '1, 2 and 3-gang, plus dimmer', provisional: false },
-      { label: 'Finishes', value: 'Charcoal, White, Aluminum', provisional: false },
-      { label: 'Wall box', value: `Standard gang box, ${SPEC.boxDepth} minimum depth`, provisional: true },
-    ],
-    related: { slug: 'smart-ecosystem', title: 'Connectivity' },
+    related: { slug: 'touch-control', title: 'Touch control' },
     icon: 'grid',
-  },
-  {
-    slug: 'smart-ecosystem',
-    title: 'Connectivity',
-    headline: ['Smart features,', 'local switching.'],
-    eyebrow: 'Connectivity',
-    summary: 'The paddle switches locally. Smart features are optional and use open standards.',
-    overview:
-      'A light switch should not stop working because the internet does. Smart Switch is designed so the paddle switches the circuit directly, and the network features are an extra on top.',
-    details: [
-      { heading: 'Local first', description: 'Pressing the paddle is meant to switch the circuit directly, without waiting for the cloud or your router.' },
-      { heading: 'Open standards', description: 'We are building toward Matter over Wi-Fi, with Bluetooth LE for pairing. The exact protocols are confirmed for each regional version.' },
-      { heading: 'No lock-in', description: 'Everyday switching should never depend on one company\'s cloud.' },
-    ],
-    facts: [
-      { label: 'Radios', value: SPEC.connectivity, provisional: true },
-      { label: 'Platform badges', value: 'None claimed yet', provisional: true },
-    ],
-    related: { slug: 'electrical-safety', title: 'Electrical safety' },
-    icon: 'orbit',
+    art: { series: 'edge', id: '12m-12-switch' },
   },
 ];
 

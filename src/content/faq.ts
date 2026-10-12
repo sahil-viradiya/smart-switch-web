@@ -11,121 +11,136 @@ export interface FaqItem {
 
 export const FAQ_CATEGORIES: readonly { id: 'ALL' | FaqCategory; label: string }[] = [
   { id: 'ALL', label: 'All' },
-  { id: 'WIRING', label: 'Wiring' },
+  { id: 'WIRING', label: 'Functions' },
   { id: 'INSTALLATION', label: 'Installation' },
-  { id: 'CONNECTIVITY', label: 'Connectivity' },
+  { id: 'CONNECTIVITY', label: 'Control' },
   { id: 'WARRANTY', label: 'Warranty' },
-  { id: 'AVAILABILITY', label: 'Availability' },
+  { id: 'AVAILABILITY', label: 'Ordering' },
 ];
 
 export const FAQ_ITEMS: readonly FaqItem[] = [
   {
-    id: 'faq-neutral',
+    id: 'faq-touch',
     category: 'WIRING',
-    question: 'Does Smart Switch need a neutral wire?',
+    question: 'How do the touch panels work?',
     answer:
-      'Yes. The standard models are designed to need a neutral wire in the switch box. We are looking at a version without that requirement, but it is not available. Ask your electrician to check the box before you order.',
+      'You touch the icon or touch point for each function on a glass or acrylic panel, and it lights up. You can also use the app, a voice assistant or a remote.',
+  },
+  {
+    id: 'faq-ratings',
+    category: 'WIRING',
+    question: 'What do the ratings mean?',
+    answer: `Switches and sockets come in ${SPEC.ratings} versions. Choose the rating to suit the load on each circuit, and ask your electrician if you are not sure.`,
+  },
+  {
+    id: 'faq-fan',
+    category: 'WIRING',
+    question: 'Can a panel control a fan?',
+    answer: 'Yes. Many panels include a fan control, for example 4 switches and 1 fan control, or 6 switches and 2 fan controls.',
+  },
+  {
+    id: 'faq-curtain',
+    category: 'WIRING',
+    question: 'Can I control curtains?',
+    answer: 'Yes. Single and dual curtain controls are available as 2M panels.',
+  },
+  {
+    id: 'faq-dimmer',
+    category: 'WIRING',
+    question: 'Is there a dimmer?',
+    answer:
+      'Yes. Phase-cut dimmers come in a 2M panel with two dimmers in both series, and in a 6M panel with four dimmers in the Edge series. Check that your lamps are dimmable.',
+  },
+  {
+    id: 'faq-sockets',
+    category: 'WIRING',
+    question: 'Can I have sockets and switches on one panel?',
+    answer:
+      `Yes. Many panels combine one or two sockets with switches and a fan control. Sockets come in ${SPEC.ratings} versions, and panels with sockets are mostly offered with an acrylic panel only.`,
   },
   {
     id: 'faq-diy',
     category: 'INSTALLATION',
     question: 'Can I install it myself?',
-    answer:
-      'No. It connects to mains voltage, so a certified, licensed electrician has to fit it and follow your local electrical code.',
+    answer: 'No. The panels connect to mains voltage, so a licensed electrician has to install them and follow your local electrical code.',
   },
   {
-    id: 'faq-offline',
+    id: 'faq-size',
+    category: 'INSTALLATION',
+    question: 'Which size do I need?',
+    answer:
+      'It depends on how many controls you want and the size of your wall box. Panels run from 2M to 12M. Browse the catalogue by size, or send us your wall box details and we will suggest one.',
+  },
+  {
+    id: 'faq-material',
+    category: 'INSTALLATION',
+    question: 'Should I choose glass or acrylic?',
+    answer:
+      'Both have a slim border and work the same way. Glass costs more than acrylic. A few panels, such as single sockets and the USB charger, are only offered in acrylic.',
+  },
+  {
+    id: 'faq-wifi-zigbee',
     category: 'CONNECTIVITY',
-    question: 'Does it still work if the Wi-Fi goes down?',
+    question: 'Should I choose Wi-Fi or Zigbee?',
     answer:
-      'That is how it is designed. The paddle is meant to switch the circuit directly, so everyday switching does not depend on Wi-Fi or the internet. We will confirm this during hardware testing.',
+      'Every panel comes in both. The Wi-Fi version connects to your Wi-Fi. The Zigbee version connects through a Zigbee gateway and usually costs more per panel.',
   },
   {
-    id: 'faq-load',
-    category: 'WIRING',
-    question: 'How much load can each gang take?',
-    answer: `The provisional rating is ${SPEC.loadPerGang} per gang at ${SPEC.voltage}. These figures are still to be confirmed by lab testing and electrical code listings, and they may change before release.`,
-  },
-  {
-    id: 'faq-platforms',
+    id: 'faq-gateway',
     category: 'CONNECTIVITY',
-    question: 'Which smart-home platforms will it work with?',
-    answer:
-      'We are building toward Matter over Wi-Fi, with Bluetooth LE for pairing. We do not claim compatibility with any platform yet. The exact protocols will be confirmed for each regional version.',
-  },
-  {
-    id: 'faq-certs',
-    category: 'INSTALLATION',
-    question: 'Is it certified?',
-    answer:
-      'Not yet. Safety and regulatory testing is under way. We will only show a certification mark once we hold the lab certificate.',
-  },
-  {
-    id: 'faq-warranty',
-    category: 'WARRANTY',
-    question: 'What warranty will it have?',
-    answer: `We plan a ${SPEC.warrantyMonths}-month manufacturer warranty for units installed by a licensed electrician. Final terms will be confirmed at launch.`,
-  },
-  {
-    id: 'faq-box',
-    category: 'INSTALLATION',
-    question: 'How deep does the wall box need to be?',
-    answer: `It is designed for standard gang boxes at least ${SPEC.boxDepth} deep. That figure is provisional and will be confirmed for each regional version.`,
-  },
-  {
-    id: 'faq-dimming',
-    category: 'WIRING',
-    question: 'Can it dim any light?',
-    answer:
-      'The dimmer is meant for dimmable loads. Which LED drivers and lamps work with it will be confirmed for each version, so share your fittings with your electrician and with us before you order.',
-  },
-  {
-    id: 'faq-multiway',
-    category: 'WIRING',
-    question: 'Does it work as a two-way switch?',
-    answer:
-      'Multi-way wiring is planned with your electrician at the design stage. Support for specific multi-way setups will be confirmed for each regional version.',
-  },
-  {
-    id: 'faq-mix',
-    category: 'INSTALLATION',
-    question: 'Can I use different finishes in one house?',
-    answer:
-      'Yes. All finishes share the same plate shape, so mixing is a design choice. Some people use one finish per floor. We can help you plan it.',
+    question: 'Do I need a gateway?',
+    answer: 'Only for the Zigbee version. The gateway is sold separately as an Ethernet model or a USB model. The Wi-Fi version does not need one.',
   },
   {
     id: 'faq-app',
     category: 'CONNECTIVITY',
-    question: 'Do I need an app?',
-    answer:
-      'No. Everyday switching works with the paddle alone. The optional smart features are being developed on open standards, and we have not announced any companion app.',
+    question: 'Is there an app?',
+    answer: 'Yes. You can control the panels from the app on Android and iOS phones and tablets.',
   },
   {
-    id: 'faq-provisional',
-    category: 'WARRANTY',
-    question: 'What does "provisional" mean on this site?',
-    answer:
-      'It marks a figure or claim that is still waiting for lab testing, certification or final sourcing. We label these so architects and electricians know what to rely on, and we update them as results come in.',
-  },
-  {
-    id: 'faq-samples',
-    category: 'AVAILABILITY',
-    question: 'How do I get a spec sheet or finish samples?',
-    answer:
-      'Use the Book a Demo form and choose the architect option, or contact us directly. We will tell you what printed material and samples are available.',
-  },
-  {
-    id: 'faq-availability',
-    category: 'AVAILABILITY',
-    question: 'When can I buy it?',
-    answer:
-      'It is not on sale yet. Regional availability, prices and lead times will be announced once hardware testing and certification are done. You can register your interest through Book a Demo.',
-  },
-  {
-    id: 'faq-internet',
+    id: 'faq-voice',
     category: 'CONNECTIVITY',
-    question: 'Does it need the internet to be useful?',
+    question: 'Does it work with voice assistants?',
+    answer: 'Yes. The panels work with voice assistants such as Alexa and Google Home.',
+  },
+  {
+    id: 'faq-remote',
+    category: 'CONNECTIVITY',
+    question: 'Can I use a remote or control infrared devices?',
     answer:
-      'The goal is that basic switching never needs the internet. Network features are optional extras on top of local control.',
+      'A handheld remote (Remote R1-R2) is available as an accessory. An IR blaster is also available to control infrared devices such as air conditioners, and it works with Wi-Fi panels only.',
+  },
+  {
+    id: 'faq-colour',
+    category: 'CONNECTIVITY',
+    question: 'Can I change the icon colours?',
+    answer:
+      'On the Color series, yes. You can choose the colour of each icon and adjust its brightness and saturation. The Edge series has round touch points with a fixed look.',
+  },
+  {
+    id: 'faq-warranty',
+    category: 'WARRANTY',
+    question: 'What warranty do the panels have?',
+    answer: `The panels come with a ${SPEC.warrantyTerm} warranty.`,
+  },
+  {
+    id: 'faq-unconfirmed',
+    category: 'WARRANTY',
+    question: 'What does "to be confirmed" mean on this site?',
+    answer:
+      'It marks something we have not published yet, such as the supply voltage range or certifications. We only list what we can stand behind, and we will update these as they are confirmed.',
+  },
+  {
+    id: 'faq-quote',
+    category: 'AVAILABILITY',
+    question: 'How do I get a quote or samples?',
+    answer:
+      'Use the Book a Demo form and choose the architect option, or contact us directly. Tell us the sizes and series you are interested in and we will reply with a quote and what samples are available.',
+  },
+  {
+    id: 'faq-custom',
+    category: 'AVAILABILITY',
+    question: 'Can I get custom icons?',
+    answer: 'Yes, on the Color series. Custom icons are charged per icon. Ask us when you request a quote.',
   },
 ];

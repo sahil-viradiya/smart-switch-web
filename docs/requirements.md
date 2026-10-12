@@ -68,7 +68,7 @@ In accordance with strict professional standards, the following technical specif
    - Accessible error messaging, duplicate prevention, and submission loading states.
 7. **FAQ (`/faq`)**:
    - Structured Q&A grouped by Installation, Electrical Compatibility, Network Connectivity, and Orders.
-8. **Legal & Compliance Pages**:
+8. **Legal & Compliance Pages**: 
    - `/privacy-policy`: Explicit GDPR/CCPA-aligned data handling notice.
    - `/terms-and-conditions`: Product warranties, professional installation liabilities.
    - `/cookies`: Cookie usage disclosure.

@@ -44,7 +44,7 @@ export function Newsletter() {
   return (
     <form className="newsletter" onSubmit={submit} noValidate>
       <h2>Product updates</h2>
-      <p className="small">An occasional email as testing and certification progress.</p>
+      <p className="small">An occasional email about new panels and sizes.</p>
       <div className="newsletter__row">
         <label htmlFor={`${id}-e`} className="sr-only">Email address</label>
         <input id={`${id}-e`} type="email" autoComplete="email" placeholder="Your email" value={email} aria-invalid={!!error} aria-describedby={error ? `${id}-err` : undefined} onChange={(e) => { setEmail(e.target.value); if (error) setError(''); }} />

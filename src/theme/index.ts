@@ -4,7 +4,6 @@ import { motion } from './motion';
 import { typography } from './typography';
 
 export { colors, alphas, typography, layout, motion };
-export * from './art';
 export const theme = { colors, alphas, typography, layout, motion } as const;
 
 const kebab = (s: string) => s.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);

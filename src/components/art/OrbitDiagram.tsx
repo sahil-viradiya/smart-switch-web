@@ -1,15 +1,16 @@
 const NODES = [
-  { label: 'Paddles', x: 24, y: 20, d: '0s' },
-  { label: 'Dimmer', x: 74, y: 22, d: '-1.2s' },
-  { label: 'Local fail-safe', x: 72, y: 56, d: '-2.4s' },
-  { label: 'Open connectivity', x: 56, y: 88, d: '-3.6s' },
-  { label: 'Wall box', x: 20, y: 72, d: '-4.8s' },
+  { label: 'Touch', x: 24, y: 18, d: '0s' },
+  { label: 'App', x: 76, y: 20, d: '-1s' },
+  { label: 'Voice', x: 86, y: 52, d: '-2s' },
+  { label: 'Zigbee', x: 66, y: 86, d: '-3s' },
+  { label: 'Wi-Fi', x: 26, y: 84, d: '-4s' },
+  { label: 'IR remote', x: 12, y: 50, d: '-5s' },
 ] as const;
 
-/** Decorative ecosystem diagram. Labels describe design intent, not certified compatibility. */
+/** Decorative diagram of the ways a panel can be controlled and connected. */
 export function OrbitDiagram() {
   return (
-    <div className="orbit" role="img" aria-label="Smart Switch at the centre of paddles, dimmer, local fail-safe, open connectivity and standard wall boxes">
+    <div className="orbit" role="img" aria-label="Smart Switch at the centre of touch, app, voice, Zigbee, Wi-Fi and IR remote control">
       <span className="orbit__ring orbit__ring--outer" />
       <span className="orbit__ring" />
       <div className="orbit__core">

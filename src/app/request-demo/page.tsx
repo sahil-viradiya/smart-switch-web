@@ -10,13 +10,13 @@ export const metadata = pageMeta('REQUEST_DEMO');
 const NEXT = [
   'Tell us about your space and what you want to control.',
   'Your request is saved and you get a reference number.',
-  'We reply with a suggested configuration and finish.',
+  'We reply with suggested series, sizes and functions.',
 ];
 
 export default function RequestDemoPage() {
   return (
     <>
-      <PageHero eyebrow="Book a Demo" title={['Book a demo']} lead="Send a few details and we will suggest a configuration for your space." crumbs={[{ label: PAGES.REQUEST_DEMO.name }]} />
+      <PageHero eyebrow="Book a Demo" title={['Book a demo']} lead="Send a few details and we will suggest panels for your space." crumbs={[{ label: PAGES.REQUEST_DEMO.name }]} />
       <section className="sec sec--paper" aria-label="Consultation request">
         <div className="container contact-grid">
           <Reveal>

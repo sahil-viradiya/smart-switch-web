@@ -38,7 +38,7 @@ export default function UseCasesPage() {
       </section>
       <section className="sec sec--white" aria-labelledby="rooms-title">
         <div className="container">
-          <SectionHead eyebrow="Rooms" title={['Room by room']} lead="Pick a room for a suggested plate, finish and some practical tips." />
+          <SectionHead eyebrow="Rooms" title={['Room by room']} lead="Pick a room for a suggested panel and some practical tips." />
           <Reveal><RoomTabs rooms={ROOM_TABS} /></Reveal>
         </div>
       </section>

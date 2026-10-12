@@ -39,7 +39,7 @@ export default function ContactPage() {
             )}
             <div className="info-card">
               <h3>What to expect</h3>
-              <p className="small">A person reads every message. Sales questions go to the project team and technical questions to engineering. If you can, mention your wiring and wall boxes.</p>
+              <p className="small">A person reads every message and replies by email or phone. If you can, mention your wiring and wall boxes.</p>
             </div>
             <Notice title="Electrical emergency?">If you smell burning or suspect an electrical fault, switch off the main breaker and call a local emergency electrician or the emergency services.</Notice>
           </Reveal>

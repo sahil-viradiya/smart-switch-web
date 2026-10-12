@@ -4,8 +4,8 @@ export interface CheckQuestion { id: string; question: string; hint: string; fix
 
 /** Wall checker. A planning aid only. A licensed electrician makes the final decision. */
 export const CHECK_QUESTIONS: readonly CheckQuestion[] = [
-  { id: 'neutral', question: 'Is there a neutral wire in the switch box?', hint: 'The standard models are designed to need one.', fix: 'Ask your electrician to look for a neutral wire in the box and the conduit.' },
-  { id: 'box', question: `Is the wall box a standard gang box at least ${SPEC.boxDepth} deep?`, hint: 'Measure from the wall surface to the back of the box. The figure is provisional.', fix: 'Have the box measured. Older walls may need a deeper box.' },
-  { id: 'supply', question: `Is your supply ${SPEC.voltage}?`, hint: 'This range is provisional until lab testing is finished.', fix: 'Ask your electrician to confirm the supply before you order.' },
   { id: 'electrician', question: 'Do you have a licensed electrician to install it?', hint: 'A licensed electrician must always do the installation.', fix: 'Contact us and we can tell you what to look for in an installer.' },
+  { id: 'wiring', question: 'Has your electrician checked the wiring in each wall box?', hint: 'The wiring should be checked before you choose a version and a size.', fix: 'Ask your electrician to inspect each box before you order.' },
+  { id: 'size', question: 'Do you know which module size fits each wall box?', hint: 'Panels range from 2M to 12M.', fix: 'Measure the boxes or send us photos, and we will suggest a size.' },
+  { id: 'load', question: 'Do you know what each circuit will switch?', hint: `Switches and sockets come in ${SPEC.ratings} versions.`, fix: 'List the appliances on each circuit so we can match the 6A or 16A version.' },
 ];
