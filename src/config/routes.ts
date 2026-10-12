@@ -1,0 +1,16 @@
+export const ROUTES = {
+  HOME: '/',
+  PRODUCT: '/product',
+  FEATURES: '/features',
+  FEATURES_SLUG: (slug: string) => `/features/${slug}`,
+  HOW_IT_WORKS: '/how-it-works',
+  USE_CASES: '/use-cases',
+  USE_CASES_SLUG: (slug: string) => `/use-cases/${slug}`,
+  REQUEST_DEMO: '/request-demo',
+  CONTACT: '/contact',
+  FAQ: '/faq',
+  ABOUT: '/about',
+  PRIVACY: '/privacy-policy',
+  TERMS: '/terms-and-conditions',
+  COOKIES: '/cookies',
+} as const;

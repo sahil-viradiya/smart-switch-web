@@ -2,14 +2,13 @@
 
 ## 1. Executive Summary & Purpose
 
-The **Smart Switch** project encompasses a complete, modern, production-grade marketing website and supporting API service for an architectural and smart-home electrical switch product. 
+The **Smart Switch** project encompasses a complete, modern, production-grade marketing website for an architectural and smart-home electrical switch product. 
 
 The website's primary objectives are:
 1. Clearly communicate the product's architectural aesthetic, tactile build quality, and automation benefits.
 2. Provide verified technical and electrical specifications, clearly separating verified facts from unverified assumptions.
 3. Establish homeowner, architect, and professional installer trust through transparency, rigorous safety guidelines, and honest technical limitations.
 4. Capture high-intent, qualified sales and installation inquiries through interactive consultation forms.
-5. Provide a foundation for professional installer / dealer registration and future customer portal authentication.
 
 ---
 
@@ -37,7 +36,7 @@ In accordance with strict professional standards, the following technical specif
 
 ## 3. Functional Requirements
 
-### 3.1 Public Marketing Website (`apps/web`)
+### 3.1 Public Marketing Website
 1. **Homepage (`/`)**:
    - Hero section communicating core value proposition without hyperbole.
    - Interactive 3D/high-fidelity product visual showcase (form factor, tactile finish, gang layouts).
@@ -65,7 +64,7 @@ In accordance with strict professional standards, the following technical specif
    - `/use-cases/commercial-studios`: Light management in offices and executive suites.
 6. **Inquiry & Consultation Capture (`/request-demo` & `/contact`)**:
    - Form fields: Full Name, Work/Personal Email, Phone Number, Inquiry Type (Homeowner Consultation, Commercial / Architect Project, Certified Installer Partnership), Property Type, Message.
-   - Real-time client-side validation + server-side validation.
+   - Real-time client-side Zod validation.
    - Accessible error messaging, duplicate prevention, and submission loading states.
 7. **FAQ (`/faq`)**:
    - Structured Q&A grouped by Installation, Electrical Compatibility, Network Connectivity, and Orders.
@@ -73,25 +72,6 @@ In accordance with strict professional standards, the following technical specif
    - `/privacy-policy`: Explicit GDPR/CCPA-aligned data handling notice.
    - `/terms-and-conditions`: Product warranties, professional installation liabilities.
    - `/cookies`: Cookie usage disclosure.
-9. **Account Registration & Authentication Flow (`/signup`, `/login`, `/forgot-password`)**:
-   - Clearly defined purpose: **Installer & Pro Partner Network Portal** and **Customer Consultation Tracking**.
-   - Password criteria validation, rate-limited submission, and mock session readiness.
-
-### 3.2 Backend REST API (`apps/api`)
-1. **Health Check (`GET /api/v1/health`)**:
-   - Service status, uptime, API version, timestamp. No secret leakage.
-2. **Lead Capture Endpoint (`POST /api/v1/leads`)**:
-   - Strict Zod validation on all input fields.
-   - IP-based rate limiting (prevent spam/abuse).
-   - Persistence layer abstraction (in-memory repository with PostgreSQL/Neon migration readiness).
-   - Returns structured success response with unique tracking ID.
-3. **Contact Endpoint (`POST /api/v1/contact`)**:
-   - Validates department routing (Sales, Technical Support, Partner Inquiries).
-   - Sanitizes text content against injection.
-4. **Account & Auth Endpoints (`/api/v1/auth/signup`, `/api/v1/auth/login`)**:
-   - Validated email and strong password hashing (bcrypt).
-   - Generic error responses to prevent user enumeration attacks.
-   - Secure token/session structure with HTTP-only cookie support.
 
 ---
 
@@ -112,10 +92,9 @@ In accordance with strict professional standards, the following technical specif
 - ARIA live regions for form validation alerts.
 
 ### 4.3 Security & Privacy
-- OWASP Top 10 mitigation: strict request payload parsing, parameterized queries, Helmet security headers, CORS origin whitelisting.
+- Security headers via `next.config.js`.
 - Strict Content Security Policy (CSP) headers.
 - Zero sensitive credentials or API keys exposed to browser bundles.
-- Never store raw passwords; use bcrypt with minimum 12 salt rounds.
 
 ### 4.4 Search Engine Optimization (SEO)
 - Unique, semantic title tags (< 60 chars) and meta descriptions (< 155 chars).
@@ -123,3 +102,8 @@ In accordance with strict professional standards, the following technical specif
 - Open Graph and Twitter Card metadata for rich previews.
 - Dynamic XML sitemap (`/sitemap.xml`) and `robots.txt`.
 - Structured data (`schema.org/Product` and `schema.org/Organization`) containing verified product parameters only.
+
+
+### 4.5 Motion & Animation
+- Pro-grade scroll, reveal and product-interaction animation is a planned phase (see implementation plan).
+- Must respect `prefers-reduced-motion` and not hurt LCP/CLS targets.

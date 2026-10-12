@@ -1,58 +1,52 @@
-# Smart Switch — Master Product Marketing & API Platform
+# Smart Switch — Product Marketing Website
 
-A production-grade, architectural marketing website and companion REST API for the **Smart Switch** electrical automation product.
+A single Next.js (App Router) marketing website for the **Smart Switch** architectural electrical switch. Static-first, no backend, no API.
 
-## Project Architecture
+## Structure
 
 ```
-smart-switch/
-├── apps/
-│   ├── web/                     # Next.js App Router (React Server Components, SEO, Design System)
-│   └── api/                     # Node.js + Express REST API (Zod validation, rate limiting, auth)
-├── packages/
-│   ├── shared-types/            # TypeScript domain models and DTOs
-│   ├── shared-validation/       # Zod schemas shared between client and server
-│   └── shared-config/           # Route constants and shared tokens
-├── docs/                        # Specifications, architecture, page map, and user flows
-│   ├── requirements.md
-│   ├── architecture.md
-│   ├── page-map.md
-│   ├── user-flows.md
-│   └── implementation-plan.md
-├── .env.example                 # Sanitized environment variable template
-└── package.json                 # Monorepo workspace configuration
+smart_switch/
+├── src/
+│   ├── theme/          # ★ THE look: colors, typography, layout, motion, art palette (+ fonts)
+│   ├── config/         # ★ THE facts: routes, pages (names/SEO/nav), cta (buttons), site (brand/contact), specs, images
+│   ├── content/        # Page copy as data: product, features, use-cases, faq
+│   ├── app/            # Routes (App Router): pages, layout, sitemap, robots, manifest, icon.svg
+│   ├── components/
+│   │   ├── art/        # Logo, Icons, SwitchArt, SceneArt, OrbitDiagram (SVG placeholders)
+│   │   ├── layout/     # Header, Footer, MobileDock, IntroSplash
+│   │   ├── home/       # HeroVisual
+│   │   ├── product/    # Configurator
+│   │   ├── forms/      # LeadForm, ContactForm, Field, FormSuccess
+│   │   └── ui/         # Reveal, ButtonLink, CtaLink, PageHero, SectionHead, CtaBand, FaqAccordion...
+│   ├── lib/            # validation/ (Zod), forms.ts (mailto), seo.ts (page metadata)
+│   ├── types/          # Shared TypeScript types
+│   └── styles/         # base.css, components.css, sections.css, animations.css (tokens only)
+├── public/images/      # Real photos/renders (register in src/config/images.ts)
+├── scripts/            # check-theme.mjs — guards the single sources of truth
+├── docs/               # Requirements, architecture, page map, flows, design brief, customization guide
+├── .env.example
+└── package.json
 ```
 
-## Quick Start
+Import with the `@/` alias, e.g. `import { ROUTES } from '@/config'`.
 
-### 1. Prerequisites
-- **Node.js**: v22.x or v24.x LTS (Tested on Node.js `v24.21.0`)
-- **npm**: v10.x or v11.x
+## Quick start
 
-### 2. Installation
+Requires Node.js 20+ (22/24 LTS recommended).
+
 ```bash
 npm install
-```
-
-### 3. Development
-Run both frontend and backend concurrently:
-```bash
-npm run dev
-```
-
-- **Marketing Website**: [http://localhost:3000](http://localhost:3000)
-- **API Health Check**: [http://localhost:4000/api/v1/health](http://localhost:4000/api/v1/health)
-
-### 4. Build & Verification
-```bash
+npm run dev          # http://localhost:3000
 npm run type-check
-npm run test
+npm run check         # type-check + guard against hard-coded colours/fonts/specs/paths
 npm run build
 ```
 
-## Documentation
-- [Requirements & Assumptions](docs/requirements.md)
-- [System Architecture](docs/architecture.md)
-- [Complete Page & Route Map](docs/page-map.md)
-- [Customer User Flows & Journeys](docs/user-flows.md)
-- [Phased Implementation Plan](docs/implementation-plan.md)
+## Docs
+- [Requirements](docs/requirements.md)
+- [Architecture](docs/architecture.md)
+- [Page map](docs/page-map.md)
+- [User flows](docs/user-flows.md)
+- [Customization guide — where to change what](docs/customization.md)
+- [Design brief](docs/design-brief.md)
+- [Implementation plan](docs/implementation-plan.md)

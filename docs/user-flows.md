@@ -8,9 +8,9 @@
 2. **The Architect / Interior Designer (Sophia)**:
    - *Goal*: Specifying minimal, high-end switch plates that complement luxury interiors across residential or boutique commercial projects.
    - *Concerns*: Finish options (matte black, brushed aluminum, minimal white), multi-gang flush mounting, technical spec sheets.
-3. **The Certified Electrician / Trade Partner (Marcus)**:
+3. **The Certified Electrician (Marcus)**:
    - *Goal*: Recommending reliable, safe hardware that complies with electrical code, doesn't cause nuisance callbacks, and offers partner pricing.
-   - *Concerns*: Terminal wiring space, voltage/wattage ratings, certified safety standards, dealer onboarding.
+   - *Concerns*: Terminal wiring space, voltage/wattage ratings, certified safety standards.
 
 ---
 
@@ -21,8 +21,6 @@ sequenceDiagram
     autonumber
     actor User as Homeowner (Alex)
     participant Web as Next.js Frontend
-    participant API as Express API
-    participant DB as Lead Repository
 
     User->>Web: Visits Homepage (/)
     Web->>User: Displays Hero, Tactile Product Preview & Verified Benefits
@@ -33,11 +31,6 @@ sequenceDiagram
     User->>Web: Enters Name, Email, Phone, Property Type, and Notes
     Web->>Web: Runs Client-Side Zod Validation (Real-time feedback)
     User->>Web: Submits Form
-    Web->>API: POST /api/v1/leads (Payload + Client Attribution)
-    API->>API: Runs Rate Limiting & Strict Server-side Zod Schema
-    API->>DB: Stores New Lead Record (Status: NEW)
-    DB-->>API: Returns Generated Lead ID & Timestamp
-    API-->>Web: Returns HTTP 201 Created ({ success: true, leadId: ... })
     Web->>User: Displays Instant Confirmation Screen & Follow-up Timeline
 ```
 
@@ -50,8 +43,6 @@ sequenceDiagram
     autonumber
     actor Arch as Architect (Sophia)
     participant Web as Next.js Frontend
-    participant API as Express API
-    participant DB as Lead Repository
 
     Arch->>Web: Arrives at /use-cases/architectural-renovations
     Web->>Arch: Shows Flush Multi-Gang Aesthetics & Minimal Finish Options
@@ -60,48 +51,18 @@ sequenceDiagram
     Arch->>Web: Clicks "Request Architect Spec Kit" (/request-demo?intent=architect)
     Web->>Arch: Form pre-populates Inquiry Type = "Commercial / Architect Project"
     Arch->>Web: Submits Firm Name, Project Scale, and Sample Request
-    Web->>API: POST /api/v1/leads
-    API->>DB: Saves Lead tagged with "ARCHITECT_SAMPLE_KIT"
-    API-->>Web: HTTP 201 Success
     Web->>Arch: Shows Confirmation with Instant Spec Sheet PDF Download Link
 ```
 
 ---
 
-## 4. Journey 3: Certified Electrician / Trade Partner Onboarding
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Elec as Electrician (Marcus)
-    participant Web as Next.js Frontend
-    participant API as Express API
-    participant DB as User Repository
-
-    Elec->>Web: Visits /how-it-works, scrolls to "Certified Trade Network"
-    Elec->>Web: Clicks "Join Installer Network" (/signup)
-    Web->>Elec: Renders Trade Partner Registration Form
-    Elec->>Web: Enters Full Name, Electrical License Number, Email, Password
-    Web->>Web: Validates Password Complexity & License Format
-    Elec->>Web: Submits Form
-    Web->>API: POST /api/v1/auth/signup (Role: INSTALLER)
-    API->>API: Checks for Existing Duplicate Account
-    API->>API: Hashes Password with bcrypt (12 rounds)
-    API->>DB: Creates Partner Account Record (Status: PENDING_VERIFICATION)
-    API-->>Web: HTTP 201 Created ({ success: true, token: ..., user: ... })
-    Web->>Elec: Redirects to Registration Success Screen with Portal Guidance
-```
-
----
-
-## 5. Journey 4: General Customer Support / FAQ Discovery
+## 4. Journey 3: General Customer Support / FAQ Discovery
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor Visitor as Prospective Buyer
     participant Web as Next.js Frontend
-    participant API as Express API
 
     Visitor->>Web: Navigates to /faq
     Web->>Visitor: Shows Categorized Q&A (Wiring, Connectivity, Warranty)
@@ -110,7 +71,5 @@ sequenceDiagram
     Visitor->>Web: Still has technical inquiry -> clicks "Contact Support"
     Web->>Visitor: Navigates to /contact
     Visitor->>Web: Fills Contact Form with Department = "Technical Support"
-    Web->>API: POST /api/v1/contact
-    API-->>Web: HTTP 200 OK
     Web->>Visitor: Displays Submission Receipt & Direct Support Contact Info
 ```

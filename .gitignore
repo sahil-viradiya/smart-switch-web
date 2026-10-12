@@ -42,3 +42,6 @@ pnpm-debug.log*
 # Turbopack & cache
 .turbo/
 .cache/
+
+# TypeScript
+*.tsbuildinfo
