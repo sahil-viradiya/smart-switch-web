@@ -19,7 +19,7 @@ interface Props {
 /**
  * A pinned, scroll-scrubbed scene. The outer element is tall; the inner stage is
  * `position: sticky`. Progress through the outer element is written to the CSS
- * variable `--p` (0..1) so CSS can scrub transforms with `calc(var(--p) * …)`.
+ * variable `--p` (0..1) so CSS can scrub transforms with `calc(var(--p) * ...)`.
  * Reduced motion: no pinning, `--p` is fixed at 1 (the finished state).
  */
 export function ScrollScene({ children, height = 300, className = '', id, label, onProgress, sceneRef }: Props) {

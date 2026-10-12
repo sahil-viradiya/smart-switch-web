@@ -1,4 +1,4 @@
-/** MOTION — easings, durations and timings (CSS and JS both read from here). */
+/** MOTION -  easings, durations and timings (CSS and JS both read from here). */
 export const motion = {
   easeOut: 'cubic-bezier(0.22, 1, 0.36, 1)',
   easeSoft: 'cubic-bezier(0.2, 0.7, 0.2, 1)',

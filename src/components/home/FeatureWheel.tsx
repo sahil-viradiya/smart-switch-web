@@ -26,7 +26,7 @@ export function FeatureWheel({ features }: { features: readonly Feature[] }) {
       <div className="container fw__grid" style={{ ['--n1' as string]: n - 1, ['--step' as string]: `${step}deg` } as React.CSSProperties}>
         <div className="fw__copy">
           <span className="eyebrow">Key features</span>
-          <h2 className="h-section">Five details. <span className="dim-line">One switch.</span></h2>
+          <h2 className="h-section">What you get</h2>
           <div className="fw__panel" key={active} aria-live="polite">
             <span className="fw__icon"><CurrentIcon size={26} /></span>
             <p className="fw__count">0{active + 1} / 0{n}</p>

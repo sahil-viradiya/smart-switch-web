@@ -2,18 +2,19 @@
 
 import { useState, type FormEvent } from 'react';
 import { contactSchema } from '@/lib/validation';
+import { InquiryError, currentSource, submitInquiry } from '@/lib/inquiry-client';
 import { buildMailto, fieldErrors } from '@/lib/forms';
 import { APP_CONFIG } from '@/config';
 import type { ContactDepartment } from '@/types';
 import { Field } from './Field';
-import { FormSuccess } from './FormSuccess';
+import { FormSuccess, SubmitError } from './FormSuccess';
 
-const DEPARTMENTS: { value: ContactDepartment; label: string; email: string }[] = [
-  { value: 'SALES_CONSULTATION', label: 'Sales & consultation', email: APP_CONFIG.SALES_EMAIL },
-  { value: 'TECHNICAL_SUPPORT', label: 'Technical support', email: APP_CONFIG.SUPPORT_EMAIL },
-  { value: 'CERTIFIED_INSTALLER', label: 'Electricians & installers', email: APP_CONFIG.SALES_EMAIL },
-  { value: 'PRESS_MEDIA', label: 'Press & media', email: APP_CONFIG.SALES_EMAIL },
-  { value: 'GENERAL_INQUIRY', label: 'General enquiry', email: APP_CONFIG.SUPPORT_EMAIL },
+const DEPARTMENTS: { value: ContactDepartment; label: string }[] = [
+  { value: 'SALES_CONSULTATION', label: 'Sales and consultation' },
+  { value: 'TECHNICAL_SUPPORT', label: 'Technical support' },
+  { value: 'CERTIFIED_INSTALLER', label: 'Electricians and installers' },
+  { value: 'PRESS_MEDIA', label: 'Press and media' },
+  { value: 'GENERAL_INQUIRY', label: 'General enquiry' },
 ];
 
 interface State { fullName: string; email: string; phone: string; department: ContactDepartment; subject: string; message: string }
@@ -22,7 +23,10 @@ const INITIAL: State = { fullName: '', email: '', phone: '', department: 'SALES_
 export function ContactForm() {
   const [data, setData] = useState<State>(INITIAL);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [sent, setSent] = useState<{ url: string; email: string } | null>(null);
+  const [reference, setReference] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
+  const [apiError, setApiError] = useState('');
+  const [trap, setTrap] = useState('');
 
   const set = <K extends keyof State>(k: K, v: State[K]) => {
     setData((d) => ({ ...d, [k]: v }));
@@ -41,21 +45,28 @@ export function ContactForm() {
     });
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (sending) return;
     const result = contactSchema.safeParse(data);
     if (!result.success) { setErrors(fieldErrors(result.error)); return; }
     setErrors({});
-    const d = result.data;
-    const dept = DEPARTMENTS.find((x) => x.value === d.department)!;
-    const url = buildMailto(dept.email, `${d.subject} — ${dept.label}`, [
-      ['Name', d.fullName], ['Email', d.email], ['Phone', d.phone], ['Department', dept.label], ['Message', d.message],
-    ]);
-    setSent({ url, email: dept.email });
-    window.location.href = url;
+    setApiError('');
+    setSending(true);
+    try {
+      const { id } = await submitInquiry({ ...result.data, type: 'contact', source: currentSource(), website: trap });
+      setReference(id);
+    } catch (err) {
+      if (err instanceof InquiryError && err.fieldErrors) setErrors(err.fieldErrors);
+      setApiError(err instanceof Error ? err.message : 'Something went wrong while sending your message.');
+    } finally {
+      setSending(false);
+    }
   };
 
-  if (sent) return <FormSuccess title="Your message is ready" mailto={sent.url} email={sent.email} onReset={() => { setSent(null); setData(INITIAL); }} />;
+  const fallbackMailto = () => buildMailto(APP_CONFIG.SALES_EMAIL, data.subject || 'Website message', [['Name', data.fullName], ['Email', data.email], ['Phone', data.phone], ['Message', data.message]]);
+
+  if (reference) return <FormSuccess title="Message received" reference={reference} onReset={() => { setReference(null); setData(INITIAL); }} />;
 
   const count = Object.keys(errors).length;
 
@@ -88,8 +99,10 @@ export function ContactForm() {
       <Field id="c-message" label="Message" error={errors.message}>
         {(a) => <textarea {...a} className="input" rows={6} value={data.message} onChange={(e) => set('message', e.target.value)} onBlur={() => validateField('message', undefined, true)} />}
       </Field>
-      <button type="submit" className="btn btn--gold btn--block">Prepare my message</button>
-      <p className="form__fine">This opens your email app with your message ready to send. This website does not store your information.</p>
+      <input className="hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={trap} onChange={(e) => setTrap(e.target.value)} />
+      {apiError && <SubmitError message={apiError} mailto={fallbackMailto()} />}
+      <button type="submit" className="btn btn--gold btn--block" disabled={sending}>{sending ? 'Sending...' : 'Send message'}</button>
+      <p className="form__fine">Your message is saved to our enquiry sheet so the right person can reply. See our Privacy Policy.</p>
     </form>
   );
 }

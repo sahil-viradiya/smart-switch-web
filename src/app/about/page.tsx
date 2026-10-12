@@ -13,19 +13,19 @@ import { CTA, PAGES } from '@/config';
 export const metadata = pageMeta('ABOUT');
 
 const VALUES = [
-  { title: 'Physical first', text: 'A switch should be felt. We keep a real mechanical paddle at the centre and let intelligence stay in the background.' },
-  { title: 'Safety before style', text: 'Electrical safety comes before every aesthetic decision, and we never claim a rating or certification we have not earned.' },
-  { title: 'Honest about what is ready', text: 'We label anything provisional as provisional, so architects and electricians can plan with confidence.' },
-  { title: 'Made to last', text: 'Serviceable, repair-minded hardware instead of disposable glass panels.' },
+  { title: 'Keep the paddle', text: 'People already know how to use a mechanical paddle. We built the smart features around it, not instead of it.' },
+  { title: 'Safety before looks', text: 'Safety decisions come before design decisions. We do not claim a rating or certification until we have earned it.' },
+  { title: 'Say what is ready', text: 'Anything still being tested is marked provisional, so architects and electricians know what to rely on.' },
+  { title: 'Built to last', text: 'We would rather make repairable hardware than a glass panel that gets thrown away.' },
 ];
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About Smart Switch"
-        title={['Smart technology.', 'Human experience.']}
-        lead="We believe smart homes should not replace dependable physical switches with laggy screens or disposable widgets."
+        eyebrow="About"
+        title={['Why we built Smart Switch']}
+        lead="We think a smart home should not replace reliable physical switches with slow screens or disposable gadgets."
         crumbs={[{ label: PAGES.ABOUT.name }]}
         art={<SwitchStage className="stage--wide"><SwitchArt gangs={2} finish={FINISHES[0]!} /></SwitchStage>}
       />
@@ -33,19 +33,19 @@ export default function AboutPage() {
       <section className="sec sec--white" aria-labelledby="story-title">
         <div className="container split">
           <Reveal className="stack stack--lg">
-            <span className="eyebrow">Who we are</span>
-            <h2 id="story-title" className="h-section">Designed to make smart living feel simple.</h2>
+            <span className="eyebrow">Our story</span>
+            <h2 id="story-title" className="h-section">A switch you can feel</h2>
           </Reveal>
           <Reveal className="stack" delay={0.1}>
-            <p className="lead">Smart Switch is an architectural wall switch for homes, renovations and studios. It pairs a tactile mechanical paddle with a quiet smart layer.</p>
-            <p className="lead">The result is a switch that looks calm on the wall, feels precise in the hand and stays out of the way.</p>
+            <p className="lead">Smart Switch is a wall switch for homes, renovations and studios. It has a mechanical paddle with a smart module behind it.</p>
+            <p className="lead">The aim is a switch that looks plain on the wall, feels solid when you press it and does not get in your way.</p>
           </Reveal>
         </div>
       </section>
 
       <section className="sec sec--soft" aria-labelledby="values-title">
         <div className="container">
-          <SectionHead eyebrow="Our philosophy" title={['The best technology should enhance the space', '— not dominate it.']} />
+          <SectionHead eyebrow="Values" title={['What we care about']} />
           <Reveal>
             <div className="cells cells--2">
               {VALUES.map((v, i) => (
@@ -62,7 +62,7 @@ export default function AboutPage() {
 
       <section className="sec sec--paper" aria-labelledby="facts-title">
         <div className="container">
-          <SectionHead eyebrow="At a glance" title={['The product,', 'in four facts.']} />
+          <SectionHead eyebrow="At a glance" title={['Four facts']} />
           <Reveal>
             <div className="stat-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
               {STATS.map((s) => (
@@ -77,7 +77,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CtaSection title="A smarter home should feel like a better home." text="Tell us about your project and we will follow up with technical guidance." primary={CTA.BOOK_DEMO} secondary={CTA.CONTACT_US} />
+      <CtaSection title="Questions about the project?" text="Tell us what you are working on and we will reply with technical guidance." primary={CTA.BOOK_DEMO} secondary={CTA.CONTACT_US} />
     </>
   );
 }

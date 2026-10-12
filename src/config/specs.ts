@@ -1,17 +1,17 @@
 /**
- * PRODUCT SPECS — every product number used in copy lives here, once.
+ * PRODUCT SPECS -  every product number used in copy lives here, once.
  *
  * ALL VALUES ARE PROVISIONAL (pending engineering lab confirmation and national
  * electrical code listings). Never present them as certified. Content files
  * interpolate from `SPEC` so a change here updates every page, FAQ answer and table.
- * See docs/requirements.md §2.2.
+ * See docs/requirements.md section 2.2.
  */
 export const PRODUCT_SPECS = {
-  voltage: '110V – 240V AC, 50/60Hz',
+  voltage: '110-240V AC, 50/60Hz',
   loadPerGang: '10A resistive',
   boxDepthMm: 35,
-  temperature: '-10°C to +45°C',
-  humidity: '5–90% RH non-condensing',
+  temperature: '-10 to 45 degrees Celsius',
+  humidity: '5 to 90% RH, non-condensing',
   neutral: 'Required for standard models',
   warrantyMonths: 24,
   connectivity: 'Wi-Fi 2.4 GHz + Bluetooth LE pairing; Matter readiness',

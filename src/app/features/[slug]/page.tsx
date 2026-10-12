@@ -44,7 +44,7 @@ export default function FeaturePage({ params }: { params: { slug: string } }) {
       <section className="sec sec--paper" aria-labelledby="details-title">
         <div className="container split split--wide-left" style={{ alignItems: 'start' }}>
           <Reveal>
-            <span className="eyebrow">Design detail</span>
+            <span className="eyebrow">Details</span>
             <h2 id="details-title" className="h-section" style={{ margin: '16px 0 32px' }}>{f.title}</h2>
             <div className="detail-list">
               {f.details.map((d, i) => (
@@ -60,9 +60,9 @@ export default function FeaturePage({ params }: { params: { slug: string } }) {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="form-card" style={{ boxShadow: 'none' }}>
-              <h2 className="h-sub">At a glance</h2>
+              <h2 className="h-sub">Key facts</h2>
               <div style={{ marginTop: 12 }}><SpecTable rows={f.facts} caption={`${f.title} facts`} /></div>
-              <p className="small" style={{ marginTop: 16 }}>Provisional values are pending lab confirmation and may change before release.</p>
+              <p className="small" style={{ marginTop: 16 }}>Provisional values are waiting for lab confirmation and may change before release.</p>
             </div>
           </Reveal>
         </div>
@@ -82,7 +82,7 @@ export default function FeaturePage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <CtaSection title="Questions about the engineering?" text="Our team is happy to go deeper on any part of the design." primary={CTA.CONTACT_US} secondary={CTA.BOOK_DEMO} />
+      <CtaSection title="Questions about the engineering?" text="Ask us and we will explain any part of the design." primary={CTA.CONTACT_US} secondary={CTA.BOOK_DEMO} />
     </>
   );
 }

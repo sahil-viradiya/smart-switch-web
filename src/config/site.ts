@@ -1,19 +1,32 @@
 /**
- * Site-wide constants.
+ * Site-wide constants: brand, contact details, SEO defaults.
  *
- * PLACEHOLDER: contact details, address and legal entity below are NOT real.
- * Replace them before launch.
+ * Contact details below are the real ones supplied by the owner.
+ * TODO(owner): confirm the email spelling, add a postal address if wanted
+ * (leave ADDRESS_LINES empty to hide it) and confirm the legal entity name.
  */
 export const APP_CONFIG = {
   BRAND_NAME: 'Smart Switch',
-  BRAND_TAGLINE: 'Architectural Controls',
-  LEGAL_COMPANY_NAME: 'Smart Switch Automation Systems Inc.',
-  SUPPORT_EMAIL: 'support@smartswitch.io',
-  SALES_EMAIL: 'sales@smartswitch.io',
-  PHONE: '+1 (800) 555-7948',
-  ADDRESS_LINES: ['100 Innovation Way, Suite 400', 'San Francisco, CA 94105'],
-  DEFAULT_META_TITLE: 'Smart Switch — Architectural Smart Electrical Controls',
+  BRAND_TAGLINE: 'Smart wall switches',
+  LEGAL_COMPANY_NAME: 'Smart Switch',
+  SUPPORT_EMAIL: 'hell@optimanex.com',
+  SALES_EMAIL: 'hell@optimanex.com',
+  /** Display format. */
+  PHONE: '+91 97255 58828',
+  /** E.164, used for tel: links. */
+  PHONE_E164: '+919725558828',
+  /** Digits only, country code first -  used for wa.me links. */
+  WHATSAPP_NUMBER: '919725558828',
+  ADDRESS_LINES: [] as readonly string[],
+  DEFAULT_META_TITLE: 'Smart Switch | Wall switches with real paddles',
   DEFAULT_META_DESCRIPTION:
-    'An architectural wall switch engineered for tactile precision, safe wiring and open connectivity — designed to disappear into modern interiors.',
+    'Smart Switch is a wall switch with mechanical paddles, a small status light and optional smart features. Specifications are provisional while testing is finished.',
   COPYRIGHT_YEAR: 2026,
 } as const;
+
+export const WHATSAPP_DEFAULT_MESSAGE = `Hello ${APP_CONFIG.BRAND_NAME}, I would like to know more about the switch.`;
+
+/** https://wa.me link that opens a WhatsApp chat with an optional pre-filled message. */
+export const whatsappHref = (message: string = WHATSAPP_DEFAULT_MESSAGE) => `https://wa.me/${APP_CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+export const telHref = () => `tel:${APP_CONFIG.PHONE_E164}`;
+export const mailHref = (to: string = APP_CONFIG.SALES_EMAIL, subject?: string) => `mailto:${to}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;

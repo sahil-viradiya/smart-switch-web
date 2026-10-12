@@ -16,12 +16,12 @@ export default function FaqPage() {
   };
   return (
     <>
-      <PageHero eyebrow="FAQ" title={['Good questions.', 'Straight answers.']} lead="Wiring, installation, connectivity and warranty — with provisional details clearly labelled." crumbs={[{ label: PAGES.FAQ.name }]} />
+      <PageHero eyebrow="FAQ" title={['Frequently asked questions']} lead="Wiring, installation, connectivity, warranty and availability. Anything unconfirmed is marked provisional." crumbs={[{ label: PAGES.FAQ.name }]} />
       <section className="sec sec--paper" aria-label="Frequently asked questions">
         <div className="container--narrow"><Reveal><FaqAccordion /></Reveal></div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </section>
-      <CtaSection title="Still have a question?" text="Our team is happy to help." primary={CTA.CONTACT_US} secondary={CTA.BOOK_DEMO} />
+      <CtaSection title="Still have a question?" text="Send us a message and we will help." primary={CTA.CONTACT_US} secondary={CTA.BOOK_DEMO} />
     </>
   );
 }

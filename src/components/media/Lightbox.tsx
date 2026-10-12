@@ -14,7 +14,7 @@ interface Props {
 
 /**
  * Accessible image viewer built on <dialog>: focus is trapped and restored, Esc closes,
- * ← / → navigate, clicking the backdrop closes.
+ * <- / -> navigate, clicking the backdrop closes.
  */
 export function Lightbox({ items, index, onClose, onIndex }: Props) {
   const ref = useRef<HTMLDialogElement>(null);

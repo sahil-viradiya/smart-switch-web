@@ -15,14 +15,14 @@ interface Props {
   className?: string;
 }
 
+/** External links (https://...) open in a new tab. */
+const isExternal = (href: string) => /^https?:\/\//.test(href);
+
 export function ButtonLink({ href, children, variant = 'gold', size = 'md', arrow = false, block = false, className = '' }: Props) {
   const cls = ['btn', `btn--${variant}`, size === 'sm' && 'btn--sm', block && 'btn--block', className].filter(Boolean).join(' ');
-  return (
-    <Link href={href} className={cls}>
-      {children}
-      {arrow && <ArrowRight className="btn__arrow" />}
-    </Link>
-  );
+  const content = (<>{children}{arrow && <ArrowRight className="btn__arrow" />}</>);
+  if (isExternal(href)) return <a href={href} className={cls} target="_blank" rel="noopener noreferrer">{content}</a>;
+  return <Link href={href} className={cls}>{content}</Link>;
 }
 
 /** Header-style outlined pill with a gold arrow disc. */

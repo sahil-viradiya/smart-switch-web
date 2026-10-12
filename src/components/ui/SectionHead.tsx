@@ -16,7 +16,7 @@ export function Words({ text, start = 0 }: { text: string; start?: number }) {
     <>
       {text.split(' ').map((w, i) => (
         <span className="word" key={`${w}-${i}`} style={{ ['--w' as string]: start + i }}>
-          <span>{w}{'\u00a0'}</span>
+          <span>{w}</span>
         </span>
       ))}
     </>

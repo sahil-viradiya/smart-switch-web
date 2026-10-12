@@ -22,7 +22,7 @@ export function ExplodedView({ layers }: { layers: readonly Layer[] }) {
       <div className="container xv__grid" style={{ ['--n' as string]: n } as React.CSSProperties}>
         <div className="xv__copy">
           <span className="eyebrow">Construction</span>
-          <h2 className="h-section">Layer by layer. <span className="dim-line">Nothing extra.</span></h2>
+          <h2 className="h-section">What is inside</h2>
           <div className="xv__panel" key={layer.id} aria-live="polite">
             <p className="fw__count">0{active + 1} / 0{n}</p>
             <h3 className="h-sub">{layer.name}</h3>
@@ -37,7 +37,7 @@ export function ExplodedView({ layers }: { layers: readonly Layer[] }) {
               </li>
             ))}
           </ol>
-          <p className="small">Illustrative construction. Final design, materials and dimensions are confirmed by engineering.</p>
+          <p className="small">Illustration only. Final design, materials and sizes are confirmed by engineering.</p>
         </div>
 
         <div className="xv__visual" aria-hidden="true">

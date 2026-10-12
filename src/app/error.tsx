@@ -11,8 +11,8 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
       <div className="container">
         <div>
           <span className="eyebrow eyebrow--mark">Something went wrong</span>
-          <h1 className="h-page">Please try again.</h1>
-          <p className="lead">An unexpected error occurred while loading this page.</p>
+          <h1 className="h-page">Please try again</h1>
+          <p className="lead">The page could not be loaded.</p>
           <div className="row" style={{ justifyContent: 'center' }}>
             <button type="button" className="btn btn--gold" onClick={reset}>Try again</button>
             <CtaLink cta={CTA.BACK_HOME} variant="ghost" />

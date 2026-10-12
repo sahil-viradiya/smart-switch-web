@@ -2,10 +2,10 @@ import { SPEC } from '@/config';
 
 export interface Layer { id: string; name: string; text: string }
 
-/** Illustrative construction of a Smart Switch, front to back. Design intent, not a final bill of materials. */
+/** Illustration of how a Smart Switch is built, front to back. Design intent, not a final parts list. */
 export const LAYERS: readonly Layer[] = [
-  { id: 'plate', name: 'Faceplate', text: 'A flush architectural plate in your chosen finish, with concealed fixings.' },
-  { id: 'paddles', name: 'Paddle module', text: 'Mechanical paddles with a tactile return. A light guide carries the status LED to the surface.' },
-  { id: 'board', name: 'Control & relay board', text: 'The switching and the smart layer. Local switching is designed to act directly on the circuit.' },
-  { id: 'frame', name: 'Mounting frame & wall box', text: `Sits in a standard gang box, ${SPEC.boxDepth} minimum depth (provisional).` },
+  { id: 'plate', name: 'Faceplate', text: 'A flat plate in your chosen finish, with the fixings hidden.' },
+  { id: 'paddles', name: 'Paddle module', text: 'The mechanical paddles. A light guide carries the status LED to the surface.' },
+  { id: 'board', name: 'Control and relay board', text: 'The switching and the smart features. Local switching is designed to act on the circuit directly.' },
+  { id: 'frame', name: 'Mounting frame and wall box', text: `Sits in a standard gang box at least ${SPEC.boxDepth} deep (provisional).` },
 ];

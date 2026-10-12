@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Motion. Easings/durations follow docs/design-brief.md §5.
+   Motion. Easings/durations follow docs/design-brief.md section 5.
    Everything below is disabled by the reduced-motion block at the end.
    ========================================================================== */
 
@@ -27,10 +27,10 @@
 
 /* Intro splash (once per session) */
 .intro { position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; background: var(--black); pointer-events: none; animation: intro-exit var(--intro-duration) linear forwards; }
-.intro__brand { display: grid; justify-items: center; gap: 18px; animation: intro-brand var(--intro-duration) ease-in-out both; }
-.intro__brand .logo__mark { width: 84px; height: 84px; }
+.intro__brand { display: grid; justify-items: center; gap: 1.125rem; animation: intro-brand var(--intro-duration) ease-in-out both; }
+.intro__brand .logo__mark { width: 5.25rem; height: 5.25rem; }
 .intro__brand p { font-size: 0.6875rem; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; }
-.intro__ring { position: absolute; left: 50%; top: 50%; width: 24px; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--gold); box-shadow: 0 0 24px rgb(var(--gold-rgb) / 0.45); transform: translate(-50%, -50%) scale(0.4); opacity: 0; animation: intro-ring var(--intro-duration) ease-out both; }
+.intro__ring { position: absolute; left: 50%; top: 50%; width: 1.5rem; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--gold); box-shadow: 0 0 24px rgb(var(--gold-rgb) / 0.45); transform: translate(-50%, -50%) scale(0.4); opacity: 0; animation: intro-ring var(--intro-duration) ease-out both; }
 @keyframes intro-brand { 0% { opacity: 0; transform: scale(0.94); } 22%, 62% { opacity: 1; transform: none; } 70% { filter: drop-shadow(0 0 18px rgb(var(--gold-rgb) / 0.7)); } 100% { opacity: 1; filter: none; } }
 @keyframes intro-ring { 0%, 42% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); } 48% { opacity: 0.85; } 100% { opacity: 0; transform: translate(-50%, -50%) scale(14); } }
 @keyframes intro-exit { 0%, 84% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
@@ -39,6 +39,8 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
+  .js .reveal--clip > * { clip-path: none; }
+  .js .reveal .word > span { transform: none; }
   .hero__house path { stroke-dashoffset: 0; }
   .hero__line .ghost { color: rgb(var(--white-rgb) / 0.07); }
   .intro { display: none; }

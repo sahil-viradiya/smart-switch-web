@@ -33,7 +33,7 @@ export function themeCss(): string {
   );
 
   const t = typography;
-  v.push(`--font:${t.fontFamily}`);
+  v.push(`--font:${t.fontFamily}`, `--font-outline:${t.fontFamilyOutline}`);
   for (const [k, w] of Object.entries(t.weights)) v.push(`--fw-${k}:${w}`);
   for (const [k, s] of Object.entries(t.sizes)) v.push(`--fs-${kebab(k)}:${s}`);
   for (const [k, s] of Object.entries(t.tracking)) v.push(`--ls-${k}:${s}`);
@@ -58,5 +58,7 @@ export function themeCss(): string {
   v.push(`--ease-out:${m.easeOut}`, `--ease-soft:${m.easeSoft}`, `--ease-camera:${m.easeCamera}`, `--intro-duration:${m.introMs}ms`, `--marquee-duration:${m.marqueeSeconds}s`);
   for (const [k, d] of Object.entries(m.durations)) v.push(`--dur-${k}:${d}`);
 
-  return `:root{${v.join(';')}}@media (max-width:${l.breakpoints.phone}px){:root{--header-h:${l.headerHeightMobile};--fs-body:${t.sizes.bodyMobile}}}`;
+  const rs = l.rootScale;
+  const root = `html{font-size:clamp(${rs.min},calc(${rs.min} + (100vw - ${rs.fromWidth}px) * ${rs.rate}),${rs.max})}`;
+  return `${root}:root{${v.join(';')}}@media (max-width:${l.breakpoints.phone}px){:root{--header-h:${l.headerHeightMobile};--fs-body:${t.sizes.bodyMobile}}}`;
 }

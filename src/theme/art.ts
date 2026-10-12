@@ -1,5 +1,5 @@
 /**
- * ART PALETTE — colours used inside the SVG placeholder art (switch plates and
+ * ART PALETTE -  colours used inside the SVG placeholder art (switch plates and
  * interior scenes). Product finishes live here too so the swatches, the plate
  * render and the labels always agree. Replace the art with real images via
  * `config/images.ts`; these only apply to the placeholders.

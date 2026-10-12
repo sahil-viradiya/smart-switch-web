@@ -1,6 +1,6 @@
 # Smart Switch — Product Marketing Website
 
-A single Next.js (App Router) marketing website for the **Smart Switch** architectural electrical switch. Static-first, no backend, no API.
+A single Next.js (App Router) marketing website for the **Smart Switch** architectural electrical switch. Static-first, with one small endpoint that saves inquiries to an Excel sheet.
 
 ## Structure
 
@@ -9,18 +9,22 @@ smart_switch/
 ├── src/
 │   ├── theme/          # ★ THE look: colors, typography, layout, motion, art palette (+ fonts)
 │   ├── config/         # ★ THE facts: routes, pages (names/SEO/nav), cta (buttons), site (brand/contact), specs, images
-│   ├── content/        # Page copy as data: product, features, use-cases, faq
+│   ├── content/        # Page copy & data: product, features, use-cases, faq, home, rooms, tools, layers
 │   ├── app/            # Routes (App Router): pages, layout, sitemap, robots, manifest, icon.svg
 │   ├── components/
 │   │   ├── art/        # Logo, Icons, SwitchArt, SceneArt, OrbitDiagram (SVG placeholders)
+│   │   ├── motion/     # ScrollScene, Counter, Gauge, Marquee, Tilt, Parallax, ScrollProgress, SectionNav
+│   │   ├── media/      # Lightbox, MediaGallery, Zoomable, MediaView
+│   │   ├── tools/      # WallChecker
 │   │   ├── layout/     # Header, Footer, MobileDock, IntroSplash
-│   │   ├── home/       # HeroVisual
-│   │   ├── product/    # Configurator
+│   │   ├── home/       # HeroVisual, ZoomReveal, FeatureWheel, HotspotRoom, RoomTabs
+│   │   ├── product/    # Configurator, ExplodedView
 │   │   ├── forms/      # LeadForm, ContactForm, Field, FormSuccess
 │   │   └── ui/         # Reveal, ButtonLink, CtaLink, PageHero, SectionHead, CtaBand, FaqAccordion...
-│   ├── lib/            # validation/ (Zod), forms.ts (mailto), seo.ts (page metadata)
+│   ├── server/         # inquiries/ — Excel / Google Sheet storage, rate limit, ids (server-only)
+│   ├── lib/            # validation/ (Zod), forms.ts, inquiry-client.ts, seo.ts
 │   ├── types/          # Shared TypeScript types
-│   └── styles/         # base.css, components.css, sections.css, animations.css (tokens only)
+│   └── styles/         # base.css, components.css, sections.css, scroll.css, animations.css (tokens only)
 ├── public/images/      # Real photos/renders (register in src/config/images.ts)
 ├── scripts/            # check-theme.mjs — guards the single sources of truth
 ├── docs/               # Requirements, architecture, page map, flows, design brief, customization guide
@@ -47,6 +51,7 @@ npm run build
 - [Architecture](docs/architecture.md)
 - [Page map](docs/page-map.md)
 - [User flows](docs/user-flows.md)
+- [Inquiry sheet setup (Excel / Google Sheets)](docs/inquiry-sheet.md)
 - [Customization guide — where to change what](docs/customization.md)
 - [Design brief](docs/design-brief.md)
 - [Implementation plan](docs/implementation-plan.md)

@@ -1,7 +1,7 @@
 const NODES = [
   { label: 'Paddles', x: 24, y: 20, d: '0s' },
-  { label: 'Dimmer', x: 76, y: 22, d: '-1.2s' },
-  { label: 'Local fail-safe', x: 80, y: 56, d: '-2.4s' },
+  { label: 'Dimmer', x: 74, y: 22, d: '-1.2s' },
+  { label: 'Local fail-safe', x: 72, y: 56, d: '-2.4s' },
   { label: 'Open connectivity', x: 56, y: 88, d: '-3.6s' },
   { label: 'Wall box', x: 20, y: 72, d: '-4.8s' },
 ] as const;

@@ -2,23 +2,24 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { leadSchema } from '@/lib/validation';
+import { InquiryError, currentSource, submitInquiry } from '@/lib/inquiry-client';
 import { buildMailto, fieldErrors } from '@/lib/forms';
 import { APP_CONFIG } from '@/config';
 import type { InquiryType, PropertyType } from '@/types';
 import { Field } from './Field';
-import { FormSuccess } from './FormSuccess';
+import { FormSuccess, SubmitError } from './FormSuccess';
 
 const INQUIRY_OPTIONS: { value: InquiryType; label: string }[] = [
   { value: 'HOMEOWNER_CONSULTATION', label: 'Homeowner consultation' },
-  { value: 'ARCHITECT_COMMERCIAL', label: 'Architect / commercial project' },
-  { value: 'INSTALLER_PARTNERSHIP', label: 'Electrician / installer' },
+  { value: 'ARCHITECT_COMMERCIAL', label: 'Architect or commercial project' },
+  { value: 'INSTALLER_PARTNERSHIP', label: 'Electrician or installer' },
   { value: 'GENERAL_PURCHASE', label: 'General enquiry' },
 ];
 
 const PROPERTY_OPTIONS: { value: PropertyType; label: string }[] = [
   { value: 'RESIDENTIAL_SINGLE_FAMILY', label: 'House' },
   { value: 'RESIDENTIAL_APARTMENT', label: 'Apartment' },
-  { value: 'COMMERCIAL_OFFICE', label: 'Office / studio' },
+  { value: 'COMMERCIAL_OFFICE', label: 'Office or studio' },
   { value: 'HOSPITALITY_HOTEL', label: 'Hospitality' },
   { value: 'RENOVATION_PROJECT', label: 'Renovation' },
   { value: 'OTHER', label: 'Other' },
@@ -48,7 +49,10 @@ const INITIAL: FormState = {
 export function LeadForm() {
   const [data, setData] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [mailto, setMailto] = useState<string | null>(null);
+  const [reference, setReference] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
+  const [apiError, setApiError] = useState('');
+  const [trap, setTrap] = useState('');
   const touchedInquiry = useRef(false);
 
   // Flow: /request-demo?intent=architect pre-selects the inquiry type.
@@ -75,28 +79,32 @@ export function LeadForm() {
     });
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (sending) return;
     const result = leadSchema.safeParse(data);
     if (!result.success) {
       setErrors(fieldErrors(result.error));
       return;
     }
     setErrors({});
-    const d = result.data;
-    const url = buildMailto(APP_CONFIG.SALES_EMAIL, `Consultation request — ${d.fullName}`, [
-      ['Name', d.fullName], ['Email', d.email], ['Phone', d.phone],
-      ['Enquiry type', INQUIRY_OPTIONS.find((o) => o.value === d.inquiryType)?.label],
-      ['Property', PROPERTY_OPTIONS.find((o) => o.value === d.propertyType)?.label],
-      ['Message', d.message],
-      ['OK to send product updates', d.marketingConsent ? 'Yes' : 'No'],
-    ]);
-    setMailto(url);
-    window.location.href = url;
+    setApiError('');
+    setSending(true);
+    try {
+      const { id } = await submitInquiry({ ...result.data, type: 'demo', source: currentSource(), website: trap });
+      setReference(id);
+    } catch (err) {
+      if (err instanceof InquiryError && err.fieldErrors) setErrors(err.fieldErrors);
+      setApiError(err instanceof Error ? err.message : 'Something went wrong while sending your request.');
+    } finally {
+      setSending(false);
+    }
   };
 
-  if (mailto) {
-    return <FormSuccess title="Your consultation request is ready" mailto={mailto} email={APP_CONFIG.SALES_EMAIL} onReset={() => { setMailto(null); setData(INITIAL); }} />;
+  const fallbackMailto = () => buildMailto(APP_CONFIG.SALES_EMAIL, `Consultation request from ${data.fullName || 'website'}`, [['Name', data.fullName], ['Email', data.email], ['Phone', data.phone], ['Message', data.message]]);
+
+  if (reference) {
+    return <FormSuccess title="Request received" reference={reference} onReset={() => { setReference(null); setData(INITIAL); }} />;
   }
 
   const errorCount = Object.keys(errors).length;
@@ -127,7 +135,7 @@ export function LeadForm() {
         </Field>
       </div>
 
-      <Field id="lead-inquiry" label="I am a…" error={errors.inquiryType}>
+      <Field id="lead-inquiry" label="I am a" error={errors.inquiryType}>
         {(a) => (
           <select {...a} className="input" value={data.inquiryType} onChange={(e) => { touchedInquiry.current = true; set('inquiryType', e.target.value as InquiryType); }}>
             {INQUIRY_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
@@ -136,7 +144,7 @@ export function LeadForm() {
       </Field>
 
       <Field id="lead-message" label="Tell us about your project" error={errors.message}>
-        {(a) => <textarea {...a} className="input" rows={5} value={data.message} onChange={(e) => set('message', e.target.value)} onBlur={() => validateField('message', undefined, true)} placeholder="Rooms, number of circuits, timeline…" />}
+        {(a) => <textarea {...a} className="input" rows={5} value={data.message} onChange={(e) => set('message', e.target.value)} onBlur={() => validateField('message', undefined, true)} placeholder="Rooms, number of circuits, timeline" />}
       </Field>
 
       <label className="check">
@@ -144,8 +152,11 @@ export function LeadForm() {
         <span>I would like occasional product updates by email.</span>
       </label>
 
-      <button type="submit" className="btn btn--gold btn--block">Prepare my request</button>
-      <p className="form__fine">This opens your email app with your details ready to send. This website does not store your information.</p>
+      <input className="hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={trap} onChange={(e) => setTrap(e.target.value)} />
+
+      {apiError && <SubmitError message={apiError} mailto={fallbackMailto()} />}
+      <button type="submit" className="btn btn--gold btn--block" disabled={sending}>{sending ? 'Sending...' : 'Send request'}</button>
+      <p className="form__fine">Your details are saved to our enquiry sheet so our team can reply. See our Privacy Policy.</p>
     </form>
   );
 }

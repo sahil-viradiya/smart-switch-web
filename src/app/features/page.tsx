@@ -19,8 +19,8 @@ export default function TechnologyPage() {
     <>
       <PageHero
         eyebrow="Technology"
-        title={['Engineered quietly.', 'Felt every day.']}
-        lead="Four design pillars shape every Smart Switch: how it feels, how it protects, how it fits and how it connects."
+        title={['How it is built']}
+        lead="Four things decide how Smart Switch behaves: how it feels, how it is protected, how it fits and how it connects."
         crumbs={[{ label: PAGES.FEATURES.name }]}
         actions={<CtaLink cta={CTA.VIEW_PRODUCT} arrow />}
       />
@@ -29,7 +29,7 @@ export default function TechnologyPage() {
 
       <section className="sec sec--paper" aria-labelledby="pillars-title">
         <div className="container">
-          <SectionHead eyebrow="Design pillars" title={['Four ideas.', 'One switch.']} />
+          <SectionHead eyebrow="Four areas" title={['The four areas of design']} />
           <ul className="grid grid--2">
             {FEATURES.map((f, i) => {
               const Icon = ICONS[f.icon];
@@ -38,7 +38,7 @@ export default function TechnologyPage() {
                   <Link href={ROUTES.FEATURES_SLUG(f.slug)} className="card" style={{ display: 'block', height: '100%' }}>
                     <div className="card__body" style={{ padding: 'clamp(24px, 3vw, 36px)', gap: 14 }}>
                       <span className="cell__icon" style={{ margin: 0 }}><Icon /></span>
-                      <span className="card__eyebrow">0{i + 1} · {f.eyebrow}</span>
+                      <span className="card__eyebrow">{f.eyebrow}</span>
                       <span className="card__title" style={{ fontSize: '1.35rem', fontWeight: 500 }}>{f.title} <ArrowUpRight /></span>
                       <p className="card__text" style={{ fontSize: '0.9375rem' }}>{f.summary}</p>
                     </div>
@@ -53,16 +53,16 @@ export default function TechnologyPage() {
       <section className="sec sec--white" aria-labelledby="system-title">
         <div className="container split">
           <Reveal className="stack stack--lg">
-            <span className="eyebrow">The system</span>
-            <h2 id="system-title" className="h-section">One connected system. <span className="dim-line">Built to work together.</span></h2>
-            <p className="lead">Every pillar supports the others. Exact radios, standards and ratings are provisional and confirmed per regional hardware revision.</p>
+            <span className="eyebrow">System</span>
+            <h2 id="system-title" className="h-section">How the parts connect</h2>
+            <p className="lead">The four areas depend on each other. Radios, standards and ratings are provisional and will be confirmed for each regional hardware version.</p>
             <div><CtaLink cta={CTA.READ_FAQ} variant="outline-dark" arrow /></div>
           </Reveal>
           <Reveal variant="scale" delay={0.1}><OrbitDiagram /></Reveal>
         </div>
       </section>
 
-      <CtaSection title="Want the full technical picture?" text="Tell us about your project and we will walk you through the details." />
+      <CtaSection title="Want more technical detail?" text="Tell us about your project and we will go through the details with you." />
     </>
   );
 }

@@ -5,22 +5,30 @@ import { scrollToId } from '@/lib/scroll';
 
 export interface SectionLink { id: string; label: string }
 
-/** Dot navigation that follows the scroll position and jumps to a section on click. */
+/**
+ * Dot navigation that follows the scroll position and jumps to a section on click.
+ * The active section is the last one whose top has passed 40% of the viewport height.
+ */
 export function SectionNav({ sections }: { sections: readonly SectionLink[] }) {
   const [active, setActive] = useState(sections[0]?.id ?? '');
 
   useEffect(() => {
-    const els = sections.map((s) => document.getElementById(s.id)).filter((e): e is HTMLElement => !!e);
-    if (!els.length || !('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(visible.target.id);
-      },
-      { rootMargin: '-35% 0px -45% 0px', threshold: [0, 0.1, 0.3, 0.6] },
-    );
-    els.forEach((e) => io.observe(e));
-    return () => io.disconnect();
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const line = window.innerHeight * 0.4;
+      let current = sections[0]?.id ?? '';
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (el && el.getBoundingClientRect().top <= line) current = s.id;
+      }
+      setActive(current);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, [sections]);
 
   return (

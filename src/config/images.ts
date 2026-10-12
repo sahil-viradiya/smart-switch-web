@@ -1,5 +1,5 @@
 /**
- * IMAGES — the single registry for real photography / renders.
+ * IMAGES -  the single registry for real photography / renders.
  *
  * Every visual currently falls back to a drawn SVG placeholder (see
  * `components/art`). To use a real image: drop the file in `public/images/`

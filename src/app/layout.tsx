@@ -8,6 +8,7 @@ import '@/styles/animations.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { MobileDock } from '@/components/layout/MobileDock';
+import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { IntroSplash } from '@/components/layout/IntroSplash';
 import { ScrollProgress } from '@/components/motion/ScrollProgress';
 import { APP_CONFIG } from '@/config';
@@ -18,7 +19,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: APP_CONFIG.DEFAULT_META_TITLE, template: `%s — ${APP_CONFIG.BRAND_NAME}` },
+  title: { default: APP_CONFIG.DEFAULT_META_TITLE, template: `%s | ${APP_CONFIG.BRAND_NAME}` },
   description: APP_CONFIG.DEFAULT_META_DESCRIPTION,
   openGraph: { type: 'website', siteName: APP_CONFIG.BRAND_NAME, title: APP_CONFIG.DEFAULT_META_TITLE, description: APP_CONFIG.DEFAULT_META_DESCRIPTION },
   twitter: { card: 'summary_large_image' },
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <MobileDock />
+        <WhatsAppFloat />
       </body>
     </html>
   );

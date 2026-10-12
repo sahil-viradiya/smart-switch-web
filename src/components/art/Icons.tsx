@@ -25,6 +25,7 @@ export const GridIcon = (p: P) => (<Svg {...p}><rect x="4" y="4" width="7" heigh
 export const ShieldIcon = (p: P) => (<Svg {...p}><path d="M12 3 5 6v5.5c0 4.3 2.8 7.6 7 9.5 4.2-1.9 7-5.2 7-9.5V6z" /><path d="m9 12 2.2 2.2L15.5 10" /></Svg>);
 export const BoltIcon = (p: P) => (<Svg {...p}><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z" /></Svg>);
 export const OrbitIcon = (p: P) => (<Svg {...p}><circle cx="12" cy="12" r="2.2" /><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)" /></Svg>);
+export const WhatsAppIcon = (p: P) => (<Svg {...p}><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z" /><path d="M9 8.2c.2 2.1 2.5 4.4 4.6 5.2l1.2-1.2 1.8.9c0 1-.8 1.8-1.8 1.8-3.1 0-5.5-2.4-5.5-5.5 0-1 .8-1.8 1.8-1.8z" /></Svg>);
 export const Mail = (p: P) => (<Svg {...p}><rect x="3" y="5" width="18" height="14" rx="3" /><path d="m4 7 8 6 8-6" /></Svg>);
 export const Phone = (p: P) => (<Svg {...p}><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z" /></Svg>);
 

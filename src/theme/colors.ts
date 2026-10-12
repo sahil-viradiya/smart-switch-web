@@ -1,5 +1,5 @@
 /**
- * COLOURS — the single source of truth for every colour on the site.
+ * COLOURS -  the single source of truth for every colour on the site.
  *
  * Change a value here and it updates the CSS, the SVG art, the favicon, the
  * web-manifest and the browser theme-colour. Nothing else in `src/` may contain
@@ -30,6 +30,7 @@ export const colors = {
   /* Feedback */
   error: '#b3261e',
   success: '#1f6b45',
+  whatsapp: '#25d366', // third-party brand colour for the WhatsApp glyph
 
   /* Surfaces & gradients */
   fieldBg: '#fbfaf7', // form inputs

@@ -8,7 +8,7 @@ import type { CheckQuestion } from '@/content/tools';
 
 type Answer = 'yes' | 'no' | 'unsure';
 
-/** Interactive pre-install checklist. A planning aid only — a licensed electrician makes the final call. */
+/** Interactive pre-install checklist. A planning aid only -  a licensed electrician makes the final call. */
 export function WallChecker({ questions }: { questions: readonly CheckQuestion[] }) {
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
   const answered = questions.filter((q) => answers[q.id]).length;

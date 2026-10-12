@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/art/Logo';
 import { Newsletter } from './Newsletter';
-import { APP_CONFIG, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV } from '@/config';
+import { APP_CONFIG, CTA, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV, mailHref, telHref } from '@/config';
 
 export function Footer() {
   return (
@@ -10,7 +10,7 @@ export function Footer() {
         <div className="footer__grid">
           <div>
             <Logo />
-            <p className="footer__about">Architectural smart electrical controls — tactile, quietly intelligent and designed to disappear into the wall.</p>
+            <p className="footer__about">Smart wall switches with mechanical paddles, for homes and studios.</p>
             <Newsletter />
           </div>
           <nav className="footer__col" aria-label="Explore">
@@ -26,30 +26,33 @@ export function Footer() {
         <div className="footer__contact">
           <div>
             <span className="eyebrow">Get in touch</span>
-            <h2 style={{ marginTop: 14 }}>Talk to our team.</h2>
+            <h2 style={{ marginTop: 14 }}>Get in touch</h2>
           </div>
           <div className="footer__cards">
             <div className="footer__card">
-              <small>Sales</small>
-              <strong>Project enquiries</strong>
-              <a href={`mailto:${APP_CONFIG.SALES_EMAIL}`}>{APP_CONFIG.SALES_EMAIL}</a>
-              <a href={`tel:${APP_CONFIG.PHONE.replace(/[^+\d]/g, '')}`}>{APP_CONFIG.PHONE}</a>
+              <small>Email and phone</small>
+              <strong>Sales and support</strong>
+              <a href={mailHref()}>{APP_CONFIG.SALES_EMAIL}</a>
+              <a href={telHref()}>{APP_CONFIG.PHONE}</a>
             </div>
             <div className="footer__card">
-              <small>Support</small>
-              <strong>Technical questions</strong>
-              <a href={`mailto:${APP_CONFIG.SUPPORT_EMAIL}`}>{APP_CONFIG.SUPPORT_EMAIL}</a>
+              <small>WhatsApp</small>
+              <strong>Chat with us</strong>
+              <a href={CTA.WHATSAPP.href} target="_blank" rel="noopener noreferrer">{APP_CONFIG.PHONE}</a>
+              <p>For quick questions.</p>
             </div>
-            <div className="footer__card">
-              <small>Studio</small>
-              <strong>{APP_CONFIG.BRAND_NAME}</strong>
-              <address style={{ fontStyle: 'normal' }}>{APP_CONFIG.ADDRESS_LINES.map((l) => (<p key={l}>{l}</p>))}</address>
-            </div>
+            {APP_CONFIG.ADDRESS_LINES.length > 0 && (
+              <div className="footer__card">
+                <small>Studio</small>
+                <strong>{APP_CONFIG.BRAND_NAME}</strong>
+                <address style={{ fontStyle: 'normal' }}>{APP_CONFIG.ADDRESS_LINES.map((l) => (<p key={l}>{l}</p>))}</address>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="footer__bottom">
-          <span>© {APP_CONFIG.COPYRIGHT_YEAR} {APP_CONFIG.LEGAL_COMPANY_NAME}</span>
+          <span>Copyright {APP_CONFIG.COPYRIGHT_YEAR} {APP_CONFIG.LEGAL_COMPANY_NAME}</span>
           <nav className="footer__legal" aria-label="Legal">
             {LEGAL_NAV.map((l) => (<Link key={l.href} href={l.href}>{l.label}</Link>))}
           </nav>

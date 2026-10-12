@@ -40,8 +40,8 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
       <section className="sec sec--paper" aria-labelledby="sol-title">
         <div className="container split split--wide-left" style={{ alignItems: 'start' }}>
           <Reveal>
-            <span className="eyebrow">What it solves</span>
-            <h2 id="sol-title" className="h-section" style={{ margin: '16px 0 32px' }}>Designed around the room.</h2>
+            <span className="eyebrow">What it helps with</span>
+            <h2 id="sol-title" className="h-section" style={{ margin: '16px 0 32px' }}>How it works in this space</h2>
             <div className="detail-list">
               {u.solutions.map((s, i) => (
                 <div key={s.title}>
@@ -55,7 +55,7 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
             <div className="stack stack--lg">
               <SwitchStage className="stage--sq"><SwitchArt gangs={u.gangs} finish={FINISHES[u.slug === 'architectural-renovations' ? 2 : 0]!} /></SwitchStage>
               <div className="info-card">
-                <h3>Our recommendation</h3>
+                <h3>What we would suggest</h3>
                 <dl style={{ display: 'grid', gap: 10, marginTop: 6 }}>
                   {u.recommendations.map((r) => (
                     <div key={r.label} style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 12, fontSize: '0.875rem' }}>
@@ -74,14 +74,14 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
         <div className="container">
           <Reveal>
             <Link href={ROUTES.USE_CASES_SLUG(u.next.slug)} className="cta-band" style={{ display: 'flex' }}>
-              <div><span className="eyebrow">Next use case</span><h2 style={{ marginTop: 16 }}>{u.next.title}</h2></div>
+              <div><span className="eyebrow">Next</span><h2 style={{ marginTop: 16 }}>{u.next.title}</h2></div>
               <span className="btn btn--ghost">Continue <ArrowRight className="btn__arrow" /></span>
             </Link>
           </Reveal>
         </div>
       </section>
 
-      <CtaSection title="Let's plan your space." text="Share a few details and we will recommend the right configuration and finish." />
+      <CtaSection title="Planning this kind of project?" text="Send a few details and we will suggest a configuration and finish." />
     </>
   );
 }

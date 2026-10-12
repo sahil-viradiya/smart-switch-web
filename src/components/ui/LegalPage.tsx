@@ -13,7 +13,7 @@ export function LegalPage({ title, updated, intro, children }: { title: string; 
           {children}
         </div>
       </section>
-      <CtaSection title="Questions about this policy?" text="We are happy to explain how we handle your information." primary={CTA.CONTACT_US} />
+      <CtaSection title="Questions about this policy?" text="Write to us and we will explain how we handle your information." primary={CTA.CONTACT_US} />
     </>
   );
 }

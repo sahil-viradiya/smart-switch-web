@@ -45,3 +45,6 @@ pnpm-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Inquiry data (personal information — never commit)
+data/

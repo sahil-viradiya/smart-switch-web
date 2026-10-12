@@ -73,3 +73,14 @@ sequenceDiagram
     Visitor->>Web: Fills Contact Form with Department = "Technical Support"
     Web->>Visitor: Displays Submission Receipt & Direct Support Contact Info
 ```
+
+
+---
+
+## 5. Interactions added in the scroll-storytelling pass
+
+- **Scroll** drives pinned scenes on Home (collection reveal, feature wheel) and Technology (exploded construction view); a progress line and section dots track position; "back to top" appears after scrolling.
+- **Click an image** anywhere it has an "Enlarge" hint (hero scene, product art, gallery tiles) to open the lightbox; use ←/→ and Esc.
+- **Click a hotspot / room tab / feature step / layer step** to update the detail panel; steps also scroll the page to that point of a pinned scene.
+- **How It Works → Wall checker** ends in either "Book a Demo" (ready) or "Contact us" (items to check).
+- **Footer newsletter** hands a ready-to-send email to the visitor's mail app (no backend).

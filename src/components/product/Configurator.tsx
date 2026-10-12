@@ -22,16 +22,16 @@ export function Configurator() {
           <SwitchArt key={`${variant.id}-${finish.id}`} gangs={variant.gangs} dimmer={variant.dimmer} finish={finish} label={`${variant.name} Smart Switch in ${finish.name}`} />
           <div className="stage__caption glass-chip" aria-live="polite">
             <small>Your selection</small>
-            <strong>{variant.name} · {finish.name}</strong>
+            <strong>{variant.name}, {finish.name}</strong>
           </div>
         </SwitchStage>
-        <p className="small" style={{ marginTop: 14 }}>Illustrative render. Final dimensions and finishes are confirmed per regional SKU.</p>
+        <p className="small" style={{ marginTop: 14 }}>Illustration. Final dimensions and finishes are confirmed for each regional version.</p>
       </div>
 
       <div className="cfg__panel">
         <div className="cfg__group" role="radiogroup" aria-labelledby="cfg-variant">
           <h3 id="cfg-variant">Configuration</h3>
-          <p className="h-sub">Choose your plate.</p>
+          <p className="h-sub">Choose a plate</p>
           <div className="opt-grid">
             {VARIANTS.map((v) => (
               <button key={v.id} type="button" role="radio" aria-checked={variantId === v.id} className="opt" onClick={() => setVariantId(v.id)}>
@@ -48,7 +48,7 @@ export function Configurator() {
 
         <div className="cfg__group" role="radiogroup" aria-labelledby="cfg-finish">
           <h3 id="cfg-finish">Available finishes</h3>
-          <p className="h-sub">Choose your finish.</p>
+          <p className="h-sub">Choose a finish</p>
           <div className="swatches">
             {FINISHES.map((f) => (
               <button key={f.id} type="button" role="radio" aria-checked={finishId === f.id} className="swatch" onClick={() => setFinishId(f.id)}>

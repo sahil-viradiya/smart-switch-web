@@ -1,4 +1,5 @@
 import { SPEC } from '@/config/specs';
+
 export type FaqCategory = 'WIRING' | 'INSTALLATION' | 'CONNECTIVITY' | 'WARRANTY' | 'AVAILABILITY';
 
 export interface FaqItem {
@@ -10,7 +11,7 @@ export interface FaqItem {
 
 export const FAQ_CATEGORIES: readonly { id: 'ALL' | FaqCategory; label: string }[] = [
   { id: 'ALL', label: 'All' },
-  { id: 'WIRING', label: 'Electrical & wiring' },
+  { id: 'WIRING', label: 'Wiring' },
   { id: 'INSTALLATION', label: 'Installation' },
   { id: 'CONNECTIVITY', label: 'Connectivity' },
   { id: 'WARRANTY', label: 'Warranty' },
@@ -23,111 +24,108 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
     category: 'WIRING',
     question: 'Does Smart Switch need a neutral wire?',
     answer:
-      'Yes. Standard models are designed to require a neutral wire in the switch back-box. A no-neutral variant is under evaluation and is not available. Please have your electrician check your wall box before you order.',
+      'Yes. The standard models are designed to need a neutral wire in the switch box. We are looking at a version without that requirement, but it is not available. Ask your electrician to check the box before you order.',
   },
   {
     id: 'faq-diy',
     category: 'INSTALLATION',
     question: 'Can I install it myself?',
     answer:
-      'No. Smart Switch connects to mains voltage and must be installed by a certified, licensed electrician in line with local electrical codes.',
+      'No. It connects to mains voltage, so a certified, licensed electrician has to fit it and follow your local electrical code.',
   },
   {
     id: 'faq-offline',
     category: 'CONNECTIVITY',
-    question: 'Will it still work if my Wi-Fi goes down?',
+    question: 'Does it still work if the Wi-Fi goes down?',
     answer:
-      'That is the design intent: the paddle is designed to switch the circuit locally, so everyday switching does not depend on Wi-Fi or the internet. Behaviour will be confirmed as part of hardware validation.',
+      'That is how it is designed. The paddle is meant to switch the circuit directly, so everyday switching does not depend on Wi-Fi or the internet. We will confirm this during hardware testing.',
   },
   {
     id: 'faq-load',
     category: 'WIRING',
-    question: 'What load can each gang handle?',
-    answer:
-      `The provisional rating is ${SPEC.loadPerGang} per gang at ${SPEC.voltage}. These figures are pending engineering lab testing and national code listings, and may change before release.`,
+    question: 'How much load can each gang take?',
+    answer: `The provisional rating is ${SPEC.loadPerGang} per gang at ${SPEC.voltage}. These figures are still to be confirmed by lab testing and electrical code listings, and they may change before release.`,
   },
   {
     id: 'faq-platforms',
     category: 'CONNECTIVITY',
     question: 'Which smart-home platforms will it work with?',
     answer:
-      'Smart Switch is designed for open connectivity with Matter readiness over Wi-Fi, using Bluetooth LE for pairing. We do not yet claim compatibility badges for any platform; exact protocols are confirmed per regional hardware revision.',
+      'We are building toward Matter over Wi-Fi, with Bluetooth LE for pairing. We do not claim compatibility with any platform yet. The exact protocols will be confirmed for each regional version.',
   },
   {
     id: 'faq-certs',
     category: 'INSTALLATION',
-    question: 'Is Smart Switch certified?',
+    question: 'Is it certified?',
     answer:
-      'Not yet. Safety and regulatory certification is in testing. We will publish certification marks only once accredited lab certificates are in hand.',
+      'Not yet. Safety and regulatory testing is under way. We will only show a certification mark once we hold the lab certificate.',
   },
   {
     id: 'faq-warranty',
     category: 'WARRANTY',
     question: 'What warranty will it have?',
-    answer:
-      `We plan a ${SPEC.warrantyMonths}-month manufacturer warranty when installed by a licensed electrician. Final terms will be confirmed at launch.`,
+    answer: `We plan a ${SPEC.warrantyMonths}-month manufacturer warranty for units installed by a licensed electrician. Final terms will be confirmed at launch.`,
   },
   {
     id: 'faq-box',
     category: 'INSTALLATION',
-    question: 'What wall box depth do I need?',
-    answer:
-      `Smart Switch is designed for standard gang wall boxes with a minimum depth of ${SPEC.boxDepth}. This figure is provisional and confirmed per regional SKU.`,
+    question: 'How deep does the wall box need to be?',
+    answer: `It is designed for standard gang boxes at least ${SPEC.boxDepth} deep. That figure is provisional and will be confirmed for each regional version.`,
   },
   {
     id: 'faq-dimming',
     category: 'WIRING',
     question: 'Can it dim any light?',
     answer:
-      'The dimmer variant is intended for dimmable loads. Which LED drivers and lamps are compatible will be confirmed per SKU, so please share your fittings with your electrician and with us before ordering.',
+      'The dimmer is meant for dimmable loads. Which LED drivers and lamps work with it will be confirmed for each version, so share your fittings with your electrician and with us before you order.',
   },
   {
     id: 'faq-multiway',
     category: 'WIRING',
-    question: 'Does it support multi-way (two-way) switching?',
+    question: 'Does it work as a two-way switch?',
     answer:
-      'Multi-way arrangements are planned with your electrician at the design stage. Support for specific multi-way wiring will be confirmed per regional SKU.',
+      'Multi-way wiring is planned with your electrician at the design stage. Support for specific multi-way setups will be confirmed for each regional version.',
   },
   {
     id: 'faq-mix',
     category: 'INSTALLATION',
-    question: 'Can I mix finishes within one home?',
+    question: 'Can I use different finishes in one house?',
     answer:
-      'Yes — the finishes share one plate language, so mixing is a design choice. Many people keep one finish per floor or per room type. Our team can help you plan a consistent scheme.',
+      'Yes. All finishes share the same plate shape, so mixing is a design choice. Some people use one finish per floor. We can help you plan it.',
   },
   {
     id: 'faq-app',
     category: 'CONNECTIVITY',
-    question: 'Do I need an app to use it?',
+    question: 'Do I need an app?',
     answer:
-      'No. Everyday switching is designed to work with the paddle alone. Optional smart features are being developed around open standards; details of any companion app have not been announced.',
+      'No. Everyday switching works with the paddle alone. The optional smart features are being developed on open standards, and we have not announced any companion app.',
   },
   {
     id: 'faq-provisional',
     category: 'WARRANTY',
     question: 'What does "provisional" mean on this site?',
     answer:
-      'It marks a specification or claim that is still pending engineering lab testing, certification or final sourcing. We label these openly so architects and electricians can plan with confidence, and we update them as results are confirmed.',
+      'It marks a figure or claim that is still waiting for lab testing, certification or final sourcing. We label these so architects and electricians know what to rely on, and we update them as results come in.',
   },
   {
     id: 'faq-samples',
     category: 'AVAILABILITY',
     question: 'How do I get a spec sheet or finish samples?',
     answer:
-      'Use the Book a Demo form and choose the architect option, or contact the team directly. Availability of printed material and samples will be confirmed when you get in touch.',
+      'Use the Book a Demo form and choose the architect option, or contact us directly. We will tell you what printed material and samples are available.',
   },
   {
     id: 'faq-availability',
     category: 'AVAILABILITY',
-    question: 'When and where can I buy it?',
+    question: 'When can I buy it?',
     answer:
-      'Smart Switch is not on sale yet. Regional availability, pricing and lead times will be announced as hardware validation and certification complete. Register your interest through Book a Demo.',
+      'It is not on sale yet. Regional availability, prices and lead times will be announced once hardware testing and certification are done. You can register your interest through Book a Demo.',
   },
   {
-    id: 'faq-privacy',
+    id: 'faq-internet',
     category: 'CONNECTIVITY',
-    question: 'Does the switch need an internet connection to be useful?',
+    question: 'Does it need the internet to be useful?',
     answer:
-      'The design goal is that core switching never depends on the internet. Network features, where used, are intended to be optional layers on top of local control.',
+      'The goal is that basic switching never needs the internet. Network features are optional extras on top of local control.',
   },
 ];

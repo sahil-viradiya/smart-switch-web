@@ -36,16 +36,16 @@ export default function ProductPage() {
       <SectionNav sections={SECTIONS} />
       <PageHero
         eyebrow="Smart Switch"
-        title={['Smart Switch.', 'Designed to disappear.']}
-        lead="A mechanical, tactile wall switch with a quiet smart layer — flush, modular and available in three architectural finishes."
+        title={['Smart Switch']}
+        lead="A wall switch with mechanical paddles, a small status light and a smart module behind them. Four configurations, three finishes."
         crumbs={[{ label: PAGES.PRODUCT.name }]}
         actions={<><CtaLink cta={CTA.EXPLORE_CONFIGS} arrow /><CtaLink cta={CTA.ASK_PRODUCT} variant="ghost" /></>}
         art={
           <Tilt>
-            <Zoomable item={{ kind: 'switch', variant: '3_GANG', finish: 'MATTE_CHARCOAL', caption: '3-Gang · Matte Charcoal', alt: 'Three-gang Smart Switch in Matte Charcoal' }}>
+            <Zoomable item={{ kind: 'switch', variant: '3_GANG', finish: 'MATTE_CHARCOAL', caption: '3-gang in Matte Charcoal', alt: 'Three-gang Smart Switch in Matte Charcoal' }}>
               <SwitchStage className="stage--wide">
                 <SwitchArt gangs={3} finish={FINISHES[0]!} label="Three-gang Smart Switch in Matte Charcoal" />
-                <div className="stage__caption glass-chip"><small>Smart Switch</small><strong>3-gang · Matte Charcoal</strong></div>
+                <div className="stage__caption glass-chip"><small>Smart Switch</small><strong>3-gang, Matte Charcoal</strong></div>
               </SwitchStage>
             </Zoomable>
           </Tilt>
@@ -54,7 +54,7 @@ export default function ProductPage() {
 
       <div className="works-with">
         <div className="container works-with__inner">
-          <span className="works-with__label">Connectivity roadmap</span>
+          <span className="works-with__label">Connectivity plans</span>
           <ul>
             <li>Wi-Fi 2.4 GHz <ProvisionalBadge /></li>
             <li>Bluetooth LE pairing <ProvisionalBadge /></li>
@@ -65,7 +65,7 @@ export default function ProductPage() {
 
       <section id="features" className="sec sec--paper" aria-labelledby="features-title">
         <div className="container">
-          <SectionHead eyebrow="Key features" title={['Smart control.', 'Beautifully simple.']} />
+          <SectionHead eyebrow="Features" title={['Key features']} />
           <Reveal>
             <div className="cells cells--5">
               {KEY_FEATURES.map((f, i) => {
@@ -90,7 +90,7 @@ export default function ProductPage() {
 
       <section id="compare" className="sec sec--white" aria-labelledby="compare-title">
         <div className="container">
-          <SectionHead eyebrow="Compare" title={['Four configurations.', 'One language.']} lead="Pick by the number of circuits and whether you want dimming. Provisional values are marked." />
+          <SectionHead eyebrow="Compare" title={['Compare the configurations']} lead="Choose by the number of circuits and whether you want dimming. Provisional values are marked." />
           <Reveal>
             <div className="table-scroll">
               <table className="compare">
@@ -116,9 +116,9 @@ export default function ProductPage() {
         <div className="container split split--wide-left" style={{ alignItems: 'start' }}>
           <Reveal className="stack stack--lg">
             <span className="eyebrow">Specifications</span>
-            <h2 id="specs-title" className="h-section">Transparent by default.</h2>
-            <p className="lead">Confirmed design facts are listed plainly. Anything still undergoing engineering lab testing or certification is marked provisional.</p>
-            <Notice title="No certification claimed yet">Safety and regulatory certification is in testing. We will show certification marks only after accredited lab certificates are verified.</Notice>
+            <h2 id="specs-title" className="h-section">Specifications</h2>
+            <p className="lead">Confirmed facts are listed as they are. Anything still in lab testing or certification is marked provisional.</p>
+            <Notice title="No certifications yet">Certification testing is in progress. We will only show a certification mark once we hold the lab certificate.</Notice>
           </Reveal>
           <Reveal delay={0.1}><SpecTable rows={SPEC_ROWS} caption="Smart Switch specifications" /></Reveal>
         </div>
@@ -128,8 +128,8 @@ export default function ProductPage() {
         <div className="container split">
           <Reveal className="stack stack--lg">
             <span className="eyebrow">Before you order</span>
-            <h2 id="checklist-title" className="h-section">Check your wall first.</h2>
-            <p className="lead">A short checklist to run with your electrician. Installation by a licensed electrician is always required.</p>
+            <h2 id="checklist-title" className="h-section">Check your wall first</h2>
+            <p className="lead">Go through this list with your electrician. Installation must always be done by a licensed electrician.</p>
             <div><CtaLink cta={CTA.HOW_INSTALL} variant="outline-dark" arrow /></div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -147,7 +147,7 @@ export default function ProductPage() {
 
       <section id="included" className="sec sec--white" aria-labelledby="included-title">
         <div className="container">
-          <SectionHead eyebrow="In the box" title={['What is included.', 'Planned contents.']} lead="Planned package contents, provisional until the retail package is finalised." />
+          <SectionHead eyebrow="In the box" title={["What's included"]} lead="Planned contents. They are provisional until the retail package is final." />
           <Reveal>
             <div className="cells cells--5">
               {INCLUDED.map((it, i) => {
@@ -168,12 +168,12 @@ export default function ProductPage() {
 
       <section id="gallery" className="sec sec--dark" aria-labelledby="gallery-title">
         <div className="container">
-          <SectionHead eyebrow="Gallery" title={['Every configuration,', 'every finish.']} lead="Select any image to enlarge it." />
+          <SectionHead eyebrow="Gallery" title={['All configurations and finishes']} lead="Select an image to enlarge it." />
           <Reveal><MediaGallery items={GALLERY.filter((g) => g.kind === 'switch')} /></Reveal>
         </div>
       </section>
 
-      <CtaSection title="See how Smart Switch fits your home." text="Share your project and we will recommend a configuration and finish." />
+      <CtaSection title="Ready to plan?" text="Send us your project details and we will suggest a configuration and finish." />
     </>
   );
 }

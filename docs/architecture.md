@@ -1,6 +1,6 @@
 # Smart Switch — Architecture
 
-A single Next.js 14 (App Router) + TypeScript (strict) application. It is a static-first marketing site: no API, no database, no authentication.
+A single Next.js 14 (App Router) + TypeScript (strict) application. It is a static-first marketing site with one server endpoint (`/api/inquiries`) that saves inquiries to an Excel sheet. No database, no authentication.
 
 ## Folder layout
 
@@ -35,5 +35,5 @@ CSS keyframes/transitions plus two small client pieces: `Reveal` (IntersectionOb
 - Spec values live in `PRODUCT_SPECS` and are **provisional** until lab-confirmed (see `requirements.md` §2.2).
 - Imports use the `@/` alias (maps to `src/`).
 
-## Forms
-`LeadForm` and `ContactForm` validate client-side with Zod, then hand the message to the visitor's email client via `mailto:`. Nothing is stored or sent by the site, and the success state says so. `/request-demo?intent=architect|installer|homeowner` pre-selects the enquiry type. If a form service is adopted later, replace `buildMailto` in `lib/forms.ts`.
+## Forms & inquiry storage
+`LeadForm` (Book a Demo), `ContactForm` and the footer `Newsletter` validate client-side with Zod, then `POST /api/inquiries`. The route handler re-validates with the same shared schema (`lib/validation/inquiry.ts`), checks same-origin, size and a per-IP rate limit, drops honeypot hits, assigns a reference (`DEMO-YYMMDD-XXXXX`) and appends a row to `data/inquiries.xlsx` and/or a Google Sheet (`src/server/inquiries`). An append-only `data/inquiries.jsonl` backup guarantees nothing is lost if Excel has the file locked. The success state appears only after the server confirms; on failure the form keeps the text and offers WhatsApp / email / phone. See `docs/inquiry-sheet.md`. `/request-demo?intent=architect|installer|homeowner` pre-selects the enquiry type.

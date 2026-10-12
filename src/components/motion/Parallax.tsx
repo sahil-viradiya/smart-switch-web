@@ -3,7 +3,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { prefersReducedMotion } from '@/lib/scroll';
 
-/** Moves its content vertically at `speed` × the scroll offset from the viewport centre. */
+/** Moves its content vertically at `speed` x the scroll offset from the viewport centre. */
 export function Parallax({ children, speed = 0.12, className = '' }: { children: ReactNode; speed?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 

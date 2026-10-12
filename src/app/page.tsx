@@ -35,31 +35,31 @@ import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta('HOME');
 
 const SECTIONS = [
-  { id: 'hero', label: 'Intro' },
-  { id: 'reveal', label: 'Collection reveal' },
-  { id: 'collection', label: 'Configurations' },
-  { id: 'features', label: 'Key features' },
-  { id: 'about', label: 'Who we are' },
-  { id: 'numbers', label: 'By the numbers' },
-  { id: 'explore', label: 'Explore the room' },
-  { id: 'rooms', label: 'Room by room' },
+  { id: 'hero', label: 'Top' },
+  { id: 'reveal', label: 'The range' },
+  { id: 'collection', label: 'Plates' },
+  { id: 'features', label: 'Features' },
+  { id: 'about', label: 'About' },
+  { id: 'numbers', label: 'Numbers' },
+  { id: 'explore', label: 'Look closer' },
+  { id: 'rooms', label: 'Rooms' },
   { id: 'standards', label: 'Connectivity' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'audience', label: 'Who it is for' },
-  { id: 'faq', label: 'Questions' },
+  { id: 'faq', label: 'FAQ' },
 ];
 
 const PRINCIPLES = [
-  { title: 'Quietly intelligent', text: 'Technology responds naturally while staying discreet in everyday living.' },
-  { title: 'Designed as one', text: 'One plate language across gangs, dimmer and finishes so every room feels related.' },
-  { title: 'Made to belong', text: 'Clean forms and considered finishes that complement contemporary interiors.' },
+  { title: 'Keep what works', text: 'A mechanical paddle is quick, obvious and easy to find in the dark. The smart features add to it instead of replacing it.' },
+  { title: 'One look for every room', text: 'Every plate size and the dimmer share the same faceplate and the same three finishes.' },
+  { title: 'Fit the wall', text: 'The plates sit flat with hidden fixings, so the wall looks finished.' },
 ];
 
 const WHY = [
-  { title: 'Tactile by design', text: 'Real mechanical paddles instead of a glass slab — easy to find in the dark.' },
-  { title: 'Local-first control', text: 'Designed so everyday switching never depends on Wi-Fi or the cloud.' },
-  { title: 'Safety first', text: 'Protection-led design and licensed-electrician installation, always.' },
-  { title: 'Open by intent', text: 'Built toward Matter readiness so you are not locked to one platform.' },
+  { title: 'Easy to use', text: 'Real paddles that you can find without looking.' },
+  { title: 'Works locally', text: 'Everyday switching is designed not to depend on Wi-Fi or the cloud.' },
+  { title: 'Safety first', text: 'Designed around protection, and always fitted by a licensed electrician.' },
+  { title: 'Open standards', text: 'We are aiming for Matter, so you are not tied to one platform.' },
 ];
 
 export default function HomePage() {
@@ -69,26 +69,26 @@ export default function HomePage() {
     <>
       <SectionNav sections={SECTIONS} />
 
-      {/* 1 · Hero */}
+      {/* 1. Hero */}
       <section id="hero" className="sec sec--dark hero" aria-labelledby="hero-title">
         <div className="container hero__grid">
           <div className="hero__copy">
-            <span className="eyebrow eyebrow--mark">Intelligent walls. Effortless living.</span>
+            <span className="eyebrow eyebrow--mark">Smart wall switches</span>
             <h1 id="hero-title" className="h-display hero__title">
-              <span className="hero__line"><span>Every switch.</span></span>
-              <span className="hero__line"><span className="ghost">Quietly smarter.</span></span>
+              <span className="hero__line"><span>A real switch,</span></span>
+              <span className="hero__line"><span className="ghost">made smarter.</span></span>
             </h1>
             <p className="hero__lead">
-              An architectural wall switch engineered for tactile precision, safe wiring and open connectivity — designed to disappear into the way you live.
+              Smart Switch has mechanical paddles and a small status light. The smart features sit behind the paddle, so it still works like a normal switch.
             </p>
             <div className="hero__actions">
               <CtaLink cta={CTA.EXPLORE_SWITCH} arrow />
               <CtaLink cta={CTA.BOOK_DEMO} variant="ghost" />
             </div>
             <ul className="hero__tags" aria-label="What it controls">
-              <li>Lighting</li><li>Comfort</li><li>Safety</li><li>Control</li>
+              <li>Lighting</li><li>Dimming</li><li>Wiring</li><li>Safety</li>
             </ul>
-            <span className="hero__cue" aria-hidden="true">Scroll to discover</span>
+            <span className="hero__cue" aria-hidden="true">Scroll for more</span>
           </div>
           <HeroVisual />
         </div>
@@ -96,22 +96,22 @@ export default function HomePage() {
 
       <Marquee words={MARQUEE_WORDS} />
 
-      {/* 2 · Pinned zoom reveal */}
+      {/* 2. Pinned zoom reveal */}
       <ZoomReveal items={GALLERY.filter((g) => g.kind === 'switch').slice(0, 4)}>
-        <span className="eyebrow eyebrow--mark">The collection</span>
-        <h2 className="h-section">One switch. <span className="dim-line">Every room.</span></h2>
-        <p className="lead">Four configurations and three finishes share one plate language, so a hallway, a studio and a bedroom read as a single design.</p>
+        <span className="eyebrow eyebrow--mark">The range</span>
+        <h2 className="h-section">Four plates, three finishes</h2>
+        <p className="lead">The 1, 2 and 3-gang plates and the dimmer all use the same faceplate, so rooms with different layouts still match.</p>
         <CtaLink cta={CTA.EXPLORE_CONFIGS} arrow />
       </ZoomReveal>
 
-      {/* 3 · Collection */}
+      {/* 3. Collection */}
       <section id="collection" className="sec sec--paper" aria-labelledby="collection-title">
         <div className="container">
           <Reveal className="sec-head">
             <div>
-              <span className="eyebrow">Explore the collection</span>
-              <h2 id="collection-title" className="h-section">Choose your plate.</h2>
-              <p className="lead">Click any plate to open the configurator and see it in every finish.</p>
+              <span className="eyebrow">Configurations</span>
+              <h2 id="collection-title" className="h-section">Pick a plate</h2>
+              <p className="lead">Select a plate to open the configurator and see it in each finish.</p>
             </div>
             <TextLink href={CTA.VIEW_PRODUCT.href}>{CTA.VIEW_PRODUCT.label}</TextLink>
           </Reveal>
@@ -123,7 +123,7 @@ export default function HomePage() {
                     <SwitchArt gangs={v.gangs} dimmer={v.dimmer} finish={FINISHES[i === 2 ? 2 : i === 3 ? 1 : 0]!} />
                   </SwitchStage>
                   <div className="card__body">
-                    <span className="card__eyebrow">0{i + 1} · Smart Switch</span>
+                    <span className="card__eyebrow">Configuration</span>
                     <span className="card__title">{v.name} <ArrowUpRight /></span>
                     <p className="card__text">{v.tagline}</p>
                     <span className="card__foot">{v.chip}</span>
@@ -135,16 +135,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4 · Pinned feature wheel */}
+      {/* 4. Pinned feature wheel */}
       <FeatureWheel features={KEY_FEATURES} />
 
-      {/* 5 · About with parallax + tilt */}
+      {/* 5. About with parallax and tilt */}
       <section id="about" className="sec sec--white" aria-labelledby="about-title">
         <div className="container split">
           <Reveal variant="clip">
             <Parallax speed={0.07}>
               <Tilt>
-                <Zoomable item={{ kind: 'switch', variant: '2_GANG', finish: 'MATTE_CHARCOAL', caption: '2-Gang · Matte Charcoal', alt: 'Two-gang Smart Switch in Matte Charcoal' }}>
+                <Zoomable item={{ kind: 'switch', variant: '2_GANG', finish: 'MATTE_CHARCOAL', caption: '2-gang in Matte Charcoal', alt: 'Two-gang Smart Switch in Matte Charcoal' }}>
                   <div className="showcase">
                     <SwitchStage className="stage--tall">
                       <span className="watermark" aria-hidden="true">SMART SWITCH</span>
@@ -156,22 +156,22 @@ export default function HomePage() {
             </Parallax>
           </Reveal>
           <Reveal className="stack stack--lg" delay={0.1}>
-            <span className="eyebrow">Who we are</span>
-            <h2 id="about-title" className="h-section">Designed to make smart living feel simple.</h2>
-            <p className="lead">Smart Switch is built on a simple belief: the wall switch should stay physical, precise and calm, with intelligence working quietly behind it.</p>
-            <p className="lead">From a single paddle to a three-gang console, every plate shares one design language and one careful approach to electrical safety.</p>
+            <span className="eyebrow">About</span>
+            <h2 id="about-title" className="h-section">Why we kept the paddle</h2>
+            <p className="lead">Most smart switches replace the button with a touch panel. We kept a mechanical paddle, because everyone already knows how to use one.</p>
+            <p className="lead">The smart features are an extra layer. Electrical safety comes first, and anything we have not tested yet is marked provisional on this site.</p>
             <div className="row">
-              <TextLink href={ROUTES.ABOUT}>Our approach</TextLink>
-              <TextLink href={ROUTES.FEATURES}>The technology</TextLink>
+              <TextLink href={ROUTES.ABOUT}>About us</TextLink>
+              <TextLink href={ROUTES.FEATURES}>How it is built</TextLink>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 6 · By the numbers */}
+      {/* 6. Numbers */}
       <section id="numbers" className="sec sec--paper" aria-labelledby="numbers-title">
         <div className="container">
-          <SectionHead eyebrow="By the numbers" title={['The design,', 'in figures.']} lead="Facts taken straight from the product definition. Anything not yet confirmed is marked provisional." />
+          <SectionHead eyebrow="Facts" title={['The product in numbers']} lead="These come from the product definition. Anything not confirmed yet is marked provisional." />
           <div className="stats">
             <Reveal>
               <div className="stat-grid">
@@ -189,18 +189,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7 · Interactive room */}
+      {/* 7. Interactive room */}
       <section id="explore" className="sec sec--dark" aria-labelledby="explore-title">
         <div className="container">
-          <SectionHead eyebrow="Explore the room" title={['Tap a point.', 'See the detail.']} lead="Every hotspot is a design decision. Select one to learn more." />
+          <SectionHead eyebrow="Look closer" title={['Click a point on the room']} lead="Each marker explains one part of the design." />
           <Reveal><HotspotRoom hotspots={HOTSPOTS} /></Reveal>
         </div>
       </section>
 
-      {/* 8 · Philosophy */}
+      {/* 8. Principles */}
       <section id="philosophy" className="sec sec--soft" aria-labelledby="phil-title">
         <div className="container">
-          <SectionHead eyebrow="Our philosophy" title={['The best technology should enhance the space', '— not dominate it.']} />
+          <SectionHead eyebrow="How we design" title={['Technology should fit the room']} />
           <Reveal>
             <div className="cells cells--3">
               {PRINCIPLES.map((p, i) => (
@@ -215,23 +215,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9 · Room by room */}
+      {/* 9. Room by room */}
       <section id="rooms" className="sec sec--paper" aria-labelledby="rooms-title">
         <div className="container">
-          <SectionHead eyebrow="Room by room" title={['Wherever you live,', 'the wall stays calm.']} action={<TextLink href={ROUTES.USE_CASES}>All use cases</TextLink>} />
+          <SectionHead eyebrow="Rooms" title={['Planning room by room']} action={<TextLink href={ROUTES.USE_CASES}>All use cases</TextLink>} />
           <Reveal><RoomTabs rooms={ROOM_TABS} /></Reveal>
         </div>
       </section>
 
-      {/* 10 · Connectivity roadmap + orbit */}
+      {/* 10. Connectivity plans and orbit */}
       <section id="standards" className="sec sec--white" aria-labelledby="eco-title">
         <div className="container">
           <div className="split" style={{ marginBottom: 'clamp(40px, 6vw, 72px)' }}>
             <Reveal className="stack stack--lg">
-              <span className="eyebrow">Smart Switch system</span>
-              <h2 id="eco-title" className="h-section">Open by intent. <span className="dim-line">Local by design.</span></h2>
-              <p className="lead">Paddles, dimming, local fail-safe and open connectivity are designed as one system. Every standard below is a roadmap item — none is certified or badged yet.</p>
-              <div><TextLink href={ROUTES.FEATURES}>Explore the technology</TextLink></div>
+              <span className="eyebrow">Connectivity</span>
+              <h2 id="eco-title" className="h-section">What it will connect to</h2>
+              <p className="lead">These are plans, not certifications. Nothing below is certified yet, and no platform badge is claimed.</p>
+              <div><TextLink href={ROUTES.FEATURES}>How it is built</TextLink></div>
             </Reveal>
             <Reveal variant="scale" delay={0.1}><OrbitDiagram /></Reveal>
           </div>
@@ -249,19 +249,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11 · Gallery */}
+      {/* 11. Gallery */}
       <section id="gallery" className="sec sec--dark" aria-labelledby="gallery-title">
         <div className="container">
-          <SectionHead eyebrow="Gallery" title={['See it in every', 'finish and room.']} lead="Select any image to enlarge it. Use the arrow keys to move through the set." />
+          <SectionHead eyebrow="Gallery" title={['Plates and rooms']} lead="Select an image to enlarge it. The arrow keys move between images." />
           <Reveal><MediaGallery items={GALLERY} /></Reveal>
-          <p className="small" style={{ marginTop: 18 }}>Illustrative renders. Final finishes and dimensions are confirmed per regional SKU.</p>
+          <p className="small" style={{ marginTop: 18 }}>These are illustrations. Final finishes and dimensions are confirmed for each regional version.</p>
         </div>
       </section>
 
-      {/* 12 · Audience */}
+      {/* 12. Audience */}
       <section id="audience" className="sec sec--paper" aria-labelledby="aud-title">
         <div className="container">
-          <SectionHead eyebrow="Who it is for" title={['One switch.', 'Three ways in.']} />
+          <SectionHead eyebrow="Who it is for" title={['Homeowners, architects and electricians']} />
           <ul className="grid grid--3">
             {PERSONAS.map((p, i) => (
               <Reveal as="li" key={p.id} delay={i * 0.08}>
@@ -278,13 +278,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 13 · Why + technology links */}
+      {/* 13. Why and technology links */}
       <section className="sec sec--dark" aria-labelledby="why-title">
         <div className="container split split--wide-left" style={{ alignItems: 'start' }}>
           <Reveal className="stack stack--lg">
             <span className="eyebrow">Why Smart Switch</span>
-            <h2 id="why-title" className="h-section">Smart living. <span className="dim-line">Better every day.</span></h2>
-            <p className="lead">Automation should make a home feel calmer, not more complicated. Every decision starts from the wall.</p>
+            <h2 id="why-title" className="h-section">Four reasons</h2>
+            <p className="lead">The short version of what we are trying to get right.</p>
             <div className="row">
               {FEATURES.map((f) => {
                 const Icon = ICONS[f.icon];
@@ -306,7 +306,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 14 · Use cases quick links */}
+      {/* 14. Use cases */}
       <section className="sec sec--paper sec--tight" aria-label="Use cases">
         <div className="container">
           <ul className="grid grid--3">
@@ -326,15 +326,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 15 · FAQ */}
+      {/* 15. FAQ */}
       <section id="faq" className="sec sec--white" aria-labelledby="faq-title">
         <div className="container--narrow">
-          <SectionHead eyebrow="Questions" title={['Good to know', 'before you plan.']} action={<TextLink href={PAGES.FAQ.path}>All questions</TextLink>} />
+          <SectionHead eyebrow="FAQ" title={['Common questions']} action={<TextLink href={PAGES.FAQ.path}>All questions</TextLink>} />
           <Reveal><FaqAccordion items={homeFaq} filterable={false} /></Reveal>
         </div>
       </section>
 
-      <CtaSection title="Tell us how you live. We'll design how your wall responds." text="Book a personalised demo and we'll plan the right configuration for your space." />
+      <CtaSection title="Want Smart Switch in your home?" text="Send us a few details and we will suggest a configuration and finish." />
     </>
   );
 }

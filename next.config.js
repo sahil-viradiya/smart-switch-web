@@ -3,6 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  // exceljs is server-only; keep it out of the bundler.
+  experimental: { serverComponentsExternalPackages: ['exceljs'] },
   async headers() {
     return [
       {

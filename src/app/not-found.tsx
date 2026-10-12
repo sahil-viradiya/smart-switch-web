@@ -7,8 +7,8 @@ export default function NotFound() {
       <div className="container">
         <div>
           <span className="eyebrow eyebrow--mark">Error 404</span>
-          <h1 className="h-page">Page not found.<span className="dim-line">The wall is clear here.</span></h1>
-          <p className="lead">The page you were looking for does not exist or has moved.</p>
+          <h1 className="h-page">We could not find that page</h1>
+          <p className="lead">It may have moved, or the address may be wrong.</p>
           <div className="row" style={{ justifyContent: 'center' }}>
             <CtaLink cta={CTA.BACK_HOME} arrow />
             <CtaLink cta={CTA.VIEW_PRODUCT} variant="ghost" />

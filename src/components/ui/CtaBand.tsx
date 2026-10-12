@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function CtaBand({
-  eyebrow = 'Plan your space',
+  eyebrow = 'Next step',
   title,
   text,
   primary = CTA.BOOK_DEMO,
