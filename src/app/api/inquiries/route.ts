@@ -45,7 +45,8 @@ export async function POST(req: Request) {
   try {
     const { id } = await saveInquiry(parsed.data);
     return reply(200, { ok: true, id });
-  } catch {
+  } catch (err) {
+    console.error('[inquiries] POST /api/inquiries failed:', err instanceof Error ? err.stack || err.message : err);
     return reply(500, { ok: false, error: 'We could not save your request right now.' });
   }
 }

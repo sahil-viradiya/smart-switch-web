@@ -13,7 +13,7 @@ export async function appendToGoogleSheet(row: InquiryRow): Promise<void> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ secret: process.env.INQUIRY_SHEET_SECRET ?? '', row }),
     redirect: 'follow',
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(15000),
   });
   if (!res.ok) throw new Error(`Sheet webhook responded ${res.status}`);
   const body = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
