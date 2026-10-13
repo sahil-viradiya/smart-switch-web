@@ -36,7 +36,7 @@ export const USE_CASES: readonly UseCase[] = [
       { label: 'Installer', value: 'Licensed electrician' },
     ],
     scene: 'living',
-    product: { series: 'color', id: '6m-6-switch-1-fan' },
+    product: { series: 'color', id: '8m-6-switch-1-fan' },
     next: { slug: 'architectural-renovations', title: 'Renovations' },
   },
   {

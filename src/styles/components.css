@@ -91,6 +91,9 @@
 .footer__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr)); gap: 0.875rem; }
 .footer__card { padding: 1.25rem; border: 1px solid var(--line-dark); border-radius: var(--radius-md); background: rgb(var(--white-rgb) / 0.02); }
 .footer__card small { display: block; font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.625rem; }
+.addr__logo { width: 3rem; height: 3rem; object-fit: contain; margin-bottom: 0.5rem; }
+.footer__card .addr__map { margin-top: 0.625rem; color: var(--gold); text-decoration: underline; text-decoration-color: rgb(var(--gold-rgb) / 0.4); text-underline-offset: 3px; }
+.footer__card .addr__map:hover { color: var(--gold-light); }
 .footer__card p, .footer__card a { font-size: 0.8125rem; color: var(--on-dark-muted); display: block; }
 .footer__card a:hover { color: var(--white); }
 .footer__card strong { display: block; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; font-size: 0.9rem; }
@@ -110,7 +113,7 @@
 
 /* ---------- Logo ---------- */
 .logo { display: inline-flex; align-items: center; gap: 0.75rem; color: var(--white); }
-.logo__mark { width: 2.375rem; height: 2.375rem; flex: none; }
+.logo__mark { width: 3rem; height: 3rem; flex: none; object-fit: contain; }
 .logo__word { display: grid; line-height: 1; }
 .logo__word strong { font-size: 1.05rem; font-weight: var(--fw-semibold); letter-spacing: var(--ls-logo); }
 .logo__word small { margin-top: 0.3125rem; font-size: 0.5rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--on-dark-dim); }
@@ -174,8 +177,8 @@ a.card--dark:hover { border-color: var(--gold-line); box-shadow: 0 18px 48px rgb
 .form-card h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; }
 .form-card > p { margin-top: 0.625rem; color: var(--ink-muted); font-size: 0.9rem; }
 .form { display: grid; gap: 1.125rem; margin-top: 1.75rem; }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.125rem; }
-.field { display: grid; gap: 0.5rem; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.125rem; align-items: start; }
+.field { display: grid; gap: 0.5rem; align-content: start; }
 .field label, .field legend { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink); }
 .field__opt { font-weight: 400; color: var(--ink-muted); }
 .input { width: 100%; min-height: 3.125rem; padding: 0.75rem 1rem; border: 1px solid rgb(var(--ink-rgb) / 0.18); border-radius: var(--radius-md); background: var(--field-bg); font-size: 0.9375rem; color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s; }

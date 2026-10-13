@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ICONS, Check } from '@/components/art/Icons';
 import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { AccessoryGrid } from '@/components/catalog/AccessoryGrid';
+import { PanelTypes } from '@/components/catalog/PanelTypes';
 import { MediaGallery } from '@/components/media/MediaGallery';
 import { ProductFilm } from '@/components/media/ProductFilm';
 import { Zoomable } from '@/components/media/Zoomable';
@@ -29,6 +30,7 @@ const SECTIONS = [
   { id: 'film', label: 'Film' },
   { id: 'series', label: 'Series' },
   { id: 'configure', label: 'Sizes' },
+  { id: 'functions', label: 'Functions' },
   { id: 'compare', label: 'Compare' },
   { id: 'specs', label: 'Specifications' },
   { id: 'accessories', label: 'Accessories' },
@@ -130,6 +132,14 @@ export default function ProductPage() {
 
       <section id="configure" className="sec sec--paper divider-top" aria-label="Choose a series and size" style={{ paddingTop: 'clamp(56px, 8vw, 96px)' }}>
         <div className="container"><Reveal><Configurator /></Reveal></div>
+      </section>
+
+      <section id="functions" className="sec sec--dark" aria-labelledby="functions-title">
+        <div className="container">
+          <SectionHead eyebrow="Functions" title={['Pick by', 'function']} lead="Switches, sockets, fan, scene, curtain and dimmer panels, a USB charger and a doorbell. Choose one to see its configurations. Counts are the different layouts in Color and Edge together." />
+          <PanelTypes />
+          <p className="small" style={{ marginTop: 18 }}>To control an air conditioner or a TV, pair a Wi-Fi panel with the <Link className="text-link" href="#accessories">IR blaster</Link>.</p>
+        </div>
       </section>
 
       <section id="compare" className="sec sec--white" aria-labelledby="compare-title">

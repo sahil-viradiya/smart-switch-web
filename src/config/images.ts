@@ -32,22 +32,34 @@ export interface VideoAsset {
   label: string;
 }
 
-/** Videos. The film is silent, so there is no caption track to maintain. */
+/** Videos. The film has a music bed and no speech, so there is no caption track to maintain. It starts muted; the page has a Sound button. */
 export const VIDEOS: { film: VideoAsset } = {
   film: {
     src: '/videos/film.mp4',
     poster: '/images/film-poster.jpg',
     width: 1280,
     height: 720,
-    label: 'A silent film of Color and Edge touch panels, on the wall in four rooms and close up',
+    label: 'A short film of Color and Edge touch panels, on the wall in four rooms and close up, with a music bed that is off until you turn it on',
   },
 };
+
+/** Encoding quality for every photo and render the site serves (Next.js defaults to 75, which softens thin icon lines). */
+export const IMAGE_QUALITY = 90;
 
 /** Shown wherever room photos appear, so nobody mistakes them for photos of a finished installation. */
 export const IMAGE_NOTE = 'Room images are illustrations: real panel images placed on a sample wall.';
 
+/** Photos of the add-ons, keyed by the accessory id in `content/catalog/accessories.ts` (cropped from the product price lists). */
+export const ACCESSORY_IMAGES: Record<string, ImageAsset> = {
+  'ir-blaster': { src: '/images/accessories/ir-blaster.webp', alt: 'A round black IR blaster', width: 858, height: 500 },
+  'zigbee-gateway': { src: '/images/accessories/zigbee-gateways.webp', alt: 'Two Zigbee gateways: a round Ethernet one and a square USB one', width: 858, height: 500 },
+  'remote-r1-r2': { src: '/images/accessories/remote.webp', alt: 'A handheld remote with scene, line and all on or all off buttons', width: 858, height: 500 },
+};
+
 export const IMAGES: {
   scenes: Record<SceneName, ImageAsset>;
+  /** The brand emblem (transparent PNG). Used by the logo, the app manifest and the structured data. Browser-tab icons are `src/app/icon.png` and `apple-icon.png`. */
+  logo: ImageAsset;
   /** 1200x630 social-share image. */
   social: ImageAsset;
 } = {
@@ -57,5 +69,6 @@ export const IMAGES: {
     studio: { src: '/images/scenes/studio.webp', alt: 'Studio wall with a 6 module Edge series touch panel', width: 898, height: 1123, marker: { x: 63, y: 40, label: '6M, Edge series' } },
     hall: { src: '/images/scenes/hall.webp', alt: 'Hallway wall with a 2 module Edge series touch panel', width: 897, height: 1122, marker: { x: 55, y: 45, label: '2M, Edge series' } },
   },
+  logo: { src: '/images/logo.png', alt: '', width: 512, height: 512 },
   social: { src: '/images/social.jpg', alt: 'An 8 module Color series touch panel', width: 1200, height: 630 },
 };

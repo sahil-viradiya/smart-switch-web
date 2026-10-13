@@ -24,7 +24,7 @@ export default function CookiesPage() {
       <p>Like any website, the server that delivers it may record technical details of each visit, such as your IP address, browser type and the page requested, for security and fault-finding. See the <Link href={ROUTES.PRIVACY}>Privacy Policy</Link> for how we handle personal information.</p>
 
       <h2 id="links">4. Links to other services</h2>
-      <p>If you choose the WhatsApp button, you leave this website and WhatsApp&apos;s own cookie and privacy terms apply.</p>
+      <p>If you choose the WhatsApp button or the Get directions link, you leave this website and that service&apos;s own cookie and privacy terms apply (WhatsApp, or Google Maps). Nothing from them loads on this site until you do.</p>
 
       <h2 id="changes">5. Changes</h2>
       <p>If we add analytics or other tools in future, we will update this policy first and ask for your consent before they run, where the law requires it.</p>

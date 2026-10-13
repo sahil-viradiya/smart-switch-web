@@ -14,6 +14,17 @@ Sources: [Instagram size guide 2026](https://www.linearity.io/blog/instagram-siz
 | Format | PNG, RGB, no transparency | Both platforms accept PNG and JPG, and recompress. Max 30 MB (ours are about 0.2 MB) |
 | Side margin | At least 40 px (we use 80 px) | Instagram's profile grid shows 3:4 and centre-crops a 4:5 post, trimming about 36 px from each side. Text and logos must stay clear of that |
 
+## Meta ad images (`meta_ads/`)
+
+| Placement | Size | Rule used |
+| --- | --- | --- |
+| Feed (Facebook and Instagram) | 1080 x 1350 (4:5) | Same as the posts. At least 40 px clear at each side |
+| Square feed, carousel, Marketplace | 1080 x 1080 (1:1) | At least 40 px clear at each side |
+| Stories and Reels ads | 1080 x 1920 (9:16) | Everything important inside y=270..1248 (about 14% clear at the top, 35% at the bottom for the profile bar, button and caption) and 65 px clear at each side. Only faint background texture is outside |
+| Facebook link ads | 1200 x 628 (1.91:1) | At least 40 px clear at each side |
+
+Format PNG, RGB. Every image is checked by `check.py`: size, format, size on disk, and brightness outside the safe area. Copy limits are the same as `ads.md` (125, 27, 27). These figures come from third-party guides, so confirm them in the Ads Manager preview.
+
 ## Videos (the two reels, each in two versions)
 
 | Rule | Value |

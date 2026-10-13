@@ -15,6 +15,10 @@ IMAGE_MAX_BYTES = 30 * 1024 * 1024
 GRID_SIDE_CROP = 36
 POST_MIN_MARGIN = 40
 
+# Meta ad images, one folder per placement (see meta_ads.py): name -> (width, height)
+AD_IMAGE_SIZES = {'feed_1080x1350': (1080, 1350), 'square_1080x1080': (1080, 1080), 'story_1080x1920': (1080, 1920), 'link_1200x628': (1200, 628)}
+AD_IMAGE_MARGIN = 40            # nothing but background within this many pixels of the edge (the grid and feed crops trim some)
+
 # ---- video --------------------------------------------------------------------------------------------
 VIDEO_SIZE = (1080, 1920)       # 9:16: Reels, Stories, Facebook Reels, Reels ads
 VIDEO_FPS = 30

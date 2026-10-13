@@ -151,7 +151,7 @@ const org = ld.find((x) => x['@type'] === 'Organization');
 check(!!org && (!F.entity || org.legalName === F.entity) && F.emails.includes(org.email) && org.telephone === F.e164, 'structured data names the business with the same contact details');
 const og = home?.html.match(/property="og:image" content="([^"]+)"/)?.[1];
 check(!!og && (await get(new URL(og, BASE).pathname)).status === 200, 'share image exists');
-for (const f of ['/robots.txt', '/icon.svg']) check((await get(f)).status === 200, `${f} is served`);
+for (const f of ['/robots.txt', '/images/logo.png', '/icon.png']) check((await get(f)).status === 200, `${f} is served`);
 
 console.log(`\n${fails ? `${fails} FAILED` : 'TRUST AUDIT PASSED'}${warns ? `, ${warns} warning(s)` : ''}`);
 process.exit(fails ? 1 : 0);

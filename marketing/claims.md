@@ -26,6 +26,10 @@ Every statement in the posts, reel and captions is on this list, with its source
 | Reel 2: curtain control, fan control, dimmers, each on the wall | Layouts in the price lists: "Single Curtain Switch", "Dual Curtain Switch", "4 Switch 1 Fan", "2 Dimmer (Phase Cut)". Curtain control is its own 2M panel and is shown that way |
 | Reel 2: icons light when touched | The icons in the price-list renders are backlit touch icons. The lighting in the film is an illustration of that |
 | Reel 2: the room brightens | Illustration only. Every room picture in the reel is marked "ILLUSTRATION" on screen (real panel images placed on a sample wall) |
+| Meta ads: lights, fan and sockets on one panel, with curtain and dimmer panels to match | Layout names in the price lists (for example "6 Switch 1 Fan", "1 Socket (6A) + 4 Switch"). Curtain control and dimmers are their own panels, so the copy never puts them on the same panel. The `one-wall` image shows the functions as a family of panels |
+| Meta ads: Wi-Fi or Zigbee, "Zigbee uses a gateway" | Every price row has both versions; the Zigbee gateway is sold separately (price list page 38 and 39) |
+| Meta ads: panels with a socket, scene control, curtain control, dimmers, USB charger, doorbell | The layouts shown in `meta_ads/` are real renders from the price lists (`content/catalog/options.ts` names the example panel for each kind) |
+| Meta ads: room image | The website's illustration (real panel image on a sample wall), marked "Room image is an illustration." |
 | Smart Switch is sold by Euxora Digital | `config/legal.ts` (confirmed by the owner) |
 | WhatsApp, phone, email | `config/site.ts` |
 

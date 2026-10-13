@@ -1,25 +1,19 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { APP_CONFIG, ROUTES } from '@/config';
-import { LOGO_MARK } from './logo-mark';
+import { APP_CONFIG, IMAGES, IMAGE_QUALITY, ROUTES, legalName } from '@/config';
 
-/** Colours come from CSS variables (set by the theme), so the logo follows theme changes. */
-export function LogoMark({ className = 'logo__mark' }: { className?: string }) {
-  const { ring, dot } = LOGO_MARK;
-  return (
-    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <rect x="1.5" y="1.5" width="37" height="37" rx="5" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx={ring.cx} cy={ring.cy} r={ring.r} stroke="var(--gold)" strokeWidth="1.5" />
-      <circle cx={dot.cx} cy={dot.cy} r={dot.r} fill="var(--gold)" />
-    </svg>
-  );
+/** The brand emblem (see `IMAGES.logo`). Decorative: the name next to it carries the meaning. */
+export function LogoMark({ className = 'logo__mark', priority = false }: { className?: string; priority?: boolean }) {
+  const { src, width, height } = IMAGES.logo;
+  return <Image className={className} src={src} alt="" width={width} height={height} sizes="96px" quality={IMAGE_QUALITY} priority={priority} />;
 }
 
 export function Logo({ linked = true }: { linked?: boolean }) {
   const inner = (
     <>
-      <LogoMark />
+      <LogoMark priority />
       <span className="logo__word">
-        <strong>{APP_CONFIG.BRAND_NAME.toUpperCase()}</strong>
+        <strong>{legalName().toUpperCase()}</strong>
         <small>{APP_CONFIG.BRAND_TAGLINE}</small>
       </span>
     </>

@@ -47,7 +47,7 @@ def main():
     texts = {}
     for f in ('captions.md', 'links.md'):
         texts[f] = [(HERE / f).read_text(encoding='utf8')]
-    for f in ('content.py', 'posts.py', 'reel.py', 'reel2.py'):
+    for f in ('content.py', 'posts.py', 'reel.py', 'reel2.py', 'meta_ads.py'):
         texts[f] = strings_in(HERE / f)
     problems = []
     for name, chunks in texts.items():
@@ -112,6 +112,52 @@ def main():
             problems.append(f'{f.name}: colour mode {im.mode}, needs RGB without transparency')
         if f.stat().st_size > S.IMAGE_MAX_BYTES:
             problems.append(f'{f.name}: {f.stat().st_size / 1e6:.1f} MB (limit 30 MB)')
+
+    # ---- Meta ad images (meta_ads/) ---------------------------------------------------------------------
+    import meta_ads as M
+    n_ads = 0
+    ids = [cr[0] for cr in M.CREATIVES]
+    for cid, head, sub, pt, hl, ds in M.CREATIVES:
+        for label, val, lim in (('primary text', pt, S.AD_PRIMARY_MAX), ('headline', hl, S.AD_HEADLINE_MAX), ('description', ds, S.AD_DESCRIPTION_MAX)):
+            if len(val) > lim:
+                problems.append(f'meta_ads {cid}: {label} is {len(val)} characters (recommended limit {lim})')
+        for val in (pt, hl, ds, sub, *head):
+            for pat, why in FORBIDDEN:
+                if re.search(pat, val, re.I):
+                    problems.append(f'meta_ads {cid}: "{val}" contains {why}')
+    readme = (HERE / 'meta_ads' / 'README.md')
+    if not readme.exists():
+        problems.append('meta_ads/README.md missing')
+    else:
+        rt = readme.read_text(encoding='utf8')
+        if any(ord(ch) > 126 for ch in rt):
+            problems.append('meta_ads/README.md: non-keyboard characters')
+        for pat, why in FORBIDDEN:
+            for m in re.finditer(pat, rt, re.I):
+                problems.append(f'meta_ads/README.md: "{m.group(0)}" ({why})')
+    for folder, size in S.AD_IMAGE_SIZES.items():
+        for cid in ids:
+            f = HERE / 'meta_ads' / folder / f'{cid}.png'
+            if not f.exists():
+                problems.append(f'meta_ads/{folder}/{cid}.png missing'); continue
+            n_ads += 1
+            im = Image.open(f)
+            nm = f'meta_ads/{folder}/{cid}.png'
+            if im.size != size:
+                problems.append(f'{nm}: {im.size[0]}x{im.size[1]}, needs {size[0]}x{size[1]}')
+            if im.mode != 'RGB' or im.format not in S.POST_FORMATS:
+                problems.append(f'{nm}: needs RGB PNG or JPEG without transparency, got {im.format} {im.mode}')
+            if f.stat().st_size > S.IMAGE_MAX_BYTES:
+                problems.append(f'{nm}: {f.stat().st_size / 1e6:.1f} MB (limit 30 MB)')
+            g = im.convert('L')
+            Wd, Hd = im.size
+            m = S.AD_IMAGE_MARGIN
+            edges = [(0, 0, m, Hd), (Wd - m, 0, Wd, Hd)]
+            if folder.startswith('story'):
+                edges += [(0, 0, Wd, S.SAFE_ADS[0]), (0, S.SAFE_ADS[1], Wd, Hd), (0, 0, S.ADS_SIDE_MARGIN, Hd), (Wd - S.ADS_SIDE_MARGIN, 0, Wd, Hd)]
+            for bx in edges:
+                if g.crop(bx).getextrema()[1] > S.DARK:
+                    problems.append(f'{nm}: content found outside the safe area {bx}'); break
 
     # ---- video -----------------------------------------------------------------------------------------
     def probe(path):
@@ -223,7 +269,7 @@ def main():
         print('MARKETING CHECK FAILED:')
         print('\n'.join(' - ' + p for p in sorted(set(problems))))
         sys.exit(1)
-    print(f'MARKETING CHECK OK: {n_img} posts and {n_vid} videos meet the platform specs (sizes, formats, safe zones, audio, hashtags, ad copy limits). '
+    print(f'MARKETING CHECK OK: {n_img} posts, {n_ads} Meta ad images and {n_vid} videos meet the platform specs (sizes, formats, safe zones, audio, hashtags, ad copy limits). '
           f'Wording: no prices, no supplier details, no unsupported claims, ASCII only. {c.N_SIZES} sizes, {c.N_LAYOUTS} layouts per series, {b.WARRANTY_YEARS}-year warranty match the data.')
 
 

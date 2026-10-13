@@ -37,6 +37,7 @@
   .cat__filters.is-open { display: grid; }
 }
 
-/* Accessory tiles (icon in place of a photo) */
-.acc__tile { display: grid; place-items: center; aspect-ratio: 16 / 9; background: var(--paper); }
+/* Accessory tiles (a product photo, or an icon when there is none) */
+.acc__tile { display: grid; place-items: center; aspect-ratio: 16 / 9; background: var(--paper); overflow: hidden; }
+.acc__tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .acc__icon { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: var(--radius-card); background: var(--black); color: var(--gold); }

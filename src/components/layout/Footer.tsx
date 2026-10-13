@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Logo } from '@/components/art/Logo';
+import { Logo, LogoMark } from '@/components/art/Logo';
 import { Newsletter } from './Newsletter';
 import { CompanyFacts } from '@/components/ui/CompanyFacts';
-import { APP_CONFIG, CTA, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV, legalName, mailHref, telHref } from '@/config';
+import { ADDRESS_LINES, APP_CONFIG, CTA, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV, legalName, mailHref, mapsHref, telHref } from '@/config';
 
 export function Footer() {
   return (
@@ -42,11 +42,13 @@ export function Footer() {
               <a href={CTA.WHATSAPP.href} target="_blank" rel="noopener noreferrer">{APP_CONFIG.PHONE}</a>
               <p>For quick questions.</p>
             </div>
-            {APP_CONFIG.ADDRESS_LINES.length > 0 && (
+            {ADDRESS_LINES.length > 0 && (
               <div className="footer__card">
-                <small>Studio</small>
-                <strong>{APP_CONFIG.BRAND_NAME}</strong>
-                <address style={{ fontStyle: 'normal' }}>{APP_CONFIG.ADDRESS_LINES.map((l) => (<p key={l}>{l}</p>))}</address>
+                <LogoMark className="addr__logo" />
+                <small>Our address</small>
+                <strong>{legalName()}</strong>
+                <address style={{ fontStyle: 'normal' }}>{ADDRESS_LINES.map((l) => (<p key={l}>{l}</p>))}</address>
+                <a className="addr__map" href={mapsHref()} target="_blank" rel="noopener noreferrer">Get directions</a>
               </div>
             )}
           </div>

@@ -12,16 +12,16 @@ import { MobileDock } from '@/components/layout/MobileDock';
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { IntroSplash } from '@/components/layout/IntroSplash';
 import { ScrollProgress } from '@/components/motion/ScrollProgress';
-import { APP_CONFIG, SITE_URL } from '@/config';
+import { APP_CONFIG, SITE_URL, legalName } from '@/config';
 import { openGraph } from '@/lib/seo';
 import { ThemeStyle } from '@/theme/ThemeStyle';
 import { colors } from '@/theme';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: APP_CONFIG.DEFAULT_META_TITLE, template: `%s | ${APP_CONFIG.BRAND_NAME}` },
+  title: { default: APP_CONFIG.DEFAULT_META_TITLE, template: `%s | ${legalName()}` },
   description: APP_CONFIG.DEFAULT_META_DESCRIPTION,
-  openGraph: { ...openGraph(APP_CONFIG.DEFAULT_META_TITLE, APP_CONFIG.DEFAULT_META_DESCRIPTION, '/'), siteName: APP_CONFIG.BRAND_NAME },
+  openGraph: { ...openGraph(APP_CONFIG.DEFAULT_META_TITLE, APP_CONFIG.DEFAULT_META_DESCRIPTION, '/'), siteName: legalName() },
   twitter: { card: 'summary_large_image' },
 };
 

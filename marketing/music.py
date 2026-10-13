@@ -110,8 +110,9 @@ def _whoosh(buf, t_cut, rnd, amp=0.10, dur=0.55):
         buf[i] += amp * y * (p ** 1.6)
 
 
-def render(total, events, style='bright'):
-    """Interleaved 16-bit stereo samples (array('h')) for `total` seconds, with `events` = [(seconds, kind)]."""
+def render(total, events, style='bright', drums_on=True):
+    """Interleaved 16-bit stereo samples (array('h')) for `total` seconds, with `events` = [(seconds, kind)].
+    `drums_on=False` leaves out the kick, hats and claps for a calmer bed (used for the website film)."""
     import array
     n = int(total * RATE)
     buf = [0.0] * n
@@ -130,16 +131,16 @@ def render(total, events, style='bright'):
                 m = chord[ARP[k] % 4] + 12
                 accent = 1.0 if k % 2 == 0 else 0.7
                 _tone(buf, t0 + k * BEAT / 2, 0.5, hz(m), 0.062 * accent, 0.004, 6.5, ((1, 1.0), (2, 0.28), (3, 0.12)))
-            drums = bar <= 9
+            drums = drums_on and bar <= 9
             if drums:
                 _kick(buf, t0)
                 _kick(buf, t0 + 2 * BEAT)
-            elif bar == 10:
+            elif drums_on and bar == 10:
                 _kick(buf, t0)
-        if 2 <= bar <= 9:
+        if drums_on and 2 <= bar <= 9:
             for k in range(4):
                 _hat(buf, t0 + k * BEAT + BEAT / 2, rnd)
-        if 3 <= bar <= 9:
+        if drums_on and 3 <= bar <= 9:
             _clap(buf, t0 + BEAT, rnd)
             _clap(buf, t0 + 3 * BEAT, rnd)
     # master envelope for the music (fade in, long fade out on the last bar)

@@ -16,6 +16,7 @@ Five social posts and one 30-second reel for Smart Switch, plus captions, tracke
 | `reels/<reel>/<reel>-organic.mp4` | For Instagram and Facebook Reels and Stories, YouTube Shorts, WhatsApp Status |
 | `reels/<reel>/<reel>-ads.mp4` | The same film for Meta **ads** (content kept out of the zones Meta covers) |
 | `reels/<reel>/<reel>-cover.jpg` | Cover image for each reel |
+| `meta_ads/` | **Meta ad images:** 8 creatives in 4 sizes (feed 1080x1350, square 1080x1080, story 1080x1920, link 1200x628), with their own `README.md` (which size for which placement, ad copy, test plan) |
 | `ads.md` | Ready-to-use Meta ads copy (primary text, headline, description, button) within the length limits |
 | `specs.md` | The size and format rules everything is checked against, with sources and what was fixed |
 | `captions.md` | Caption, 5 hashtags and alt text for every piece, ready to paste |
@@ -64,6 +65,7 @@ python marketing/build.py            # everything, about 20 seconds
 python marketing/build.py posts      # only the posts
 python marketing/build.py reel       # only the reels (both, organic and ads versions, about 2 minutes)
 python marketing/build.py text       # only captions.md, links.md and ads.md
+python marketing/build.py meta       # only the Meta ad images in meta_ads/ (about 10 seconds)
 ```
 
 ## Changing things

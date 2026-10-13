@@ -2,11 +2,24 @@
  * Site-wide constants: brand, contact details, SEO defaults.
  *
  * Contact details below are the real ones supplied by the owner.
- * ADDRESS_LINES is optional (leave it empty to hide it). The registered legal name and
- * address for the policies are in `config/legal.ts`.
+ * ADDRESS is the street address, shown in full (with the pincode and country) in the footer and on the
+ * contact page; the policies use the same lines. The legal name is in `config/legal.ts`.
  */
 /** Public address of the website (set NEXT_PUBLIC_SITE_URL in production). Used for canonical links, the sitemap and structured data. */
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
+/** The business address. Everything that shows it (footer, contact page, policies, structured data, map link) reads this one object. */
+export const ADDRESS = {
+  street: '502, Business Hub, Arved Transcube Plaza',
+  area: 'Ranip',
+  city: 'Ahmedabad',
+  region: 'Gujarat',
+  postalCode: '382480',
+  country: 'India',
+} as const;
+
+/** Display lines for the address, one per line. */
+export const ADDRESS_LINES: readonly string[] = [ADDRESS.street, `${ADDRESS.area}, ${ADDRESS.city}`, `${ADDRESS.region} ${ADDRESS.postalCode}`, ADDRESS.country];
 
 export const APP_CONFIG = {
   BRAND_NAME: 'Smart Switch',
@@ -19,10 +32,6 @@ export const APP_CONFIG = {
   PHONE_E164: '+919725558828',
   /** Digits only, country code first -  used for wa.me links. */
   WHATSAPP_NUMBER: '919725558828',
-  ADDRESS_LINES: [
-    '502, Business Hub, Arved Transcube Plaza',
-    'Ranip, Ahmedabad, Gujarat',
-  ] as readonly string[],
   DEFAULT_META_TITLE: 'Smart Switch | Smart touch switches in glass and acrylic',
   DEFAULT_META_DESCRIPTION:
     'Smart touch switches in glass or acrylic, in two series and six sizes. Control them from the wall, an app, your voice or a remote, with Wi-Fi or Zigbee versions.',
@@ -33,5 +42,7 @@ export const WHATSAPP_DEFAULT_MESSAGE = `Hello ${APP_CONFIG.BRAND_NAME}, I would
 
 /** https://wa.me link that opens a WhatsApp chat with an optional pre-filled message. */
 export const whatsappHref = (message: string = WHATSAPP_DEFAULT_MESSAGE) => `https://wa.me/${APP_CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+/** Opens the address in Google Maps (a plain link; nothing from Google loads on this site). */
+export const mapsHref = () => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_LINES.join(', '))}`;
 export const telHref = () => `tel:${APP_CONFIG.PHONE_E164}`;
 export const mailHref = (to: string = APP_CONFIG.SALES_EMAIL, subject?: string) => `mailto:${to}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;

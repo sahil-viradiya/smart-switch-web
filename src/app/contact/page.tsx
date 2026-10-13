@@ -4,7 +4,8 @@ import { Notice } from '@/components/ui/Notice';
 import { CompanyFacts } from '@/components/ui/CompanyFacts';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { pageMeta } from '@/lib/seo';
-import { APP_CONFIG, CTA, PAGES, mailHref, telHref } from '@/config';
+import { LogoMark } from '@/components/art/Logo';
+import { ADDRESS_LINES, APP_CONFIG, CTA, PAGES, legalName, mailHref, mapsHref, telHref } from '@/config';
 
 export const metadata = pageMeta('CONTACT');
 
@@ -32,10 +33,15 @@ export default function ContactPage() {
               <a href={telHref()}>{APP_CONFIG.PHONE}</a>
               <a href={CTA.WHATSAPP.href} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
             </div>
-            {APP_CONFIG.ADDRESS_LINES.length > 0 && (
+            {ADDRESS_LINES.length > 0 && (
               <div className="info-card">
-                <h3>Studio</h3>
-                <address style={{ fontStyle: 'normal' }}>{APP_CONFIG.ADDRESS_LINES.map((l) => <p key={l}>{l}</p>)}</address>
+                <LogoMark className="addr__logo" />
+                <h3>Our address</h3>
+                <address style={{ fontStyle: 'normal' }}>
+                  <p><strong>{legalName()}</strong></p>
+                  {ADDRESS_LINES.map((l) => <p key={l}>{l}</p>)}
+                </address>
+                <a href={mapsHref()} target="_blank" rel="noopener noreferrer">Get directions</a>
               </div>
             )}
             <div className="info-card">

@@ -87,7 +87,7 @@ export default function PrivacyPage() {
       <p>This website is for people aged {LEGAL.minAge} or over. We do not knowingly collect personal information about anyone under {LEGAL.minAge} without the verifiable consent of a parent or guardian. If you think a child has sent us their details, write to us and we will delete them.</p>
 
       <h2 id="links">11. Other websites</h2>
-      <p>Links to other sites, such as WhatsApp, are not covered by this policy. Read the policy of any site you visit.</p>
+      <p>Links to other sites, such as WhatsApp and Google Maps, are not covered by this policy. Read the policy of any site you visit.</p>
 
       <h2 id="changes">12. Changes to this policy</h2>
       <p>If we change how we handle personal information we will update this page and the date above. If a change affects how we use details you have already given us, we will ask for your consent again where the law requires it.</p>

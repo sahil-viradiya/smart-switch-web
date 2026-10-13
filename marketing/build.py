@@ -6,6 +6,7 @@ Builds the marketing material from the website's own data.
     python marketing/build.py posts      only the five posts (fast)
     python marketing/build.py reel       only the reels (both, organic + ads versions, about 3 minutes)
     python marketing/build.py text       only captions.md, links.md and ads.md
+    python marketing/build.py meta       only the Meta ads images in marketing/meta_ads/ (fast)
 
 Needs:  pip install pillow   and   ffmpeg on the PATH   and   npm install (for the Inter font files).
 Set NEXT_PUBLIC_SITE_URL to the live address before building so it appears on the images and in links.
@@ -82,6 +83,10 @@ def main():
         import reel, reel2
         reel.build(HERE / 'reels')
         reel2.build(HERE / 'reels')
+    if what in ('all', 'meta'):
+        import meta_ads
+        meta_ads.build()
+        meta_ads.write_readme()
     if what in ('all', 'text'):
         write_text()
 

@@ -49,8 +49,8 @@ export const GALLERY: readonly MediaItem[] = [
 export const FILM_COPY = {
   eyebrow: 'Watch',
   title: ['The range', 'in motion.'] as [string, string],
-  lead: 'A short silent film of Color and Edge panels, on the wall in four rooms and close up. It plays while you watch and pauses when you scroll away.',
-  note: 'Panels shown: Color 8M, Edge 4M, Edge 6M, Color 2M, Edge 2M and Edge 12M.',
+  lead: 'A short film of Color and Edge panels, on the wall in four rooms and close up. It plays while you watch and pauses when you scroll away. The sound is off until you turn it on.',
+  note: 'Panels shown: Color 8M, Edge 4M, Color 4M with a socket, Edge 6M, Color 2M scene control, Edge 2M and Edge 12M. The music was made for this site.',
 } as const;
 
 export interface Persona {

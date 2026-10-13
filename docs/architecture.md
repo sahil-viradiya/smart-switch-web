@@ -13,7 +13,7 @@ src/
 │   ├── request-demo/  contact/  faq/  about/
 │   ├── privacy-policy/  terms-and-conditions/  cookies/
 │   ├── layout.tsx  error.tsx  loading.tsx  not-found.tsx
-│   └── sitemap.ts  robots.ts  manifest.ts  icon.svg
+│   └── sitemap.ts  robots.ts  manifest.ts  icon.png  apple-icon.png
 ├── components/{art,layout,home,product,forms,ui}
 ├── content/             # page copy as typed data
 ├── config/              # routes, pages, cta, site, specs, images, navigation (derived)

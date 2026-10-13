@@ -38,7 +38,7 @@ export default function TermsPage() {
       </ul>
 
       <h2 id="links">7. Links to other services</h2>
-      <p>The website links to other services, such as WhatsApp. We do not control them and are not responsible for their content or terms.</p>
+      <p>The website links to other services, such as WhatsApp and Google Maps. We do not control them and are not responsible for their content or terms.</p>
 
       <h2 id="liability">8. Our responsibility</h2>
       <p>The website and its information are provided &quot;as is&quot;. We do not promise that it will always be available or free of errors. To the extent the law allows, {LEGAL.entityName || APP_CONFIG.BRAND_NAME} is not liable for loss that comes from relying on information marked to be confirmed, from using the information on this site in place of written advice from us, or from an installation that was not carried out by a licensed electrician.</p>

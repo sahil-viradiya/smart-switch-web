@@ -44,6 +44,7 @@ ROWS = [(i, m, bool(c), bool(e)) for i, m, c, e in _rows]
 MODULES = sorted({m for _, m, _, _ in ROWS}, key=lambda m: int(m[:-1]))
 LAYOUTS_PER_SERIES = {'color': sum(1 for r in ROWS if r[2]), 'edge': sum(1 for r in ROWS if r[3])}
 LAYOUTS_TOTAL = len(ROWS)
+KINDS = {k: (label, art) for k, label, art in re.findall(r"id: '(\w+)', label: '([^']+)', blurb: (?:'[^']*'|`[^`]*`), art: '([^']+)'", _read('content/catalog/options.ts'))}
 REP = dict(re.findall(r"'(\d+M)':\s*'([^']+)'", _read('content/catalog/options.ts')))
 
 # ---- colours ---------------------------------------------------------------------------------------------
@@ -184,6 +185,42 @@ def icon(name, size, color, width=6):
         d.ellipse((u(43), u(16), u(57), u(30)), fill=c)
         for px, py in ((40, 48), (60, 48), (40, 64), (60, 64), (40, 80), (60, 80)):
             d.ellipse((u(px - 4), u(py - 4), u(px + 4), u(py + 4)), fill=c)
+    elif name == 'bulb':
+        d.ellipse((u(26), u(10), u(74), u(58)), outline=c, width=wd)
+        d.line((u(38), u(54), u(38), u(68)), fill=c, width=wd)
+        d.line((u(62), u(54), u(62), u(68)), fill=c, width=wd)
+        d.line((u(36), u(70), u(64), u(70)), fill=c, width=wd)
+        d.line((u(42), u(82), u(58), u(82)), fill=c, width=wd)
+    elif name == 'fan':
+        blade = Image.new('RGBA', (N, N), (0, 0, 0, 0))
+        ImageDraw.Draw(blade).ellipse((u(44), u(8), u(70), u(46)), outline=c, width=wd)
+        for ang in (0, 120, 240):
+            lay.alpha_composite(blade.rotate(ang, center=(N / 2, N / 2), resample=Image.BICUBIC))
+        d.ellipse((u(42), u(42), u(58), u(58)), fill=c)
+    elif name == 'curtain':
+        d.line((u(10), u(14), u(90), u(14)), fill=c, width=wd)
+        for x0, x1 in ((16, 46), (54, 84)):
+            d.rounded_rectangle((u(x0), u(22), u(x1), u(88)), u(4), outline=c, width=wd)
+            d.line((u((x0 + x1) / 2), u(30), u((x0 + x1) / 2), u(80)), fill=c, width=max(2, wd // 2))
+    elif name == 'dimmer':
+        d.ellipse((u(30), u(30), u(70), u(70)), outline=c, width=wd)
+        d.pieslice((u(30), u(30), u(70), u(70)), 90, 270, fill=c)
+        import math
+        for k in range(8):
+            a = math.radians(k * 45)
+            d.line((u(50 + 28 * math.cos(a)), u(50 + 28 * math.sin(a)), u(50 + 40 * math.cos(a)), u(50 + 40 * math.sin(a))), fill=c, width=wd)
+    elif name == 'socket':
+        d.rounded_rectangle((u(14), u(14), u(86), u(86)), u(14), outline=c, width=wd)
+        for px, py in ((36, 40), (64, 40), (50, 66)):
+            d.ellipse((u(px - 6), u(py - 6), u(px + 6), u(py + 6)), fill=c)
+    elif name == 'scene':
+        for i, (x0, y0) in enumerate(((14, 14), (54, 14), (14, 54), (54, 54))):
+            d.rounded_rectangle((u(x0), u(y0), u(x0 + 32), u(y0 + 32)), u(7), outline=c, width=wd, fill=c if i == 1 else None)
+    elif name == 'hub':
+        d.ellipse((u(38), u(38), u(62), u(62)), fill=c)
+        for x, y in ((50, 10), (14, 76), (86, 76)):
+            d.line((u(50), u(50), u(x), u(y)), fill=c, width=wd)
+            d.ellipse((u(x - 8), u(y - 8), u(x + 8), u(y + 8)), outline=c, width=wd)
     elif name == 'wifi':
         for r in (44, 30, 16):
             d.arc((u(50 - r), u(70 - r), u(50 + r), u(70 + r)), 225, 315, fill=c, width=wd)
@@ -192,17 +229,10 @@ def icon(name, size, color, width=6):
 
 
 def logo_lockup(base, xy, scale=1.0, opacity=1.0, tagline=False, align='l'):
-    """Logo mark (touch ring in a rounded square, same geometry as the website) and the wordmark."""
-    S = int(64 * scale)
-    mark = Image.new('RGBA', (S * 3, S * 3), (0, 0, 0, 0))
-    d = ImageDraw.Draw(mark)
-    N = S * 3
-    d.rounded_rectangle((2, 2, N - 3, N - 3), int(N * 0.14), outline=rgba(IVORY), width=max(3, N // 28))
-    cx = N / 2
-    d.ellipse((cx - N * 0.1875, cx - N * 0.1875, cx + N * 0.1875, cx + N * 0.1875), outline=rgba(GOLD), width=max(3, N // 28))
-    d.ellipse((cx - N * 0.065, cx - N * 0.065, cx + N * 0.065, cx + N * 0.065), fill=rgba(GOLD))
-    mark = mark.resize((S, S), Image.LANCZOS)
-    word = text_layer(BRAND.upper(), font(500, int(26 * scale)), rgba(IVORY), tracking=int(7 * scale))
+    """The brand emblem (public/images/logo.png, the same file the website uses) and the wordmark."""
+    S = int(72 * scale)
+    mark = Image.open(IMG / 'logo.png').convert('RGBA').resize((S, S), Image.LANCZOS)
+    word = text_layer(COMPANY.upper(), font(500, int(26 * scale)), rgba(IVORY), tracking=int(7 * scale))
     tag = text_layer(TAGLINE.upper(), font(400, int(13 * scale)), rgba(IVORY, 0.55), tracking=int(4 * scale)) if tagline else None
     w = S + int(18 * scale) + max(word.width, tag.width if tag else 0)
     x0 = xy[0] if align == 'l' else xy[0] - w

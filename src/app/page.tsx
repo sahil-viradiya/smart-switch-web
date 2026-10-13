@@ -127,7 +127,7 @@ export default function HomePage() {
               <Reveal as="li" key={m.id} delay={(i % 3) * 0.08}>
                 <Link href={catalogueHref({ module: m.id })} className="card" style={{ display: 'block', height: '100%' }}>
                   <ProductStage className="stage--card">
-                    <ProductImage series={i % 2 ? 'edge' : 'color'} productId={REPRESENTATIVE[m.id]} sizes="(max-width: 640px) 45vw, 300px" />
+                    <ProductImage series="color" productId={REPRESENTATIVE[m.id]} sizes="(max-width: 640px) 45vw, 300px" />
                   </ProductStage>
                   <div className="card__body">
                     <span className="card__eyebrow">{Math.max(...SERIES.map((s) => productsInModule(m.id, s.id).length))} configurations</span>

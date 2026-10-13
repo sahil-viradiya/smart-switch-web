@@ -10,7 +10,7 @@ smart_switch/
 │   ├── theme/          # ★ THE look: colors, typography, layout, motion, art palette (+ fonts)
 │   ├── config/         # ★ THE facts: routes, pages (names/SEO/nav), cta (buttons), site (brand/contact), specs, images
 │   ├── content/        # Page copy & data: product, features, use-cases, faq, home, rooms, tools, layers, catalog/ (generated product data)
-│   ├── app/            # Routes (App Router): pages, layout, sitemap, robots, manifest, icon.svg
+│   ├── app/            # Routes (App Router): pages, layout, sitemap, robots, manifest, icon.png
 │   ├── components/
 │   │   ├── art/        # Logo, Icons, ProductImage, SceneArt, OrbitDiagram
 │   │   ├── motion/     # ScrollScene, Counter, Gauge, Marquee, Tilt, Parallax, ScrollProgress, SectionNav

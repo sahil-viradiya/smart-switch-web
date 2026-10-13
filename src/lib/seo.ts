@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { APP_CONFIG, IMAGES, LEGAL, PAGES, type PageKey } from '@/config';
+import { ADDRESS, APP_CONFIG, IMAGES, LEGAL, PAGES, legalName, type PageKey } from '@/config';
 
 const social = { url: IMAGES.social.src, width: IMAGES.social.width, height: IMAGES.social.height, alt: IMAGES.social.alt };
 
@@ -13,10 +13,18 @@ export function organizationJsonLd(siteUrl: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: APP_CONFIG.BRAND_NAME,
+    name: legalName(),
     legalName: LEGAL.entityName || undefined,
     url: siteUrl,
-    logo: `${siteUrl}/icon.svg`,
+    logo: `${siteUrl}${IMAGES.logo.src}`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: ADDRESS.street,
+      addressLocality: ADDRESS.city,
+      addressRegion: ADDRESS.region,
+      postalCode: ADDRESS.postalCode,
+      addressCountry: 'IN',
+    },
     email: APP_CONFIG.SUPPORT_EMAIL,
     telephone: APP_CONFIG.PHONE_E164,
     contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: APP_CONFIG.SALES_EMAIL, telephone: APP_CONFIG.PHONE_E164, areaServed: 'IN', availableLanguage: ['en'] }],

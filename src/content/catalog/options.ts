@@ -1,3 +1,4 @@
+import { SPEC } from '@/config/specs';
 import type { ConnectivityId, MaterialId, ModuleId, ProductKind } from '@/types';
 
 /** Shared labels for every product option. Change a label here and the whole site follows. */
@@ -23,15 +24,16 @@ export const CONNECTIVITY: readonly { id: ConnectivityId; label: string; blurb: 
   { id: 'zigbee', label: 'Zigbee', blurb: 'Needs a Zigbee gateway (Ethernet or USB).' },
 ];
 
-export const PRODUCT_KINDS: readonly { id: ProductKind; label: string }[] = [
-  { id: 'switch', label: 'Switches' },
-  { id: 'socket', label: 'Sockets' },
-  { id: 'fan', label: 'Fan control' },
-  { id: 'curtain', label: 'Curtain control' },
-  { id: 'scene', label: 'Scene control' },
-  { id: 'dimmer', label: 'Dimmers' },
-  { id: 'usb', label: 'USB charger' },
-  { id: 'doorbell', label: 'Doorbell' },
+/** `blurb` and `art` (a panel id shown as the example) are used by the "Pick by function" cards. */
+export const PRODUCT_KINDS: readonly { id: ProductKind; label: string; blurb: string; art: string }[] = [
+  { id: 'switch', label: 'Switches', blurb: `Touch switches for lights and appliances, with ${SPEC.ratings} versions.`, art: '4m-4-switch' },
+  { id: 'socket', label: 'Sockets', blurb: 'A 6A or 16A socket on the panel, alone or beside switches and a fan control.', art: '4m-1-socket-16a-1-switch-16a' },
+  { id: 'fan', label: 'Fan control', blurb: 'A fan control on the same panel as your switches.', art: '6m-6-switch-1-fan' },
+  { id: 'scene', label: 'Scene control', blurb: 'Four scene buttons on one compact panel. A touch runs a scene you set up.', art: '2m-4-switch-scene-control' },
+  { id: 'curtain', label: 'Curtain control', blurb: 'Open and close buttons for one curtain or for two.', art: '2m-dual-curtain-switch' },
+  { id: 'dimmer', label: 'Dimmers', blurb: 'Raise and lower the brightness of a light. Phase cut dimmers.', art: '2m-2-dimmer-phase-cut' },
+  { id: 'usb', label: 'USB charger', blurb: 'A double charger with one A-type and one C-type port.', art: '2m-double-usb-charger-a-type-c-type' },
+  { id: 'doorbell', label: 'Doorbell', blurb: 'A doorbell button panel that rings the bell from the wall.', art: '2m-1-doorbell' },
 ];
 
 /** How you can control a panel. */

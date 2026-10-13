@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { IMAGE_QUALITY } from '@/config/images';
 import { getProduct, productAlt } from '@/content/catalog';
 import type { SeriesId } from '@/types';
 
@@ -19,7 +20,7 @@ export function ProductImage({ series, productId, className = 'product-img', lab
   const s: SeriesId = p.series[series] ? series : series === 'color' ? 'edge' : 'color';
   const offer = p.series[s];
   if (!offer) return null;
-  return <Image className={className} src={offer.image} alt={label ?? productAlt(p, s)} width={offer.size[0]} height={offer.size[1]} sizes={sizes} priority={priority} />;
+  return <Image className={className} src={offer.image} alt={label ?? productAlt(p, s)} width={offer.size[0]} height={offer.size[1]} sizes={sizes} quality={IMAGE_QUALITY} priority={priority} />;
 }
 
 /** Dark stage with warm light, framing a product render. */

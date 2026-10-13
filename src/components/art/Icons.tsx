@@ -18,6 +18,8 @@ export const Close = (p: P) => (<Svg size={18} {...p}><path d="M6 6l12 12M18 6 6
 export const Filter = (p: P) => (<Svg size={16} {...p}><path d="M4 7h10M18 7h2M4 17h2M10 17h10" /><circle cx="16" cy="7" r="2" /><circle cx="8" cy="17" r="2" /></Svg>);
 export const Play = (p: P) => (<Svg size={16} {...p}><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></Svg>);
 export const Pause = (p: P) => (<Svg size={16} {...p}><path d="M8 5v14M16 5v14" strokeWidth="2.4" /></Svg>);
+export const Volume = (p: P) => (<Svg size={16} {...p}><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor" /><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" /></Svg>);
+export const VolumeOff = (p: P) => (<Svg size={16} {...p}><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor" /><path d="m16 9.5 5 5M21 9.5l-5 5" /></Svg>);
 export const Expand = (p: P) => (<Svg size={16} {...p}><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></Svg>);
 export const Check = (p: P) => (<Svg {...p}><path d="m5 12.5 4.5 4.5L19 7" /></Svg>);
 export const Search = (p: P) => (<Svg size={16} {...p}><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></Svg>);

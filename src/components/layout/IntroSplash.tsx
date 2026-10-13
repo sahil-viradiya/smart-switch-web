@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { LogoMark } from '@/components/art/Logo';
-import { APP_CONFIG, STORAGE_KEYS } from '@/config';
+import { STORAGE_KEYS, legalName } from '@/config';
 import { motion } from '@/theme';
 
 const KEY = STORAGE_KEYS.introSeen;
@@ -43,7 +43,7 @@ export function IntroSplash() {
       <span className="intro__ring" />
       <div className="intro__brand">
         <LogoMark />
-        <p>{APP_CONFIG.BRAND_NAME}</p>
+        <p>{legalName()}</p>
       </div>
     </div>
   );

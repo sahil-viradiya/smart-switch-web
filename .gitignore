@@ -48,3 +48,6 @@ pnpm-debug.log*
 
 # Inquiry data (personal information — never commit)
 data/
+
+# Price lists with real prices (B2B/B2C). Keep them out of git; share them only with the right customers.
+marketing/brochures/*.pdf

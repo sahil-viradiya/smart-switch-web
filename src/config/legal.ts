@@ -1,4 +1,4 @@
-import { APP_CONFIG } from './site';
+import { ADDRESS_LINES, APP_CONFIG } from './site';
 
 /** Browser storage keys. Defined here so the code and the Cookie Policy cannot drift apart. */
 export const STORAGE_KEYS = { introSeen: 'ss-intro-seen' } as const;
@@ -20,10 +20,7 @@ export const LEGAL = {
   /** REQUIRED. Registered legal name of the business that runs this website (the data fiduciary). */
   entityName: 'Euxora Digital',
   /** REQUIRED. Registered office address, one line per item. */
-  registeredAddress: [
-    '502, Business Hub, Arved Transcube Plaza',
-    'Ranip, Ahmedabad, Gujarat',
-  ] as readonly string[],
+  registeredAddress: ADDRESS_LINES,
   /** REQUIRED. Named Grievance Officer (IT SPDI Rules 2011, rule 5(9); DPDP Act 2023). */
   grievanceOfficer: {
     name: '',
