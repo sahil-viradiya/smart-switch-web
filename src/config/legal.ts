@@ -20,7 +20,10 @@ export const LEGAL = {
   /** REQUIRED. Registered legal name of the business that runs this website (the data fiduciary). */
   entityName: 'Euxora Digital',
   /** REQUIRED. Registered office address, one line per item. */
-  registeredAddress: [] as readonly string[],
+  registeredAddress: [
+    '502, Business Hub, Arved Transcube Plaza',
+    'Ranip, Ahmedabad, Gujarat',
+  ] as readonly string[],
   /** REQUIRED. Named Grievance Officer (IT SPDI Rules 2011, rule 5(9); DPDP Act 2023). */
   grievanceOfficer: {
     name: '',
@@ -33,7 +36,7 @@ export const LEGAL = {
   /** OPTIONAL. Company or LLP registration number (CIN / LLPIN), if the business has one. Shown when set. */
   registrationNo: '',
   /** REQUIRED. City whose courts hear disputes, e.g. "Ahmedabad". Governing law is India. */
-  courtsCity: '',
+  courtsCity: 'Ahmedabad',
 
   /** How long enquiry details are kept after the last contact. Confirm, then actually delete on schedule. */
   retentionMonths: 24,

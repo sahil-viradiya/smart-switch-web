@@ -204,7 +204,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <CtaSection title="Ready to plan?" text="Send us your project details and we will suggest a series, sizes and functions." />
+      <CtaSection title="Ready to plan?" text="Share your floor plan or a list of rooms and we will come back with a suggested layout for each wall." />
     </>
   );
 }

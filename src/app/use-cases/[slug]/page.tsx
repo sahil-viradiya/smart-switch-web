@@ -83,7 +83,7 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <CtaSection title="Planning this kind of project?" text="Send a few details and we will suggest a series, sizes and functions." />
+      <CtaSection title="Planning this kind of project?" text="Describe the space and we will suggest which panels would suit it." />
     </>
   );
 }

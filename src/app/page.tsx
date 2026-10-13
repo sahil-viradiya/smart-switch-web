@@ -188,7 +188,7 @@ export default function HomePage() {
       {/* 6. Numbers */}
       <section id="numbers" className="sec sec--paper" aria-labelledby="numbers-title">
         <div className="container">
-          <SectionHead eyebrow="Facts" title={['The range in numbers']} lead="These figures come straight from the product catalogue." />
+          <SectionHead eyebrow="Facts" title={['The range in numbers']} lead="The range at a glance." />
           <div className="stats">
             <Reveal>
               <div className="stat-grid">
@@ -353,7 +353,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CtaSection title="Want Smart Switch in your home?" text="Send us a few details and we will suggest a series, sizes and functions." />
+      <CtaSection title="Want Smart Switch in your home?" text="Tell us which rooms you are planning and we will suggest a series, sizes and functions." />
     </>
   );
 }

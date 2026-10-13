@@ -19,7 +19,10 @@ export const APP_CONFIG = {
   PHONE_E164: '+919725558828',
   /** Digits only, country code first -  used for wa.me links. */
   WHATSAPP_NUMBER: '919725558828',
-  ADDRESS_LINES: [] as readonly string[],
+  ADDRESS_LINES: [
+    '502, Business Hub, Arved Transcube Plaza',
+    'Ranip, Ahmedabad, Gujarat',
+  ] as readonly string[],
   DEFAULT_META_TITLE: 'Smart Switch | Smart touch switches in glass and acrylic',
   DEFAULT_META_DESCRIPTION:
     'Smart touch switches in glass or acrylic, in two series and six sizes. Control them from the wall, an app, your voice or a remote, with Wi-Fi or Zigbee versions.',

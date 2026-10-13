@@ -42,7 +42,7 @@ export default function UseCasesPage() {
           <Reveal><RoomTabs rooms={ROOM_TABS} /></Reveal>
         </div>
       </section>
-      <CtaSection title="Planning a project?" text="Tell us about your space and we will suggest a configuration." />
+      <CtaSection title="Planning a project?" text="Tell us about the space and what you want to control, and we will suggest panels." />
     </>
   );
 }
