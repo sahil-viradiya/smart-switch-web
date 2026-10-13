@@ -8,7 +8,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const MAX_BODY = 20_000;
-const LIMIT = Number(process.env.INQUIRY_RATE_LIMIT ?? 8);
+const LIMIT = Number(process.env.INQUIRY_RATE_LIMIT ?? 30);
 const WINDOW_MS = Number(process.env.INQUIRY_RATE_WINDOW_SEC ?? 600) * 1000;
 
 const reply = (status: number, body: Record<string, unknown>, headers?: Record<string, string>) =>
