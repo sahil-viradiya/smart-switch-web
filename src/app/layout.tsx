@@ -12,12 +12,10 @@ import { MobileDock } from '@/components/layout/MobileDock';
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { IntroSplash } from '@/components/layout/IntroSplash';
 import { ScrollProgress } from '@/components/motion/ScrollProgress';
-import { APP_CONFIG } from '@/config';
+import { APP_CONFIG, SITE_URL } from '@/config';
 import { openGraph } from '@/lib/seo';
 import { ThemeStyle } from '@/theme/ThemeStyle';
 import { colors } from '@/theme';
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,7 +32,7 @@ const JS_FLAG = "document.documentElement.classList.add('js')";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeStyle />
       </head>

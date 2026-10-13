@@ -49,6 +49,7 @@ npm run build
 ```
 
 ## Docs
+- [Legal compliance](docs/legal-compliance.md) (policies, privacy tools, launch checklist)
 - [Requirements](docs/requirements.md)
 - [Architecture](docs/architecture.md)
 - [Page map](docs/page-map.md)

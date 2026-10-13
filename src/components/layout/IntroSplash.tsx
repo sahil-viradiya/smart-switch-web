@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { LogoMark } from '@/components/art/Logo';
-import { APP_CONFIG } from '@/config';
+import { APP_CONFIG, STORAGE_KEYS } from '@/config';
 import { motion } from '@/theme';
 
-const KEY = 'ss-intro-seen';
+const KEY = STORAGE_KEYS.introSeen;
 
 /**
  * One-time brand intro. Safeguards (mirroring good practice from the reference study):

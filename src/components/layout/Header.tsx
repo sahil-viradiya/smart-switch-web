@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Logo } from '@/components/art/Logo';
 import { PillDiscLink } from '@/components/ui/ButtonLink';
 import { CtaLink } from '@/components/ui/CtaLink';
@@ -12,6 +12,7 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const isActive = (href: string) => (href === ROUTES.HOME ? pathname === '/' : pathname.startsWith(href));
 
@@ -27,7 +28,19 @@ export function Header() {
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    // Escape closes and returns focus to the toggle; Tab cycles between the toggle and the menu links.
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        toggleRef.current?.focus();
+        setOpen(false);
+      } else if (e.key === 'Tab') {
+        const items = [toggleRef.current, ...Array.from(document.querySelectorAll<HTMLElement>('#mobile-menu a, #mobile-menu button'))].filter((el): el is HTMLElement => !!el);
+        const first = items[0]!;
+        const last = items[items.length - 1]!;
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('keydown', onKey);
@@ -50,7 +63,7 @@ export function Header() {
             </nav>
             <div className="header__actions">
               <PillDiscLink cta={CTA.BOOK_DEMO} />
-              <button type="button" className="menu-toggle" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((v) => !v)}>
+              <button ref={toggleRef} type="button" className="menu-toggle" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((v) => !v)}>
                 <span /><span />
               </button>
             </div>

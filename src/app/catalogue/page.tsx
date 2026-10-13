@@ -5,8 +5,9 @@ import { CtaSection } from '@/components/ui/CtaBand';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
-import { PAGES } from '@/config';
+import { CATALOG_CONFIG, PAGES } from '@/config';
 import { CATALOG, MODULES } from '@/content/catalog';
+import { fromPrices } from '@/content/catalog/prices';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta('CATALOGUE');
@@ -28,7 +29,7 @@ export default function CataloguePage() {
 
       <section id="browse" className="sec sec--paper" aria-label="Browse the catalogue">
         <div className="container">
-          <Reveal><CatalogBrowser /></Reveal>
+          <Reveal><CatalogBrowser fromPrices={CATALOG_CONFIG.showPrices ? fromPrices() : undefined} /></Reveal>
           <p className="small" style={{ marginTop: 18 }}>Panel images show the front of each configuration. Colours and finishes vary, so ask us for the current options.</p>
         </div>
       </section>

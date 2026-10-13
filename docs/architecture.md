@@ -35,7 +35,7 @@ CSS keyframes/transitions plus two small client pieces: `Reveal` (IntersectionOb
 - Server Components by default; `'use client'` only for interactive pieces (header/menu, forms, FAQ, configurator, hero visual, reveal, intro).
 - Always link through `ROUTES` from `@/config`; never hard-code paths or use `href="#"`.
 - Confirmed spec values live in `PRODUCT_SPECS`; anything unpublished stays in `UNPUBLISHED_SPECS` and is shown as "to be confirmed" (see `requirements.md` §2.2).
-- Product data (panels, sizes, prices) is generated from the price lists into `src/content/catalog/`; pages read it through `products.ts` helpers, never the raw data. See `docs/catalogue-data.md`.
+- Product data (panels, sizes; list prices live in a server-only file) is generated from the price lists into `src/content/catalog/`; pages read it through `products.ts` helpers, never the raw data. See `docs/catalogue-data.md`.
 - Imports use the `@/` alias (maps to `src/`).
 
 ## Forms & inquiry storage

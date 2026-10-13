@@ -15,10 +15,9 @@ Scope: a standalone product marketing website. No API, database or auth.
 
 
 ## Open items before launch
-- Confirm the contact email spelling, postal address (optional) and legal entity in `config/site.ts`.
+- Confirm the postal address (optional) and legal entity in `config/site.ts`. The contact email (`hello@optimanex.com`) is confirmed.
 - Choose inquiry storage (`docs/inquiry-sheet.md`); use Google Sheets if hosting on a serverless platform.
 - Replace the composited room photos in `public/images/scenes/` with real installation photography when available.
 - Confirm finishes and colours, the supply voltage range and any certifications, then move them from `UNPUBLISHED_SPECS` into `PRODUCT_SPECS`.
-- Decide whether to show prices (`src/config/catalog.ts`).
 - Have counsel review privacy/terms/cookies drafts.
 - Upgrade Next.js (npm audit reports advisories for 14.x).

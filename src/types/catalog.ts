@@ -4,7 +4,10 @@ export type MaterialId = 'glass' | 'acrylic';
 export type ConnectivityId = 'wifi' | 'zigbee';
 export type ProductKind = 'switch' | 'socket' | 'fan' | 'curtain' | 'scene' | 'dimmer' | 'usb' | 'doorbell';
 
-/** List prices as [wifi glass, wifi acrylic, zigbee glass, zigbee acrylic]. 0 = not offered. */
+/** Which versions are offered: [wifi glass, wifi acrylic, zigbee glass, zigbee acrylic]. 1 = offered. Safe for the browser. */
+export type Availability = readonly [0 | 1, 0 | 1, 0 | 1, 0 | 1];
+
+/** List prices in the same order, in rupees. 0 = not offered. Server only (see content/catalog/prices.ts). */
 export type PriceSet = readonly [number, number, number, number];
 
 /** One row of the generated data file (src/content/catalog/products.data.ts). */
@@ -12,12 +15,11 @@ export interface CatalogRow {
   id: string;
   module: ModuleId;
   label: string;
-  color?: PriceSet;
-  edge?: PriceSet;
+  color?: Availability;
+  edge?: Availability;
 }
 
 export interface SeriesOffer {
-  prices: PriceSet;
   materials: MaterialId[];
   connectivity: ConnectivityId[];
   /** Public path of the product render. */

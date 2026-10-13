@@ -13,11 +13,11 @@ somewhere else.
 | **Radius, container width, gutters, section spacing, header height, button size** | `src/theme/layout.ts` | Lengths are rem (scale with the screen). |
 | **Easings, durations, hero carousel timing, intro length** | `src/theme/motion.ts` | CSS and JS read the same values. |
 | **Catalogue: panels, prices, sizes, series, accessories** | `src/content/catalog/` (see `docs/catalogue-data.md`) | `products.data.ts` and the images are generated from the price-list PDFs. Sizes, materials and versions live in `options.ts`, series copy in `series.ts`, add-ons in `accessories.ts`. |
-| **Show prices on the site, page size, price format** | `src/config/catalog.ts` | `showPrices` is `false` by default. |
+| **Show prices on the site, page size, price format** | `src/config/catalog.ts` | `showPrices` is `false`. The numbers are kept out of the browser bundle (`prices.data.ts` is server only). |
 | **Page names, SEO titles & descriptions, header nav, footer columns, sitemap priority** | `src/config/pages.ts` | Nav, breadcrumbs, footer, `<title>` and sitemap are all derived from it. |
 | **URL paths** | `src/config/routes.ts` | |
 | **Button labels & destinations** (Book a Demo, Contact us, …) | `src/config/cta.ts` | Render with `<CtaLink cta={CTA.BOOK_DEMO} />`. |
-| **Brand name, tagline, email, phone, WhatsApp number, address, legal entity** | `src/config/site.ts` | Real phone/WhatsApp/email set. Confirm the email spelling; address is empty (hidden). |
+| **Brand name, tagline, email, phone, WhatsApp number, address, legal entity** | `src/config/site.ts` | Real phone, WhatsApp and email (`hello@optimanex.com`, confirmed); address is empty (hidden). |
 | **Where inquiries are saved** (Excel file or Google Sheet), rate limit, timezone | `.env.local` (see `.env.example`) and `docs/inquiry-sheet.md` | Server-side only. |
 | **Sheet columns** | `src/server/inquiries/rows.ts` | |
 | **Product numbers** (ratings, sizes, warranty) | `src/config/specs.ts` | Confirmed facts in `PRODUCT_SPECS`, unpublished ones in `UNPUBLISHED_SPECS` (shown as to be confirmed). Copy interpolates `SPEC`. |

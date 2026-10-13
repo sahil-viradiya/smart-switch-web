@@ -3,6 +3,8 @@
 import { useId, useState, type FormEvent } from 'react';
 import { z } from 'zod';
 import { ArrowRight } from '@/components/art/Icons';
+import { PrivacyNotice } from '@/components/forms/PrivacyNotice';
+import { APP_CONFIG } from '@/config';
 import { InquiryError, currentSource, submitInquiry } from '@/lib/inquiry-client';
 
 const emailSchema = z.string().trim().toLowerCase().email('Please enter a valid email address').max(120);
@@ -37,7 +39,7 @@ export function Newsletter() {
     return (
       <div className="newsletter" role="status">
         <h2>You are on the list</h2>
-        <p className="small">Thank you. We will send occasional product updates to {email}.</p>
+        <p className="small">Thank you. We will send occasional product updates to {email}. To stop them, write to {APP_CONFIG.SUPPORT_EMAIL}.</p>
       </div>
     );
   }
@@ -52,6 +54,7 @@ export function Newsletter() {
         <button type="submit" aria-label="Subscribe" disabled={sending}><ArrowRight size={18} /></button>
       </div>
       {error && <p className="newsletter__err" id={`${id}-err`}>{error}</p>}
+      <PrivacyNotice use="send you occasional product updates by email" keep="until you unsubscribe" className="newsletter__fine" />
     </form>
   );
 }

@@ -2,15 +2,17 @@
  * Site-wide constants: brand, contact details, SEO defaults.
  *
  * Contact details below are the real ones supplied by the owner.
- * TODO(owner): confirm the email spelling, add a postal address if wanted
- * (leave ADDRESS_LINES empty to hide it) and confirm the legal entity name.
+ * ADDRESS_LINES is optional (leave it empty to hide it). The registered legal name and
+ * address for the policies are in `config/legal.ts`.
  */
+/** Public address of the website (set NEXT_PUBLIC_SITE_URL in production). Used for canonical links, the sitemap and structured data. */
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const APP_CONFIG = {
   BRAND_NAME: 'Smart Switch',
   BRAND_TAGLINE: 'Smart touch switches',
-  LEGAL_COMPANY_NAME: 'Smart Switch',
-  SUPPORT_EMAIL: 'hell@optimanex.com',
-  SALES_EMAIL: 'hell@optimanex.com',
+  SUPPORT_EMAIL: 'hello@optimanex.com',
+  SALES_EMAIL: 'hello@optimanex.com',
   /** Display format. */
   PHONE: '+91 97255 58828',
   /** E.164, used for tel: links. */

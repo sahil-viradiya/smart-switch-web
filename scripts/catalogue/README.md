@@ -7,4 +7,4 @@ pip install pymupdf pillow
 python scripts/catalogue/extract_catalogue.py "<Color PDF>" "<Edge PDF>" --out scripts/catalogue/out --ts src/content/catalog/products.data.ts
 ```
 
-Output goes to `--out`: `catalogue.json`, `images/<series>/<id>.webp` and `anomalies.txt`. Review `anomalies.txt` before copying anything into the app. Only product data is read; company details in the PDFs are ignored.
+With `--ts` it also writes `products.data.ts` (no prices) and the server-only `prices.data.ts`. Output goes to `--out`: `catalogue.json`, `images/<series>/<id>.webp` and `anomalies.txt`. Review `anomalies.txt` before copying anything into the app. Only product data is read; company details in the PDFs are ignored.

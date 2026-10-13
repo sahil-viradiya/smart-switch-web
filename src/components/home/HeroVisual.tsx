@@ -71,7 +71,7 @@ export function HeroVisual() {
         <path pathLength="1" d="M72 26V12h10v26" />
       </svg>
 
-      <div className="hero__arch" role="button" tabIndex={0} aria-haspopup="dialog" aria-label={`Enlarge scene: ${current.label}`} onClick={openBox} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBox(); } }}>
+      <div className="hero__arch" role="button" tabIndex={0} aria-haspopup="dialog" aria-label={`Enlarge scene: ${current.label}${IMAGES.scenes[current.name].marker ? `. ${IMAGES.scenes[current.name].marker!.label}` : ''}`} onClick={openBox} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBox(); } }}>
         {SCENES.map((s, i) => (
           <div key={s.name} className={`scene${i === index ? ' is-current' : ''}`} aria-hidden={i !== index}>
             <SceneArt scene={s.name} />

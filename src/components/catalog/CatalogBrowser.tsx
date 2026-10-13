@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { ProductImage, ProductStage } from '@/components/art/ProductImage';
-import { Search } from '@/components/art/Icons';
+import { Filter, Search } from '@/components/art/Icons';
 import { Zoomable } from '@/components/media/Zoomable';
 import { CATALOG_CONFIG, ROUTES, formatPrice } from '@/config';
-import { CATALOG, CONNECTIVITY, MATERIALS, MODULES, PRODUCT_KINDS, SERIES, fromPrice, productAlt } from '@/content/catalog';
+import { CATALOG, CONNECTIVITY, MATERIALS, MODULES, PRODUCT_KINDS, SERIES, productAlt } from '@/content/catalog';
 import type { CatalogProduct, ConnectivityId, MaterialId, MediaItem, ModuleId, ProductKind, SeriesId } from '@/types';
 
 interface Filters { series: SeriesId; module: 'ALL' | ModuleId; kind: 'ALL' | ProductKind; material: 'ANY' | MaterialId; version: 'ANY' | ConnectivityId; q: string }
@@ -52,8 +52,9 @@ function matches(p: CatalogProduct, f: Filters): boolean {
 }
 
 /** Filterable grid of every configuration. Filters are kept in the URL so a filtered view can be shared. */
-export function CatalogBrowser() {
+export function CatalogBrowser({ fromPrices }: { /** Lowest price per `${series}:${id}`. Only passed by the page when prices are switched on. */ fromPrices?: Readonly<Record<string, number>> }) {
   const [f, setF] = useState<Filters>(DEFAULTS);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [shown, setShown] = useState<number>(CATALOG_CONFIG.pageSize);
   const [ready, setReady] = useState(false);
 
@@ -68,6 +69,7 @@ export function CatalogBrowser() {
   const visible = results.slice(0, shown);
   const series = SERIES.find((s) => s.id === f.series)!;
   const group = useMemo<MediaItem[]>(() => results.map((p) => ({ kind: 'product', series: f.series, productId: p.id, caption: `${p.module}: ${p.title}`, alt: productAlt(p, f.series) })), [results, f.series]);
+  const filterCount = [f.module !== 'ALL', f.kind !== 'ALL', f.material !== 'ANY', f.version !== 'ANY'].filter(Boolean).length;
   const active = f.module !== 'ALL' || f.kind !== 'ALL' || f.material !== 'ANY' || f.version !== 'ANY' || f.q.trim() !== '';
 
   const pills = <T extends string>(label: string, value: string, options: readonly { id: T; label: string }[], onChange: (v: T) => void) => (
@@ -82,21 +84,28 @@ export function CatalogBrowser() {
   return (
     <div className="cat">
       <div className="cat__tools">
-        <div className="filter">
-          <span className="filter__label" id="flt-series">Series</span>
-          <div className="seg" role="group" aria-labelledby="flt-series">
-            {SERIES.map((s) => (<button key={s.id} type="button" className="seg__btn" aria-pressed={f.series === s.id} onClick={() => set('series', s.id)}>{s.name}</button>))}
+        <div className="cat__head">
+          <div className="filter">
+            <span className="filter__label" id="flt-series">Series</span>
+            <div className="seg" role="group" aria-labelledby="flt-series">
+              {SERIES.map((s) => (<button key={s.id} type="button" className="seg__btn" aria-pressed={f.series === s.id} onClick={() => set('series', s.id)}>{s.name}</button>))}
+            </div>
           </div>
-        </div>
-        {pills('Size', f.module, [{ id: 'ALL', label: 'All' }, ...MODULES.map((m) => ({ id: m.id, label: m.id }))] as const, (v) => set('module', v))}
-        {pills('Function', f.kind, [{ id: 'ALL', label: 'All' }, ...PRODUCT_KINDS] as const, (v) => set('kind', v))}
-        <div className="cat__row">
-          {pills('Panel', f.material, [{ id: 'ANY', label: 'Any' }, ...MATERIALS.map((m) => ({ id: m.id, label: m.label }))] as const, (v) => set('material', v))}
-          {pills('Version', f.version, [{ id: 'ANY', label: 'Any' }, ...CONNECTIVITY.map((c) => ({ id: c.id, label: c.label }))] as const, (v) => set('version', v))}
           <div className="faq-search cat__search">
             <Search />
             <label htmlFor="cat-q" className="sr-only">Search the catalogue</label>
             <input id="cat-q" className="input" type="search" placeholder="Search, e.g. fan, socket, 4M" value={f.q} onChange={(e) => set('q', e.target.value)} />
+          </div>
+          <button type="button" className="cat__toggle" aria-expanded={filtersOpen} aria-controls="cat-filters" onClick={() => setFiltersOpen((v) => !v)}>
+            <Filter /> Filters{filterCount > 0 ? ` (${filterCount})` : ''}
+          </button>
+        </div>
+        <div id="cat-filters" className={`cat__filters${filtersOpen ? ' is-open' : ''}`}>
+          {pills('Size', f.module, [{ id: 'ALL', label: 'All' }, ...MODULES.map((m) => ({ id: m.id, label: m.id }))] as const, (v) => set('module', v))}
+          {pills('Function', f.kind, [{ id: 'ALL', label: 'All' }, ...PRODUCT_KINDS] as const, (v) => set('kind', v))}
+          <div className="cat__row">
+            {pills('Panel', f.material, [{ id: 'ANY', label: 'Any' }, ...MATERIALS.map((m) => ({ id: m.id, label: m.label }))] as const, (v) => set('material', v))}
+            {pills('Version', f.version, [{ id: 'ANY', label: 'Any' }, ...CONNECTIVITY.map((c) => ({ id: c.id, label: c.label }))] as const, (v) => set('version', v))}
           </div>
         </div>
       </div>
@@ -112,7 +121,7 @@ export function CatalogBrowser() {
         <ul className="cat__grid">
           {visible.map((p) => {
             const offer = p.series[f.series]!;
-            const from = fromPrice(p, f.series);
+            const from = fromPrices?.[`${f.series}:${p.id}`] ?? 0;
             return (
               <li key={p.id}>
                 <article className="card pcard">

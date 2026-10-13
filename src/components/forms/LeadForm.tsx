@@ -8,6 +8,7 @@ import { APP_CONFIG } from '@/config';
 import type { InquiryType, PropertyType } from '@/types';
 import { getProduct, getSeries } from '@/content/catalog';
 import { Field } from './Field';
+import { PrivacyNotice } from './PrivacyNotice';
 import { FormSuccess, SubmitError } from './FormSuccess';
 
 const INQUIRY_OPTIONS: { value: InquiryType; label: string }[] = [
@@ -158,14 +159,14 @@ export function LeadForm() {
 
       <label className="check">
         <input type="checkbox" checked={data.marketingConsent} onChange={(e) => set('marketingConsent', e.target.checked)} />
-        <span>I would like occasional product updates by email.</span>
+        <span>I would like occasional product updates by email. I can unsubscribe at any time.</span>
       </label>
 
       <input className="hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={trap} onChange={(e) => setTrap(e.target.value)} />
 
       {apiError && <SubmitError message={apiError} mailto={fallbackMailto()} />}
       <button type="submit" className="btn btn--gold btn--block" disabled={sending}>{sending ? 'Sending...' : 'Send request'}</button>
-      <p className="form__fine">Your details are saved to our enquiry sheet so our team can reply. See our Privacy Policy.</p>
+      <PrivacyNotice use="reply to your request" />
     </form>
   );
 }

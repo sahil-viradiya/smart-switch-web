@@ -38,7 +38,7 @@ export const PAGES: Record<PageKey, PageDef> = {
     description: 'Touch panels in the Color and Edge series, with glass or acrylic fronts, six sizes and Wi-Fi or Zigbee versions.',
   },
   CATALOGUE: {
-    path: ROUTES.CATALOGUE, name: 'Catalogue', title: 'Product catalogue', footer: 'explore', priority: 0.9,
+    path: ROUTES.CATALOGUE, name: 'Catalogue', title: 'Product catalogue', nav: true, footer: 'explore', priority: 0.9,
     description: 'Browse every panel configuration by size, function, series, panel material and version.',
   },
   FEATURES: {

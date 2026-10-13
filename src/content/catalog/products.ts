@@ -1,4 +1,4 @@
-import type { CatalogProduct, CatalogRow, ConnectivityId, MaterialId, ModuleId, ProductKind, SeriesId, SeriesOffer } from '@/types';
+import type { Availability, CatalogProduct, CatalogRow, ConnectivityId, MaterialId, ModuleId, ProductKind, SeriesId, SeriesOffer } from '@/types';
 import { IMAGE_SIZES } from './images.data';
 import { CATALOG_ROWS } from './products.data';
 
@@ -47,13 +47,13 @@ function describe(rawLabel: string) {
 
 const MATERIAL_ORDER: MaterialId[] = ['glass', 'acrylic'];
 
-function offer(series: SeriesId, id: string, prices: readonly [number, number, number, number]): SeriesOffer {
-  const [wg, wa, zg, za] = prices;
+function offer(series: SeriesId, id: string, available: Availability): SeriesOffer {
+  const [wg, wa, zg, za] = available;
   const materials = MATERIAL_ORDER.filter((m) => (m === 'glass' ? wg || zg : wa || za));
   const connectivity: ConnectivityId[] = [];
   if (wg || wa) connectivity.push('wifi');
   if (zg || za) connectivity.push('zigbee');
-  return { prices, materials, connectivity, image: `/images/catalog/${series}/${id}.webp`, size: IMAGE_SIZES[`${series}/${id}`] ?? [600, 540] };
+  return { materials, connectivity, image: `/images/catalog/${series}/${id}.webp`, size: IMAGE_SIZES[`${series}/${id}`] ?? [600, 540] };
 }
 
 function build(rows: readonly CatalogRow[]): CatalogProduct[] {
@@ -91,20 +91,6 @@ export const CATALOG: readonly CatalogProduct[] = build(CATALOG_ROWS);
 export const getProduct = (id: string) => CATALOG.find((p) => p.id === id);
 export const productsInSeries = (series: SeriesId) => CATALOG.filter((p) => p.series[series]);
 export const productsInModule = (module: ModuleId, series?: SeriesId) => CATALOG.filter((p) => p.module === module && (!series || p.series[series]));
-
-/** List price for a combination, or 0 when it is not offered. */
-export function listPrice(p: CatalogProduct, series: SeriesId, connectivity: ConnectivityId, material: MaterialId): number {
-  const prices = p.series[series]?.prices;
-  if (!prices) return 0;
-  const i = (connectivity === 'wifi' ? 0 : 2) + (material === 'glass' ? 0 : 1);
-  return prices[i] ?? 0;
-}
-
-/** Lowest list price across the options this product is offered in (for "from" prices). */
-export function fromPrice(p: CatalogProduct, series: SeriesId): number {
-  const prices = (p.series[series]?.prices ?? []).filter((v) => v > 0);
-  return prices.length ? Math.min(...prices) : 0;
-}
 
 /** Alt text for a product render. */
 export const productAlt = (p: CatalogProduct, series: SeriesId) => `${series === 'color' ? 'Color' : 'Edge'} series ${p.module} panel with ${p.title}`;

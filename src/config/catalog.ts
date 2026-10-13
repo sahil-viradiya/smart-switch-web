@@ -1,8 +1,9 @@
 /**
  * CATALOGUE settings.
  *
- * `showPrices` is OFF by default. The price data (list prices from the 2026 price lists) is kept in
- * `content/catalog/products.data.ts`; turn this on to show "from" prices on the catalogue cards.
+ * `showPrices` is OFF. The list prices (2026 price lists) are in `content/catalog/prices.data.ts`, which is
+ * server only, so they are not in the browser code either. Turn this on to show "from" prices on the
+ * catalogue cards (the catalogue page then passes them to the browser).
  * List prices exclude taxes and any trade discount.
  */
 export const CATALOG_CONFIG = {

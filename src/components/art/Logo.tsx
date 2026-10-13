@@ -26,7 +26,7 @@ export function Logo({ linked = true }: { linked?: boolean }) {
   );
   if (!linked) return <span className="logo">{inner}</span>;
   return (
-    <Link href={ROUTES.HOME} className="logo" aria-label={`${APP_CONFIG.BRAND_NAME} home`}>
+    <Link href={ROUTES.HOME} className="logo">
       {inner}
     </Link>
   );

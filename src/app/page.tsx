@@ -8,6 +8,7 @@ import { HeroVisual } from '@/components/home/HeroVisual';
 import { HotspotRoom } from '@/components/home/HotspotRoom';
 import { RoomTabs } from '@/components/home/RoomTabs';
 import { ZoomReveal } from '@/components/home/ZoomReveal';
+import { organizationJsonLd } from '@/lib/seo';
 import { MediaGallery } from '@/components/media/MediaGallery';
 import { ProductFilm } from '@/components/media/ProductFilm';
 import { Zoomable } from '@/components/media/Zoomable';
@@ -23,7 +24,7 @@ import { CtaSection } from '@/components/ui/CtaBand';
 import { FaqAccordion } from '@/components/ui/FaqAccordion';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
-import { CTA, PAGES, ROUTES, SPEC, VIDEOS, catalogueHref } from '@/config';
+import { CTA, PAGES, ROUTES, SITE_URL, SPEC, VIDEOS, catalogueHref } from '@/config';
 import { MODULES, REPRESENTATIVE, SERIES, productsInModule } from '@/content/catalog';
 import { FAQ_ITEMS } from '@/content/faq';
 import { FEATURES } from '@/content/features';
@@ -71,6 +72,7 @@ export default function HomePage() {
   return (
     <>
       <SectionNav sections={SECTIONS} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(SITE_URL)) }} />
 
       {/* 1. Hero */}
       <section id="hero" className="sec sec--dark hero" aria-labelledby="hero-title">

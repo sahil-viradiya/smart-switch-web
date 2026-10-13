@@ -10,6 +10,8 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: [
+          // Browsers ignore this over plain HTTP, so it only applies once the site is served over HTTPS.
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',

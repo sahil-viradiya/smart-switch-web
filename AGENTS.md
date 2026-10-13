@@ -13,6 +13,7 @@ This repository contains the **Smart Switch** architectural smart-home electrica
 3. **Security & Forms**:
    - Forms post to `/api/inquiries`. Only show a success state (with the server-issued reference) after the API confirms; on failure show `SubmitError` with WhatsApp/email/phone fallbacks. Never log or commit inquiry data (`data/` is git-ignored).
    - Contact details live only in `src/config/site.ts`.
+   - Legal facts (entity, grievance officer, retention, storage keys) live only in `src/config/legal.ts`; policy text is in `src/app/{privacy-policy,terms-and-conditions,cookies}`. Never add cookies, analytics, third-party scripts or new data collection without updating the policies and `docs/legal-compliance.md` first. Run `npm run check:legal -- --strict` before launch.
    - Validate all form input with Zod.
 4. **Design rules (strict)**:
    - Single sources of truth (see `docs/customization.md`): look → `src/theme/`; routes, page names/SEO/nav, CTA labels, brand/contact, specs, images → `src/config/`; copy → `src/content/`.

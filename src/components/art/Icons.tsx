@@ -15,6 +15,7 @@ export const ArrowUpRight = (p: P) => (<Svg size={14} {...p}><path d="M7 17 17 7
 export const ArrowUp = (p: P) => (<Svg size={18} {...p}><path d="M12 19V5M6 11l6-6 6 6" /></Svg>);
 export const ArrowLeft = (p: P) => (<Svg size={18} {...p}><path d="M19 12H5M11 6l-6 6 6 6" /></Svg>);
 export const Close = (p: P) => (<Svg size={18} {...p}><path d="M6 6l12 12M18 6 6 18" /></Svg>);
+export const Filter = (p: P) => (<Svg size={16} {...p}><path d="M4 7h10M18 7h2M4 17h2M10 17h10" /><circle cx="16" cy="7" r="2" /><circle cx="8" cy="17" r="2" /></Svg>);
 export const Play = (p: P) => (<Svg size={16} {...p}><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></Svg>);
 export const Pause = (p: P) => (<Svg size={16} {...p}><path d="M8 5v14M16 5v14" strokeWidth="2.4" /></Svg>);
 export const Expand = (p: P) => (<Svg size={16} {...p}><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></Svg>);

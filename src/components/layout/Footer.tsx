@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/art/Logo';
 import { Newsletter } from './Newsletter';
-import { APP_CONFIG, CTA, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV, mailHref, telHref } from '@/config';
+import { APP_CONFIG, CTA, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV, legalName, mailHref, telHref } from '@/config';
 
 export function Footer() {
   return (
@@ -52,7 +52,7 @@ export function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <span>Copyright {APP_CONFIG.COPYRIGHT_YEAR} {APP_CONFIG.LEGAL_COMPANY_NAME}</span>
+          <span>Copyright {APP_CONFIG.COPYRIGHT_YEAR} {legalName()}</span>
           <nav className="footer__legal" aria-label="Legal">
             {LEGAL_NAV.map((l) => (<Link key={l.href} href={l.href}>{l.label}</Link>))}
           </nav>

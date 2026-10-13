@@ -136,7 +136,7 @@ export default function ProductPage() {
         <div className="container">
           <SectionHead eyebrow="Compare" title={['Color or Edge']} lead="What is different between the two series." />
           <Reveal>
-            <div className="table-scroll">
+            <div className="table-scroll" tabIndex={0} role="region" aria-label="Comparison of the Color and Edge series">
               <table className="compare">
                 <caption className="sr-only">Comparison of the Color and Edge series</caption>
                 <thead>

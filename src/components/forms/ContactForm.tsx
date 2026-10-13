@@ -7,6 +7,7 @@ import { buildMailto, fieldErrors } from '@/lib/forms';
 import { APP_CONFIG } from '@/config';
 import type { ContactDepartment } from '@/types';
 import { Field } from './Field';
+import { PrivacyNotice } from './PrivacyNotice';
 import { FormSuccess, SubmitError } from './FormSuccess';
 
 const DEPARTMENTS: { value: ContactDepartment; label: string }[] = [
@@ -102,7 +103,7 @@ export function ContactForm() {
       <input className="hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={trap} onChange={(e) => setTrap(e.target.value)} />
       {apiError && <SubmitError message={apiError} mailto={fallbackMailto()} />}
       <button type="submit" className="btn btn--gold btn--block" disabled={sending}>{sending ? 'Sending...' : 'Send message'}</button>
-      <p className="form__fine">Your message is saved to our enquiry sheet so the right person can reply. See our Privacy Policy.</p>
+      <PrivacyNotice use="reply to your message" />
     </form>
   );
 }

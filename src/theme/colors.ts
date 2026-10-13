@@ -23,9 +23,9 @@ export const colors = {
   /* Text on light surfaces */
   ink: '#0c0e0d',
   inkMuted: '#5b605a',
-  inkDim: '#8b8f88',
-  inkFaint: '#7b7f78',
-  placeholder: '#9a9d96',
+  inkDim: '#6b6f68', // AA on paper and white
+  inkFaint: '#676b64', // AA on paper and white
+  placeholder: '#727670', // AA on form fields
 
   /* Feedback */
   error: '#b3261e',
@@ -52,7 +52,7 @@ export type ColorKey = keyof typeof colors;
 /** Opacity used to derive translucent tokens (text-on-dark, hairlines). */
 export const alphas = {
   onDarkMuted: 0.64,
-  onDarkDim: 0.42,
+  onDarkDim: 0.54, // AA on the dark surfaces
   lineDark: 0.1,
   lineLight: 0.11,
   goldLine: 0.32,

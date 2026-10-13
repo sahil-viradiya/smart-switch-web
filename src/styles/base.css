@@ -66,6 +66,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 2.2rem 0 0.7rem; color: var(--fg); letter-spacing: -0.01em; }
 .prose p, .prose li { color: var(--fg-muted); max-width: 70ch; }
 .prose p + p { margin-top: 0.9rem; }
+.prose ul + p, .prose p + ul { margin-top: 0.9rem; }
 .prose ul { list-style: disc; padding-left: 1.2rem; display: grid; gap: 0.4rem; margin-top: 0.7rem; }
 .prose a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
 
