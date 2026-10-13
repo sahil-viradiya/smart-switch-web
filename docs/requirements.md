@@ -89,7 +89,7 @@ In accordance with strict professional standards, the following technical specif
 - Minimum 4.5:1 color contrast ratio for normal text, 3:1 for large text.
 - Full keyboard navigability (Tab, Enter, Escape for dialogs and mobile menus).
 - Semantic HTML tags (`<main>`, `<header>`, `<nav>`, `<section>`, `<article>`, `<aside>`, `<footer>`).
-- ARIA live regions for form validation alerts.
+- ARIA live regions for form validation alerts. 
 
 ### 4.3 Security & Privacy
 - Security headers via `next.config.js`.
