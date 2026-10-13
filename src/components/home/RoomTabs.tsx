@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { SceneArt } from '@/components/art/SceneArt';
 import { ArrowRight } from '@/components/art/Icons';
-import { demoIntentHref } from '@/config';
+import { IMAGE_NOTE, demoIntentHref } from '@/config';
 import type { RoomTab } from '@/content/rooms';
 
 /** Room-by-room tabs. Arrow keys move between tabs; the scene cross-fades. */
@@ -63,6 +63,7 @@ export function RoomTabs({ rooms }: { rooms: readonly RoomTab[] }) {
             <Link href={demoIntentHref('homeowner')} className="btn btn--gold btn--sm">Plan this room <ArrowRight className="btn__arrow" /></Link>
             <Link href={room.link.href} className="text-link">{room.link.label} <ArrowRight /></Link>
           </div>
+          <p className="small rt__note">{IMAGE_NOTE}</p>
         </div>
       </div>
     </div>

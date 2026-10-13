@@ -18,7 +18,7 @@ export const ROOM_TABS: readonly RoomTab[] = [
     id: 'living', name: 'Living room', scene: 'living', headline: 'Lights and fan on one panel',
     text: 'A large panel can hold the room lights, a fan control and a socket, so the wall has one panel instead of several.',
     suggestion: { panel: '8M, for example 6 switches + 1 fan control', series: 'Color' },
-    tips: ['Choose icon colours in the app (Color series)', 'Pick 6A or 16A switches to suit each load', 'Wi-Fi is the simplest version'],
+    tips: ['Choose icon colours (Color series)', 'Pick 6A or 16A switches to suit each load', 'Wi-Fi or Zigbee, whichever suits your home'],
     link: { label: 'Family homes', href: ROUTES.USE_CASES_SLUG('residential-homes') },
     product: { series: 'color', id: '8m-6-switch-1-fan' },
   },

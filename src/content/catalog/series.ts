@@ -32,10 +32,10 @@ export const SERIES: readonly SeriesInfo[] = [
     name: 'Edge',
     tagline: 'Clean touch points with a precise finish',
     summary:
-      'Touch panels with round touch points and a precision-finished border. The same sizes and functions as Color, with a simpler look.',
+      'Touch panels with round touch points and a slim border in several colours. The same sizes and functions as Color, with a simpler look.',
     highlights: [
       'Round illuminated touch points',
-      'Precision-machined border',
+      'Slim border in several colours',
       'Several colours and finishes',
       'Glass or acrylic panel',
     ],

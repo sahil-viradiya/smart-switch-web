@@ -42,9 +42,9 @@ export interface CompareRow { label: string; values: readonly string[] }
 /** Columns follow SERIES order (Color, Edge). */
 export const COMPARE_ROWS: readonly CompareRow[] = [
   { label: 'Touch indicators', values: ['Backlit icons', 'Round touch points'] },
-  { label: 'Icon colour', values: ['RGB, adjustable', 'Fixed'] },
-  { label: 'Brightness and saturation', values: ['Adjustable', 'Not adjustable'] },
-  { label: 'Custom icons', values: ['Yes, charged per icon', 'No'] },
+  { label: 'Icon colour', values: ['RGB, adjustable', 'Ask us'] },
+  { label: 'Brightness and saturation', values: ['Adjustable', 'Ask us'] },
+  { label: 'Custom icons', values: ['Yes, charged per icon', 'Yes, charged per icon'] },
   { label: 'Panel material', values: ['Glass or acrylic', 'Glass or acrylic'] },
   { label: 'Module sizes', values: ['2M to 12M', '2M to 12M'] },
   { label: 'Versions', values: ['Wi-Fi or Zigbee', 'Wi-Fi or Zigbee'] },

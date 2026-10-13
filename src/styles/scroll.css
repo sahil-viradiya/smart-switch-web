@@ -111,6 +111,13 @@
 .rt__suggest { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; padding-block: 1.125rem; border-block: 1px solid var(--line-light); }
 .rt__suggest dt { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--gold-deep); font-weight: var(--fw-semibold); margin-bottom: 0.25rem; }
 .rt__suggest dd { margin: 0; font-size: 0.9375rem; }
+.rt__note { margin-top: 0.875rem; color: var(--fg-dim); }
+.trust__checks { margin-top: clamp(1.25rem, 3vw, 2rem); }
+.trust__checks .text-link { margin-top: 0.5rem; justify-self: start; }
+.trust__who { margin-top: clamp(1.5rem, 3vw, 2.25rem); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.25rem 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line-dark); }
+.trust__reach { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin: 0; }
+.trust__reach a { color: var(--on-dark); text-decoration: underline; text-decoration-color: var(--gold-line); text-underline-offset: 4px; }
+.trust__reach a:hover { text-decoration-color: var(--gold); }
 .rt__tips { display: grid; gap: 0.5rem; }
 .rt__tips li { position: relative; padding-left: 1.25rem; font-size: 0.875rem; color: var(--ink-muted); }
 .rt__tips li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 0.5rem; height: 1px; background: var(--gold-deep); }

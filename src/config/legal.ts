@@ -28,6 +28,10 @@ export const LEGAL = {
     email: APP_CONFIG.SUPPORT_EMAIL,
     phone: APP_CONFIG.PHONE,
   },
+  /** RECOMMENDED. GST registration number (15 characters). Shown on the site when set; a visible tax number is a strong trust signal for buyers. */
+  gstin: '',
+  /** OPTIONAL. Company or LLP registration number (CIN / LLPIN), if the business has one. Shown when set. */
+  registrationNo: '',
   /** REQUIRED. City whose courts hear disputes, e.g. "Ahmedabad". Governing law is India. */
   courtsCity: '',
 
@@ -56,6 +60,15 @@ export const LEGAL = {
 
 /** Name to show for the business: the registered entity once confirmed, otherwise the brand. */
 export const legalName = () => LEGAL.entityName || APP_CONFIG.BRAND_NAME;
+
+/** Identity details a buyer can check. Only the ones that are filled in are returned (nothing is ever shown as a placeholder). */
+export const companyFacts = (): { label: string; value: string }[] => {
+  const f: { label: string; value: string }[] = [{ label: 'Sold by', value: legalName() }];
+  if (LEGAL.registrationNo) f.push({ label: 'Registration no.', value: LEGAL.registrationNo });
+  if (LEGAL.gstin) f.push({ label: 'GSTIN', value: LEGAL.gstin });
+  if (LEGAL.registeredAddress.length) f.push({ label: 'Registered office', value: LEGAL.registeredAddress.join(', ') });
+  return f;
+};
 
 /** Required legal facts that are still empty. Used by `npm run check:legal`. */
 export const missingLegalFacts = (): string[] => {

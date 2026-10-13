@@ -43,6 +43,9 @@ export const VIDEOS: { film: VideoAsset } = {
   },
 };
 
+/** Shown wherever room photos appear, so nobody mistakes them for photos of a finished installation. */
+export const IMAGE_NOTE = 'Room images are illustrations: real panel images placed on a sample wall.';
+
 export const IMAGES: {
   scenes: Record<SceneName, ImageAsset>;
   /** 1200x630 social-share image. */

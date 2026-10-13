@@ -15,11 +15,28 @@ Anything you change in `config/legal.ts` flows to all three policies, the form n
 
 ## Before launch
 
-1. Fill in `src/config/legal.ts`: `entityName`, `registeredAddress`, `grievanceOfficer.name` and `designation`, `courtsCity`. `npm run check:legal` lists what is missing; `npm run check:legal -- --strict` fails until it is all there.
+1. Fill in `src/config/legal.ts`: `entityName`, `registeredAddress`, `grievanceOfficer.name` and `designation`, `courtsCity`, and (recommended) `gstin`. `npm run check:legal` lists what is missing; `npm run check:legal -- --strict` fails until it is all there.
 2. Confirm `retentionMonths` (24) is what you will actually do, and run the purge on a schedule (below).
 3. Have a lawyer review the three policies.
+3a. Run `npm run check:trust -- https://your-domain --strict` against the live site and fix anything it reports.
 4. Serve the site over HTTPS. The `Strict-Transport-Security` header is already set and takes effect on HTTPS.
 5. If you ever add analytics, advertising, a chat widget, embedded video, a map or external fonts, update the Cookie Policy and Privacy Policy **first** and add a consent step. Today the site sets no cookies and makes no third-party requests (a test checks both).
+
+## Trust audit (does the site look and behave like a real business?)
+
+`npm run check:trust` fetches a running site and checks what a careful first-time visitor would notice. Start the site first (`npm run build && npm start`), then:
+
+```bash
+npm run check:trust                          # local site
+npm run check:trust -- https://your-domain   # the live site
+npm run check:trust -- https://your-domain --strict   # launch gate: every warning becomes a failure
+```
+
+It checks that: every page loads and unknown addresses give a real 404; the business is named as the seller in the footer and on the contact, about, privacy and terms pages; every email, phone and WhatsApp link and every number or address in the text matches the one set in `src/config/site.ts`; there is no placeholder text, no invented proof (reviews, star ratings, customer counts, awards, "trusted by", guarantees); no page sets a cookie or loads anything from another company; every internal link works; the policies are linked from the footer and from both forms; security headers (HSTS and others) are set; pages have unique titles and descriptions; structured data names the business with the same contact details; and, on a live domain, the share and canonical addresses are the real domain (not localhost).
+
+**What the site shows a buyer** (all driven by `src/config/legal.ts`, `src/content/trust.ts`): who sells it (footer line, About and Contact pages), a "Buy with confidence" section on the home page (how buying works in five steps and six things a visitor can check), and a note wherever room images appear saying they are illustrations. If you fill in `gstin`, `registrationNo` and `registeredAddress` in `legal.ts`, they appear in the footer, the home trust section, About and Contact automatically. Nothing is shown as a placeholder.
+
+**Rule:** never add a claim, number, review or badge to the site that cannot be verified. The audit exists to keep it that way.
 
 ## What the site does with personal data
 

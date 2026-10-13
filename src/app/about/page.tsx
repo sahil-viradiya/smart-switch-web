@@ -6,7 +6,9 @@ import { SectionHead } from '@/components/ui/SectionHead';
 import { CtaSection } from '@/components/ui/CtaBand';
 import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { pageMeta } from '@/lib/seo';
-import { CTA, PAGES, SPEC } from '@/config';
+import { CompanyFacts } from '@/components/ui/CompanyFacts';
+import { TextLink } from '@/components/ui/ButtonLink';
+import { APP_CONFIG, CTA, PAGES, ROUTES, SPEC, legalName } from '@/config';
 
 export const metadata = pageMeta('ABOUT');
 
@@ -35,8 +37,26 @@ export default function AboutPage() {
             <h2 id="story-title" className="h-section">A panel you can control any way</h2>
           </Reveal>
           <Reveal className="stack" delay={0.1}>
-            <p className="lead">Smart Switch is a range of touch switches for homes, renovations and studios. A single glass or acrylic panel can hold the lights, a fan control, curtain control and sockets.</p>
+            <p className="lead">Smart Switch is a range of touch switches for homes, renovations and studios. A single glass or acrylic panel can hold the lights, a fan control and sockets, and curtain control comes as its own small panel.</p>
             <p className="lead">You can use the panel, the app on your phone, a voice assistant or a remote, and you can choose between a Wi-Fi version and a Zigbee version.</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="sec sec--paper" aria-labelledby="who-title">
+        <div className="container split">
+          <Reveal className="stack stack--lg">
+            <span className="eyebrow">Who we are</span>
+            <h2 id="who-title" className="h-section">The business behind it</h2>
+          </Reveal>
+          <Reveal className="stack" delay={0.1}>
+            <p className="lead">{APP_CONFIG.BRAND_NAME} is sold by {legalName()}. You deal with a person, by phone, WhatsApp or email, and quotations and warranty terms are confirmed in writing.</p>
+            <CompanyFacts />
+            <div className="row">
+              <TextLink href={CTA.CONTACT_US.href}>{CTA.CONTACT_US.label}</TextLink>
+              <TextLink href={ROUTES.TERMS}>Terms</TextLink>
+              <TextLink href={ROUTES.PRIVACY}>Privacy</TextLink>
+            </div>
           </Reveal>
         </div>
       </section>

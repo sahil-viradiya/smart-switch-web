@@ -1,6 +1,7 @@
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { Notice } from '@/components/ui/Notice';
+import { CompanyFacts } from '@/components/ui/CompanyFacts';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { pageMeta } from '@/lib/seo';
 import { APP_CONFIG, CTA, PAGES, mailHref, telHref } from '@/config';
@@ -37,6 +38,10 @@ export default function ContactPage() {
                 <address style={{ fontStyle: 'normal' }}>{APP_CONFIG.ADDRESS_LINES.map((l) => <p key={l}>{l}</p>)}</address>
               </div>
             )}
+            <div className="info-card">
+              <h3>Who you are writing to</h3>
+              <CompanyFacts />
+            </div>
             <div className="info-card">
               <h3>What to expect</h3>
               <p className="small">A person reads every message and replies by email or phone. If you can, mention your wiring and wall boxes.</p>

@@ -93,7 +93,7 @@ export function HeroVisual() {
         <strong>Glass or acrylic</strong>
       </div>
       <div className="hero__chip hero__chip--scene glass-chip" aria-live="polite">
-        <small>Showing</small>
+        <small>Illustration</small>
         <strong>{current.label}</strong>
       </div>
       <Lightbox items={HERO_MEDIA} index={boxIndex} onClose={() => setBoxIndex(null)} onIndex={setBoxIndex} />

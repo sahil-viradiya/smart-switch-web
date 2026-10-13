@@ -18,7 +18,8 @@
     "ai:stats": "promptpilot-ai stats",
     "check:theme": "node scripts/check-theme.mjs",
     "check:legal": "node scripts/check-legal.mjs",
-    "privacy": "node scripts/privacy/data-tools.mjs"
+    "privacy": "node scripts/privacy/data-tools.mjs",
+    "check:trust": "node scripts/check-trust.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

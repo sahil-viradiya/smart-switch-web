@@ -98,7 +98,7 @@ export const FEATURES: readonly Feature[] = [
     overview:
       `There are six panel sizes, ${SPEC.moduleSizes}. Larger panels hold more controls, and you can combine switches with sockets and a fan control on the same panel.`,
     details: [
-      { heading: 'What a panel can hold', description: 'Switches, sockets, fan control, curtain control, dimmers, a 4-button scene control, a USB charger and a doorbell.' },
+      { heading: 'What the range covers', description: 'Switches, sockets, fan control, curtain control, dimmers, a 4-button scene control, a USB charger and a doorbell. Curtain control, the scene control and the USB charger are 2M panels. Dimmers come in 2M and 6M, and the doorbell in 2M and 3M.' },
       { heading: 'Ratings', description: `Switches and sockets come in ${SPEC.ratings} versions. Choose the rating to suit the load on each circuit.` },
       { heading: 'Matching panels', description: 'Every size uses the same styling, so a bedroom, a hallway and a living room can all match.' },
     ],

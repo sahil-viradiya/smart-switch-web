@@ -72,7 +72,7 @@ export const PERSONAS: readonly Persona[] = [
   {
     id: 'architect', title: 'Architects and designers', eyebrow: 'For your specification',
     text: 'Two series, six sizes and a full list of configurations, so you can specify exactly what each wall needs.',
-    points: ['Browse all configurations', 'Ask for specs and samples', 'Custom icons on the Color series'],
+    points: ['Browse all configurations', 'Ask for specs and samples', 'Custom icons on request'],
     cta: { label: 'Ask for specs and samples', href: demoIntentHref('architect') },
   },
   {

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/art/Logo';
 import { Newsletter } from './Newsletter';
+import { CompanyFacts } from '@/components/ui/CompanyFacts';
 import { APP_CONFIG, CTA, FOOTER_COMPANY, FOOTER_EXPLORE, LEGAL_NAV, legalName, mailHref, telHref } from '@/config';
 
 export function Footer() {
@@ -49,6 +50,11 @@ export function Footer() {
               </div>
             )}
           </div>
+        </div>
+
+        <div className="footer__who">
+          <p>{APP_CONFIG.BRAND_NAME} is sold by {legalName()}.</p>
+          <CompanyFacts inline className="footer__facts" />
         </div>
 
         <div className="footer__bottom">

@@ -8,6 +8,7 @@ import { HeroVisual } from '@/components/home/HeroVisual';
 import { HotspotRoom } from '@/components/home/HotspotRoom';
 import { RoomTabs } from '@/components/home/RoomTabs';
 import { ZoomReveal } from '@/components/home/ZoomReveal';
+import { TrustSection } from '@/components/home/TrustSection';
 import { organizationJsonLd } from '@/lib/seo';
 import { MediaGallery } from '@/components/media/MediaGallery';
 import { ProductFilm } from '@/components/media/ProductFilm';
@@ -24,7 +25,7 @@ import { CtaSection } from '@/components/ui/CtaBand';
 import { FaqAccordion } from '@/components/ui/FaqAccordion';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
-import { CTA, PAGES, ROUTES, SITE_URL, SPEC, VIDEOS, catalogueHref } from '@/config';
+import { CTA, IMAGE_NOTE, PAGES, ROUTES, SITE_URL, SPEC, VIDEOS, catalogueHref } from '@/config';
 import { MODULES, REPRESENTATIVE, SERIES, productsInModule } from '@/content/catalog';
 import { FAQ_ITEMS } from '@/content/faq';
 import { FEATURES } from '@/content/features';
@@ -49,11 +50,12 @@ const SECTIONS = [
   { id: 'standards', label: 'Control' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'audience', label: 'Who it is for' },
+  { id: 'trust', label: 'Buying' },
   { id: 'faq', label: 'FAQ' },
 ];
 
 const PRINCIPLES = [
-  { title: 'Fewer plates on the wall', text: 'One panel can hold the lights, a fan control, curtain control and sockets, so a room needs fewer separate plates.' },
+  { title: 'Fewer plates on the wall', text: 'One panel can hold the lights, a fan control and sockets, so a room needs fewer separate plates.' },
   { title: 'Control it your way', text: 'Use the touch panel, the app on your phone, a voice assistant or a handheld remote.' },
   { title: 'Choose the version', text: 'Pick Wi-Fi or Zigbee for every panel, and glass or acrylic for most of them.' },
 ];
@@ -269,7 +271,7 @@ export default function HomePage() {
         <div className="container">
           <SectionHead eyebrow="Gallery" title={['Panels and rooms']} lead="Select an image to enlarge it. The arrow keys move between images." />
           <Reveal><MediaGallery items={GALLERY} /></Reveal>
-          <p className="small" style={{ marginTop: 18 }}>Colours and finishes vary. Ask us for the current options.</p>
+          <p className="small" style={{ marginTop: 18 }}>{IMAGE_NOTE} Colours and finishes vary. Ask us for the current options.</p>
         </div>
       </section>
 
@@ -342,6 +344,8 @@ export default function HomePage() {
       </section>
 
       {/* 15. FAQ */}
+      <TrustSection />
+
       <section id="faq" className="sec sec--white" aria-labelledby="faq-title">
         <div className="container--narrow">
           <SectionHead eyebrow="FAQ" title={['Common questions']} action={<TextLink href={PAGES.FAQ.path}>All questions</TextLink>} />

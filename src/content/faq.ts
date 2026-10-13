@@ -141,6 +141,6 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
     id: 'faq-custom',
     category: 'AVAILABILITY',
     question: 'Can I get custom icons?',
-    answer: 'Yes, on the Color series. Custom icons are charged per icon. Ask us when you request a quote.',
+    answer: 'Yes. Custom icons are charged per icon. Ask us when you request a quote.',
   },
 ];

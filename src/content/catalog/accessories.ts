@@ -19,4 +19,4 @@ export const ACCESSORIES: readonly Accessory[] = [
 ];
 
 /** Custom icons for the Color series are charged per icon. */
-export const CUSTOM_ICON = { name: 'Custom icon', text: 'Design your own icon and panel layout for the Color series.', price: 100, priceNote: 'per icon' } as const;
+export const CUSTOM_ICON = { name: 'Custom icon', text: 'Design your own icon and panel layout.', price: 100, priceNote: 'per icon' } as const;

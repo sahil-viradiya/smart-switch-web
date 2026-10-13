@@ -21,9 +21,9 @@ export const USE_CASES: readonly UseCase[] = [
     title: 'Family homes',
     headline: ['One panel', 'for the whole room.'],
     category: 'Homes',
-    summary: 'Lights, fan and curtains on one panel, in matching styling for every room.',
+    summary: 'Lights and fan on one panel, with curtain and dimmer panels to match, in the same styling for every room.',
     overview:
-      'A living room often has a bank of separate switches for lights, a fan and curtains. A 6M or 8M panel can hold all of them on one touch panel.',
+      'A living room often has a bank of separate switches for lights and a fan. A 6M or 8M panel can hold all of them on one touch panel, and curtain or dimmer panels in the same styling sit beside it.',
     solutions: [
       { title: 'Lights and fan together', description: 'Panels such as "6 switches + 1 fan control" put the room lights and the fan on one panel.' },
       { title: 'Scenes', description: 'A 2M panel with four scene buttons gives you one-touch settings for the room.' },
@@ -32,7 +32,7 @@ export const USE_CASES: readonly UseCase[] = [
     recommendations: [
       { label: 'Series', value: 'Color or Edge' },
       { label: 'Sizes', value: '6M or 8M for living rooms, 2M for scenes' },
-      { label: 'Version', value: 'Wi-Fi is the simplest' },
+      { label: 'Version', value: 'Wi-Fi or Zigbee, whichever suits you' },
       { label: 'Installer', value: 'Licensed electrician' },
     ],
     scene: 'living',
