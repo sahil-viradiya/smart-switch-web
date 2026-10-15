@@ -1,6 +1,14 @@
 import { z } from 'zod';
 
-export const phoneRegex = /^(\+?\d{1,4}[-.\s]?)?(\(?\d{1,4}\)?[-.\s]?)?[\d\s.-]{5,15}$/;
+/** Standard Indian 10-digit mobile number regex (starts with 6, 7, 8, or 9, optional +91 or 0 prefix). */
+export const phoneRegex = /^(?:(?:\+91|91|0)[\s-]?)?[6-9]\d{9}$/;
+
+export function isValidIndianPhone(value: string): boolean {
+  if (!value || typeof value !== 'string') return true;
+  const cleaned = value.trim().replace(/[\s\-()]/g, '');
+  if (!cleaned) return true;
+  return /^(?:(?:\+91|91|0))?[6-9]\d{9}$/.test(cleaned);
+}
 
 export const leadSchema = z.object({
   fullName: z
@@ -15,10 +23,11 @@ export const leadSchema = z.object({
     .trim()
     .toLowerCase(),
   phone: z
-    .string()
-    .regex(phoneRegex, 'Please enter a valid telephone number')
-    .optional()
-    .or(z.literal('')),
+    .string({ required_error: 'Phone number is required' })
+    .trim()
+    .min(1, 'Phone number is required')
+    .max(16, 'Phone number must not exceed 16 characters')
+    .refine(isValidIndianPhone, 'Please enter a valid 10-digit Indian mobile number'),
   inquiryType: z.enum(
     [
       'HOMEOWNER_CONSULTATION',

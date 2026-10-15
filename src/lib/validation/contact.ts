@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { phoneRegex } from './lead';
+import { isValidIndianPhone, phoneRegex } from './lead';
 
 export const contactSchema = z.object({
   fullName: z
@@ -14,10 +14,11 @@ export const contactSchema = z.object({
     .trim()
     .toLowerCase(),
   phone: z
-    .string()
-    .regex(phoneRegex, 'Please enter a valid telephone number')
-    .optional()
-    .or(z.literal('')),
+    .string({ required_error: 'Phone number is required' })
+    .trim()
+    .min(1, 'Phone number is required')
+    .max(16, 'Phone number must not exceed 16 characters')
+    .refine(isValidIndianPhone, 'Please enter a valid 10-digit Indian mobile number'),
   department: z.enum(
     [
       'SALES_CONSULTATION',

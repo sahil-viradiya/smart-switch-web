@@ -19,8 +19,8 @@ export default function PrivacyPage() {
       <h2 id="collect">2. What we collect</h2>
       <p>We collect only what you type into a form on this website:</p>
       <ul>
-        <li><strong>Book a demo form:</strong> your name, email, phone number (optional), the type of property, the kind of enquiry, your message, and whether you want product updates.</li>
-        <li><strong>Contact form:</strong> your name, email, phone number (optional), the department, a subject and your message.</li>
+        <li><strong>Book a demo form:</strong> your name, email, phone number, the type of property, the kind of enquiry, your message, and whether you want product updates.</li>
+        <li><strong>Contact form:</strong> your name, email, phone number, the department, a subject and your message.</li>
         <li><strong>Product updates box:</strong> your email address.</li>
       </ul>
       <p>When you submit a form we also record the date and time, a reference number and the page you sent it from. If you open an enquiry from a catalogue panel, the panel you chose is added to your message.</p>

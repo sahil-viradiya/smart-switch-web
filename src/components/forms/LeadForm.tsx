@@ -142,8 +142,8 @@ export function LeadForm() {
       </div>
 
       <div className="form__row">
-        <Field id="lead-phone" label="Phone" optional error={errors.phone}>
-          {(a) => <input {...a} className="input" type="tel" autoComplete="tel" value={data.phone} onChange={(e) => set('phone', e.target.value)} onBlur={() => validateField('phone', undefined, true)} />}
+        <Field id="lead-phone" label="Phone" error={errors.phone}>
+          {(a) => <input {...a} className="input" type="tel" autoComplete="tel" placeholder="10-digit mobile number" value={data.phone} onChange={(e) => set('phone', e.target.value)} onBlur={() => validateField('phone', undefined, true)} />}
         </Field>
         <Field id="lead-property" label="Property type" error={errors.propertyType}>
           {(a) => (
