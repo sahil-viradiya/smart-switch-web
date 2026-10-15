@@ -8,14 +8,15 @@ import { CtaSection } from '@/components/ui/CtaBand';
 import { SceneArt } from '@/components/art/SceneArt';
 import { ArrowUpRight } from '@/components/art/Icons';
 import { USE_CASES } from '@/content/use-cases';
-import { pageMeta } from '@/lib/seo';
-import { ROUTES, PAGES } from '@/config';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
+import { ROUTES, PAGES, SITE_URL } from '@/config';
 
 export const metadata = pageMeta('USE_CASES');
 
 export default function UseCasesPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.USE_CASES.name, path: ROUTES.USE_CASES }], SITE_URL)) }} />
       <PageHero eyebrow="Use cases" title={['Where it fits']} lead="Smart Switch suits family homes, renovations and studios. Here is how it works in each." crumbs={[{ label: PAGES.USE_CASES.name }]} />
       <section className="sec sec--paper" aria-labelledby="uc-title">
         <div className="container">

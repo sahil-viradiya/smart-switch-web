@@ -3,17 +3,13 @@ import { Reveal } from '@/components/ui/Reveal';
 import { FaqAccordion } from '@/components/ui/FaqAccordion';
 import { CtaSection } from '@/components/ui/CtaBand';
 import { FAQ_ITEMS } from '@/content/faq';
-import { pageMeta } from '@/lib/seo';
+import { faqJsonLd, pageMeta } from '@/lib/seo';
 import { CTA, PAGES } from '@/config';
 
 export const metadata = pageMeta('FAQ');
 
 export default function FaqPage() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((i) => ({ '@type': 'Question', name: i.question, acceptedAnswer: { '@type': 'Answer', text: i.answer } })),
-  };
+  const jsonLd = faqJsonLd(FAQ_ITEMS);
   return (
     <>
       <PageHero eyebrow="FAQ" title={['Frequently asked questions']} lead="Wiring, installation, connectivity, warranty and availability. Anything we have not confirmed is marked to be confirmed." crumbs={[{ label: PAGES.FAQ.name }]} />

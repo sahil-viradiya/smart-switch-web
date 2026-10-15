@@ -8,15 +8,16 @@ import { ExplodedView } from '@/components/product/ExplodedView';
 import { LAYERS } from '@/content/layers';
 import { ICONS, ArrowUpRight } from '@/components/art/Icons';
 import { FEATURES } from '@/content/features';
-import { pageMeta } from '@/lib/seo';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
 import { CtaLink } from '@/components/ui/CtaLink';
-import { ROUTES, CTA, PAGES } from '@/config';
+import { ROUTES, CTA, PAGES, SITE_URL } from '@/config';
 
 export const metadata = pageMeta('FEATURES');
 
 export default function TechnologyPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.FEATURES.name, path: ROUTES.FEATURES }], SITE_URL)) }} />
       <PageHero
         eyebrow="Technology"
         title={['How it is built']}

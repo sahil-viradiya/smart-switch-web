@@ -2,8 +2,8 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { LeadForm } from '@/components/forms/LeadForm';
 import { Check } from '@/components/art/Icons';
-import { pageMeta } from '@/lib/seo';
-import { APP_CONFIG, CTA, PAGES, mailHref, telHref } from '@/config';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
+import { APP_CONFIG, CTA, PAGES, ROUTES, SITE_URL, mailHref, telHref } from '@/config';
 
 export const metadata = pageMeta('REQUEST_DEMO');
 
@@ -16,6 +16,7 @@ const NEXT = [
 export default function RequestDemoPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.REQUEST_DEMO.name, path: ROUTES.REQUEST_DEMO }], SITE_URL)) }} />
       <PageHero eyebrow="Book a Demo" title={['Book a demo']} lead="Send a few details and we will suggest panels for your space." crumbs={[{ label: PAGES.REQUEST_DEMO.name }]} />
       <section className="sec sec--paper" aria-label="Consultation request">
         <div className="container contact-grid">

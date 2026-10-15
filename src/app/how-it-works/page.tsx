@@ -6,8 +6,8 @@ import { ProgressRail } from '@/components/motion/ProgressRail';
 import { WallChecker } from '@/components/tools/WallChecker';
 import { CHECK_QUESTIONS } from '@/content/tools';
 import { CtaSection } from '@/components/ui/CtaBand';
-import { pageMeta } from '@/lib/seo';
-import { CTA, PAGES } from '@/config';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
+import { CTA, PAGES, ROUTES, SITE_URL } from '@/config';
 
 export const metadata = pageMeta('HOW_IT_WORKS');
 
@@ -40,6 +40,7 @@ const STEPS = [
 export default function HowItWorksPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.HOW_IT_WORKS.name, path: ROUTES.HOW_IT_WORKS }], SITE_URL)) }} />
       <PageHero eyebrow="How it works" title={['Plan, install, use']} lead="Here is how a Smart Switch installation goes, from choosing panels to using them." crumbs={[{ label: PAGES.HOW_IT_WORKS.name }]} />
 
       <section className="sec sec--paper" aria-labelledby="steps-title">

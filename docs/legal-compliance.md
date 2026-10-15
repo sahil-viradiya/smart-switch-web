@@ -20,7 +20,7 @@ Anything you change in `config/legal.ts` flows to all three policies, the form n
 3. Have a lawyer review the three policies.
 3a. Run `npm run check:trust -- https://your-domain --strict` against the live site and fix anything it reports.
 4. Serve the site over HTTPS. The `Strict-Transport-Security` header is already set and takes effect on HTTPS.
-5. If you ever add analytics, advertising, a chat widget, embedded video, a map or external fonts, update the Cookie Policy and Privacy Policy **first** and add a consent step. Today the site sets no cookies and makes no third-party requests (a test checks both).
+5. If you add analytics, advertising, a chat widget, embedded video, a map or external fonts, update the Cookie Policy and Privacy Policy **first**. The site uses Meta Pixel for ad attribution and conversion tracking (documented in the Cookie Policy and Privacy Policy).
 
 ## Trust audit (does the site look and behave like a real business?)
 
@@ -46,8 +46,8 @@ It checks that: every page loads and unknown addresses give a real 404; the busi
 | Not collected | Passwords, payment or ID data, health data. Visitors are told not to send them |
 | Stored in | `data/inquiries.xlsx`, `data/inquiries.jsonl` (backup), and Google Sheets if `INQUIRY_STORAGE` uses it. `data/` is git-ignored |
 | IP address | Counted in server memory for rate limiting only; not stored with the enquiry. The host may keep ordinary server logs |
-| Cookies | None. One `sessionStorage` key (`ss-intro-seen`) |
-| Third parties | None load in the browser. WhatsApp opens only on click. Hosting and (optionally) Google Sheets act for you |
+| Cookies | Meta Pixel first-party cookie (`_fbp`); `sessionStorage` keys (`ss-intro-seen`, `ss-attribution`, `ss-lead-tracked`) |
+| Third parties | Meta Pixel (Meta Platforms) loads in the browser for advertising attribution and conversion measurement. WhatsApp opens only on click. Hosting and (optionally) Google Sheets act for you |
 | Marketing | Only with consent: the unticked checkbox on the demo form, or the updates box |
 
 ## Handling requests

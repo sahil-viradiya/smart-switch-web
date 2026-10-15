@@ -14,4 +14,5 @@ export const ROUTES = {
   PRIVACY: '/privacy-policy',
   TERMS: '/terms-and-conditions',
   COOKIES: '/cookies',
+  THANK_YOU: '/thank-you',
 } as const;

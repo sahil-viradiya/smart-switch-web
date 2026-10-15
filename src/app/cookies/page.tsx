@@ -8,8 +8,9 @@ export const metadata = pageMeta('COOKIES');
 export default function CookiesPage() {
   return (
     <LegalPage title={PAGES.COOKIES.name} intro="What this website stores in your browser, and what it does not.">
-      <h2 id="cookies">1. Cookies</h2>
-      <p>This website does not set any cookies. It has no advertising, social media or analytics trackers, and it loads no scripts, fonts or images from other companies&apos; servers.</p>
+      <h2 id="cookies">1. Cookies and advertising trackers</h2>
+      <p>This website uses the Meta Pixel (operated by Meta Platforms, Inc.) to measure advertising effectiveness, attribute enquiry conversions, and deliver relevant advertisements on Facebook and Instagram. The Meta Pixel may store first-party cookies (such as _fbp) or collect pseudonymised browser and event data when you visit pages or complete an enquiry.</p>
+      <p>You can manage your advertising preferences directly within your Meta/Facebook account settings or via your browser&apos;s privacy and tracking prevention controls.</p>
 
       <h2 id="storage">2. Browser storage</h2>
       <p>The website uses the following storage in your browser. It is not personal information and it is never sent to us or to anyone else.</p>

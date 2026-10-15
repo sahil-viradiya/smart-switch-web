@@ -9,7 +9,7 @@ import { HotspotRoom } from '@/components/home/HotspotRoom';
 import { RoomTabs } from '@/components/home/RoomTabs';
 import { ZoomReveal } from '@/components/home/ZoomReveal';
 import { TrustSection } from '@/components/home/TrustSection';
-import { organizationJsonLd } from '@/lib/seo';
+import { organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import { MediaGallery } from '@/components/media/MediaGallery';
 import { ProductFilm } from '@/components/media/ProductFilm';
 import { Zoomable } from '@/components/media/Zoomable';
@@ -75,6 +75,7 @@ export default function HomePage() {
     <>
       <SectionNav sections={SECTIONS} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(SITE_URL)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd(SITE_URL)) }} />
 
       {/* 1. Hero */}
       <section id="hero" className="sec sec--dark hero" aria-labelledby="hero-title">

@@ -6,6 +6,8 @@ export interface UseCase {
   headline: [string, string?];
   category: string;
   summary: string;
+  /** Search result title and description. Lead with the phrase people search for. */
+  seo: { title: string; description: string };
   overview: string;
   solutions: { title: string; description: string }[];
   recommendations: { label: string; value: string }[];
@@ -22,6 +24,10 @@ export const USE_CASES: readonly UseCase[] = [
     headline: ['One panel', 'for the whole room.'],
     category: 'Homes',
     summary: 'Lights and fan on one panel, with curtain and dimmer panels to match, in the same styling for every room.',
+    seo: {
+      title: 'Smart Switches for Home: Lights and Fan',
+      description: 'Put the lights and fan on one smart touch panel, add a 2M scene control, and match curtain and dimmer panels in the same styling in every room.',
+    },
     overview:
       'A living room often has a bank of separate switches for lights and a fan. A 6M or 8M panel can hold all of them on one touch panel, and curtain or dimmer panels in the same styling sit beside it.',
     solutions: [
@@ -45,6 +51,10 @@ export const USE_CASES: readonly UseCase[] = [
     headline: ['New control,', 'same wall.'],
     category: 'Renovation',
     summary: 'Replace a row of old switches with one matching panel.',
+    seo: {
+      title: 'Replace Old Switch Boards with Touch Panels',
+      description: 'Replace a row of old switches and sockets with one flat glass or acrylic touch panel, with two-way switching for hallways. Check the wiring first.',
+    },
     overview:
       'When you renovate, you often want to keep the wall and change the controls. Smart Switch panels replace separate switches and sockets with a single, flat panel.',
     solutions: [
@@ -68,6 +78,10 @@ export const USE_CASES: readonly UseCase[] = [
     headline: ['The same panel', 'in every room.'],
     category: 'Studios and offices',
     summary: 'A consistent control panel for studios, galleries and small offices.',
+    seo: {
+      title: 'Smart Switches for Offices and Studios',
+      description: 'One smart touch switch standard for offices, studios and galleries: matching sizes and finishes, sockets, USB-A/USB-C charging and app control.',
+    },
     overview:
       'Offices and studios want the same controls in every room. The same sizes and styling are available throughout, and you can control everything from the app.',
     solutions: [

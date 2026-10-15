@@ -5,10 +5,10 @@ import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
 import { CtaSection } from '@/components/ui/CtaBand';
 import { ProductImage, ProductStage } from '@/components/art/ProductImage';
-import { pageMeta } from '@/lib/seo';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
 import { CompanyFacts } from '@/components/ui/CompanyFacts';
 import { TextLink } from '@/components/ui/ButtonLink';
-import { APP_CONFIG, CTA, PAGES, ROUTES, SPEC, legalName } from '@/config';
+import { APP_CONFIG, CTA, PAGES, ROUTES, SITE_URL, SPEC, legalName } from '@/config';
 
 export const metadata = pageMeta('ABOUT');
 
@@ -22,6 +22,7 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.ABOUT.name, path: ROUTES.ABOUT }], SITE_URL)) }} />
       <PageHero
         eyebrow="About"
         title={['Why we built Smart Switch']}

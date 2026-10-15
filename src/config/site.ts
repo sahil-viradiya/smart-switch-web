@@ -21,6 +21,8 @@ export const ADDRESS = {
 /** Display lines for the address, one per line. */
 export const ADDRESS_LINES: readonly string[] = [ADDRESS.street, `${ADDRESS.area}, ${ADDRESS.city}`, `${ADDRESS.region} ${ADDRESS.postalCode}`, ADDRESS.country];
 
+import { SPEC } from './specs';
+
 export const APP_CONFIG = {
   BRAND_NAME: 'Smart Switch',
   BRAND_TAGLINE: 'Smart touch switches',
@@ -32,10 +34,17 @@ export const APP_CONFIG = {
   PHONE_E164: '+919725558828',
   /** Digits only, country code first -  used for wa.me links. */
   WHATSAPP_NUMBER: '919725558828',
-  DEFAULT_META_TITLE: 'Smart Switch | Smart touch switches in glass and acrylic',
+  DEFAULT_META_TITLE: `Smart Switch | Touch Switches & Home Automation, ${ADDRESS.city}`,
   DEFAULT_META_DESCRIPTION:
-    'Smart touch switches in glass or acrylic, in two series and six sizes. Control them from the wall, an app, your voice or a remote, with Wi-Fi or Zigbee versions.',
+    `Glass and acrylic smart touch switches with Wi-Fi or Zigbee, app and voice control, modular 2M to 12M sizes and a ${SPEC.warrantyTerm} warranty. Based in ${ADDRESS.city}, India.`,
   COPYRIGHT_YEAR: 2026,
+  META_PIXEL_ID: process.env.NEXT_PUBLIC_META_PIXEL_ID ?? '1455200079933584',
+} as const;
+
+/** Site-ownership codes from Google Search Console and Bing Webmaster Tools (HTML tag method). Empty = no tag. */
+export const SEARCH_VERIFICATION = {
+  google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  bing: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || undefined,
 } as const;
 
 export const WHATSAPP_DEFAULT_MESSAGE = `Hello ${APP_CONFIG.BRAND_NAME}, I would like to know more about the switch.`;

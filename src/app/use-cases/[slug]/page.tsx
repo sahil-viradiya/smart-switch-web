@@ -9,8 +9,8 @@ import { SceneArt } from '@/components/art/SceneArt';
 import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { ArrowRight } from '@/components/art/Icons';
 import { USE_CASES, getUseCase } from '@/content/use-cases';
-import { CTA, PAGES, ROUTES, demoIntentHref } from '@/config';
-import { openGraph } from '@/lib/seo';
+import { CTA, PAGES, ROUTES, SITE_URL, demoIntentHref } from '@/config';
+import { breadcrumbsJsonLd, openGraph, twitterCard } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -21,7 +21,13 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const u = getUseCase(params.slug);
   if (!u) return {};
-  return { title: u.title, description: u.summary, alternates: { canonical: ROUTES.USE_CASES_SLUG(u.slug) }, openGraph: openGraph(u.title, u.summary, ROUTES.USE_CASES_SLUG(u.slug)) };
+  return {
+    title: u.seo.title,
+    description: u.seo.description,
+    alternates: { canonical: ROUTES.USE_CASES_SLUG(u.slug) },
+    openGraph: openGraph(u.seo.title, u.seo.description, ROUTES.USE_CASES_SLUG(u.slug)),
+    twitter: twitterCard(u.seo.title, u.seo.description),
+  };
 }
 
 export default function UseCasePage({ params }: { params: { slug: string } }) {
@@ -30,6 +36,7 @@ export default function UseCasePage({ params }: { params: { slug: string } }) {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.USE_CASES.name, path: ROUTES.USE_CASES }, { name: u.title, path: ROUTES.USE_CASES_SLUG(u.slug) }], SITE_URL)) }} />
       <PageHero
         eyebrow={u.category}
         title={u.headline}

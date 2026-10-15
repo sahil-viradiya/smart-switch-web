@@ -9,8 +9,8 @@ import { ProductImage, ProductStage } from '@/components/art/ProductImage';
 import { ArrowRight } from '@/components/art/Icons';
 import { FEATURES, getFeature } from '@/content/features';
 import { CtaLink } from '@/components/ui/CtaLink';
-import { ROUTES, CTA, PAGES } from '@/config';
-import { openGraph } from '@/lib/seo';
+import { ROUTES, CTA, PAGES, SITE_URL } from '@/config';
+import { breadcrumbsJsonLd, openGraph, twitterCard } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -21,7 +21,13 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const f = getFeature(params.slug);
   if (!f) return {};
-  return { title: f.title, description: f.summary, alternates: { canonical: ROUTES.FEATURES_SLUG(f.slug) }, openGraph: openGraph(f.title, f.summary, ROUTES.FEATURES_SLUG(f.slug)) };
+  return {
+    title: f.seo.title,
+    description: f.seo.description,
+    alternates: { canonical: ROUTES.FEATURES_SLUG(f.slug) },
+    openGraph: openGraph(f.seo.title, f.seo.description, ROUTES.FEATURES_SLUG(f.slug)),
+    twitter: twitterCard(f.seo.title, f.seo.description),
+  };
 }
 
 export default function FeaturePage({ params }: { params: { slug: string } }) {
@@ -30,6 +36,7 @@ export default function FeaturePage({ params }: { params: { slug: string } }) {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.FEATURES.name, path: ROUTES.FEATURES }, { name: f.title, path: ROUTES.FEATURES_SLUG(f.slug) }], SITE_URL)) }} />
       <PageHero
         eyebrow={f.eyebrow}
         title={f.headline}

@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { leadSchema } from '@/lib/validation';
 import { InquiryError, currentSource, submitInquiry } from '@/lib/inquiry-client';
 import { buildMailto, fieldErrors } from '@/lib/forms';
-import { APP_CONFIG } from '@/config';
+import { APP_CONFIG, ROUTES } from '@/config';
+import { trackLead } from '@/lib/meta-pixel';
 import type { InquiryType, PropertyType } from '@/types';
 import { getProduct, getSeries } from '@/content/catalog';
 import { Field } from './Field';
@@ -49,6 +51,7 @@ const INITIAL: FormState = {
 };
 
 export function LeadForm() {
+  const router = useRouter();
   const [data, setData] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [reference, setReference] = useState<string | null>(null);
@@ -102,7 +105,13 @@ export function LeadForm() {
     setSending(true);
     try {
       const { id } = await submitInquiry({ ...result.data, type: 'demo', source: currentSource(), website: trap });
+      trackLead({
+        content_name: 'Consultation Request',
+        content_category: result.data.propertyType,
+        inquiry_id: id,
+      });
       setReference(id);
+      router.push(`${ROUTES.THANK_YOU}?ref=${encodeURIComponent(id)}&type=demo`);
     } catch (err) {
       if (err instanceof InquiryError && err.fieldErrors) setErrors(err.fieldErrors);
       setApiError(err instanceof Error ? err.message : 'Something went wrong while sending your request.');

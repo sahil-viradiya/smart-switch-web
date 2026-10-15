@@ -3,15 +3,16 @@ import { Reveal } from '@/components/ui/Reveal';
 import { Notice } from '@/components/ui/Notice';
 import { CompanyFacts } from '@/components/ui/CompanyFacts';
 import { ContactForm } from '@/components/forms/ContactForm';
-import { pageMeta } from '@/lib/seo';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
 import { LogoMark } from '@/components/art/Logo';
-import { ADDRESS_LINES, APP_CONFIG, CTA, PAGES, legalName, mailHref, mapsHref, telHref } from '@/config';
+import { ADDRESS_LINES, APP_CONFIG, CTA, PAGES, ROUTES, SITE_URL, legalName, mailHref, mapsHref, telHref } from '@/config';
 
 export const metadata = pageMeta('CONTACT');
 
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.CONTACT.name, path: ROUTES.CONTACT }], SITE_URL)) }} />
       <PageHero eyebrow="Contact" title={['Contact us']} lead="Sales, technical questions, installation or press. Pick a department and we will send your message to the right person." crumbs={[{ label: PAGES.CONTACT.name }]} />
       <section className="sec sec--paper" aria-label="Contact">
         <div className="container contact-grid">

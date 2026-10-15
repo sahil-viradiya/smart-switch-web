@@ -12,6 +12,8 @@ export interface Feature {
   headline: [string, string?];
   eyebrow: string;
   summary: string;
+  /** Search result title and description. Lead with the phrase people search for. */
+  seo: { title: string; description: string };
   overview: string;
   details: { heading: string; description: string }[];
   facts: FeatureFact[];
@@ -28,6 +30,10 @@ export const FEATURES: readonly Feature[] = [
     headline: ['Control the light', 'with a touch.'],
     eyebrow: 'Touch',
     summary: 'A glass or acrylic panel with a light-touch control for every function.',
+    seo: {
+      title: 'Glass Touch Switches with Backlit Icons',
+      description: 'Smart touch switches with no buttons: a glass or acrylic panel with a touch point per function. The Color series has backlit icons in colours you choose.',
+    },
     overview:
       'Smart Switch panels have no buttons to press. You touch the icon or touch point for each function, and the panel lights it up so you can see what is on.',
     details: [
@@ -50,6 +56,10 @@ export const FEATURES: readonly Feature[] = [
     headline: ['Control it from', 'anywhere.'],
     eyebrow: 'Control',
     summary: 'Use the app, a voice assistant or a handheld remote as well as the panel.',
+    seo: {
+      title: 'Alexa & Google Home Smart Switches with App',
+      description: 'Control smart switches from the Android or iOS app, by Alexa or Google Home voice, or with a remote. An IR blaster lets Wi-Fi panels control an AC.',
+    },
     overview:
       'You can switch things from the wall, but you do not have to. The panels also work from a phone or tablet, with voice assistants and with a remote.',
     details: [
@@ -73,6 +83,10 @@ export const FEATURES: readonly Feature[] = [
     headline: ['Two versions,', 'one panel.'],
     eyebrow: 'Connectivity',
     summary: 'Choose a Wi-Fi panel or a Zigbee panel. Every configuration comes in both.',
+    seo: {
+      title: 'Wi-Fi vs Zigbee Smart Switches Compared',
+      description: 'Every panel comes in a Wi-Fi or Zigbee version. Wi-Fi connects to your router and works with the IR blaster; Zigbee needs an Ethernet or USB gateway.',
+    },
     overview:
       'Each configuration is offered as a Wi-Fi version and a Zigbee version. They look the same on the wall and differ in how they connect.',
     details: [
@@ -95,6 +109,10 @@ export const FEATURES: readonly Feature[] = [
     headline: ['Six sizes,', 'many functions.'],
     eyebrow: 'Range',
     summary: 'Panels from 2M to 12M with switches, sockets, fan control and more.',
+    seo: {
+      title: 'Modular Touch Switch Sizes 2M to 12M',
+      description: `Touch switch panels in ${SPEC.moduleSizes} with switch, socket, fan, curtain, dimmer, scene, USB and doorbell controls, in ${SPEC.ratings} versions.`,
+    },
     overview:
       `There are six panel sizes, ${SPEC.moduleSizes}. Larger panels hold more controls, and you can combine switches with sockets and a fan control on the same panel.`,
     details: [

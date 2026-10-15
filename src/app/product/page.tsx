@@ -17,10 +17,10 @@ import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
 import { SpecTable } from '@/components/ui/SpecTable';
 import { SERIES } from '@/content/catalog';
-import { CTA, PAGES, ROUTES, VIDEOS, catalogueHref } from '@/config';
+import { CTA, PAGES, ROUTES, SITE_URL, VIDEOS, catalogueHref } from '@/config';
 import { FILM_COPY, GALLERY } from '@/content/home';
 import { COMPARE_ROWS, KEY_FEATURES, SPEC_ROWS, WALL_CHECKLIST } from '@/content/product';
-import { pageMeta } from '@/lib/seo';
+import { breadcrumbsJsonLd, pageMeta, productJsonLd } from '@/lib/seo';
 
 export const metadata = pageMeta('PRODUCT');
 
@@ -43,6 +43,8 @@ export default function ProductPage() {
   return (
     <>
       <SectionNav sections={SECTIONS} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(SITE_URL)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.PRODUCT.name, path: ROUTES.PRODUCT }], SITE_URL)) }} />
       <PageHero
         eyebrow="Product"
         title={['Touch panels in', 'glass or acrylic']}

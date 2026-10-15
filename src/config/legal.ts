@@ -1,7 +1,11 @@
 import { ADDRESS_LINES, APP_CONFIG } from './site';
 
 /** Browser storage keys. Defined here so the code and the Cookie Policy cannot drift apart. */
-export const STORAGE_KEYS = { introSeen: 'ss-intro-seen' } as const;
+export const STORAGE_KEYS = {
+  introSeen: 'ss-intro-seen',
+  attribution: 'ss-attribution',
+  leadTracked: 'ss-lead-tracked',
+} as const;
 
 /**
  * LEGAL facts used by the Privacy Policy, Terms and Cookie Policy (and the footer).
@@ -15,7 +19,7 @@ export const STORAGE_KEYS = { introSeen: 'ss-intro-seen' } as const;
  */
 export const LEGAL = {
   /** Shown as "Last updated". Change it whenever the policy text or these facts change. */
-  updated: '13 October 2026',
+  updated: '15 October 2026',
 
   /** REQUIRED. Registered legal name of the business that runs this website (the data fiduciary). */
   entityName: 'Euxora Digital',
@@ -45,6 +49,8 @@ export const LEGAL = {
   /** Browser storage this site uses. The Cookie Policy lists exactly these, so keep them in step. */
   storage: [
     { key: STORAGE_KEYS.introSeen, kind: 'sessionStorage', purpose: 'Remembers that you have seen the short intro animation, so it does not replay on every page.', lasts: 'Until you close the tab' },
+    { key: STORAGE_KEYS.attribution, kind: 'sessionStorage', purpose: 'Preserves advertising campaign and referral parameters so enquiries are accurately attributed.', lasts: 'Until you close the tab' },
+    { key: STORAGE_KEYS.leadTracked, kind: 'sessionStorage', purpose: 'Prevents duplicate conversion tracking events when viewing or refreshing the confirmation page.', lasts: 'Until you close the tab' },
   ] as const,
 
   /** Names we mention for compatibility. They belong to their owners; we are not affiliated with them. */
@@ -54,7 +60,7 @@ export const LEGAL = {
     'Apple and iOS are trademarks of Apple Inc. (iOS is used under licence)',
     'Wi-Fi is a trademark of the Wi-Fi Alliance',
     'Zigbee is a trademark of the Connectivity Standards Alliance',
-    'WhatsApp is a trademark of WhatsApp LLC / Meta Platforms, Inc.',
+    'Meta, Facebook, Instagram and WhatsApp are trademarks of Meta Platforms, Inc.',
   ] as readonly string[],
 } as const;
 

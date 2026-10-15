@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       </ul>
       <p>When you submit a form we also record the date and time, a reference number and the page you sent it from. If you open an enquiry from a catalogue panel, the panel you chose is added to your message.</p>
       <p>Your message is free text. Please do not include sensitive information such as passwords, bank or card details, government ID numbers or health information. We do not ask for any of these.</p>
-      <p>We do not use advertising or analytics trackers, and the website sets no cookies (see the <Link href={ROUTES.COOKIES}>Cookie Policy</Link>). To limit form abuse, your IP address is held briefly in the server&apos;s memory to count requests and is not saved with your enquiry. Our hosting provider may keep standard server logs, which can include IP addresses and browser details, for security and fault-finding.</p>
+      <p>We use the Meta Pixel from Meta Platforms, Inc. to measure advertising conversions and optimize advertising campaigns (see the <Link href={ROUTES.COOKIES}>Cookie Policy</Link>). When you visit our website or submit an enquiry, technical identifiers (such as the Meta click ID fbclid, pseudonymous browser details, and confirmation of enquiry submission) may be processed by Meta in accordance with Meta&apos;s Data Policy. To limit form abuse, your IP address is held briefly in the server&apos;s memory to count requests and is not saved with your enquiry. Our hosting provider may keep standard server logs, which can include IP addresses and browser details, for security and fault-finding.</p>
 
       <h2 id="why">3. Why we use it</h2>
       <ul>
@@ -40,11 +40,12 @@ export default function PrivacyPage() {
       <ul>
         <li><strong>Our team</strong>, who handle enquiries. Access to the enquiry sheet is limited to those who need it.</li>
         <li><strong>Service providers</strong> that host the website or store the enquiry sheet and backups on our behalf (for example a cloud hosting provider or Google Workspace if the sheet is kept in Google Sheets). They may use your information only to provide that service to us.</li>
+        <li><strong>Advertising partners</strong>, specifically Meta Platforms, Inc., which receives pseudonymous event data and technical identifiers via the Meta Pixel to measure campaign reach and attribute enquiry conversions.</li>
         <li><strong>A licensed installer</strong>, only when you ask us to introduce you.</li>
         <li><strong>Authorities and courts</strong>, if the law requires it.</li>
         <li><strong>A buyer</strong> of the business, if it is sold, who must keep to this policy.</li>
       </ul>
-      <p>We do not sell your personal information or share it for advertising.</p>
+      <p>We do not sell your personal information.</p>
       <p>If you choose the WhatsApp button, WhatsApp opens on your device and what you send is handled under WhatsApp&apos;s own terms and privacy policy. We receive nothing until you send a message.</p>
 
       <h2 id="where">5. Where it is stored</h2>

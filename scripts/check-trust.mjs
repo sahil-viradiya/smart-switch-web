@@ -125,9 +125,10 @@ for (const l of links) { if (/^\/(_next|images|videos)\//.test(l) || pages[l]) c
 check(dead.length === 0, `all ${links.size} internal links work`, dead.slice(0, 3).join(', '));
 
 // ---- no third parties, no cookies, secure headers --------------------------------------------------------
+const ALLOWED_EXT = new Set(['connect.facebook.net', 'www.facebook.com']);
 const ext = new Set(), local = new Set();
-for (const [, { html }] of allHtml) for (const m of html.matchAll(/<(?:script|link|img|iframe|source|video)[^>]+(?:src|href)="(https?:\/\/[^"]+)"/g)) { const u = new URL(m[1]); if (u.host === host) continue; if (u.hostname === 'localhost') { local.add(`${u.host}`); continue; } ext.add(u.host); }
-check(ext.size === 0, 'pages load nothing from other companies\' servers', [...ext].join(', '));
+for (const [, { html }] of allHtml) for (const m of html.matchAll(/<(?:script|link|img|iframe|source|video)[^>]+(?:src|href)="(https?:\/\/[^"]+)"/g)) { const u = new URL(m[1]); if (u.host === host || ALLOWED_EXT.has(u.host)) continue; if (u.hostname === 'localhost') { local.add(`${u.host}`); continue; } ext.add(u.host); }
+check(ext.size === 0, 'pages load nothing from unauthorised external servers', [...ext].join(', '));
 if (local.size) { if (isLocal) ok('addresses that point at localhost are expected while testing locally'); else fail('pages point at localhost (set NEXT_PUBLIC_SITE_URL to the live address and rebuild)', [...local].join(', ')); }
 const cookies = []; for (const [p, v] of allHtml) if (v.headers.get('set-cookie')) cookies.push(p);
 check(cookies.length === 0, 'no page sets a cookie', cookies.join(', '));

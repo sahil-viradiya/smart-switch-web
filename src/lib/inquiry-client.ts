@@ -1,4 +1,5 @@
 import type { InquiryPayload } from '@/lib/validation';
+import { STORAGE_KEYS } from '@/config/legal';
 
 export class InquiryError extends Error {
   constructor(message: string, public status: number, public fieldErrors?: Record<string, string>) {
@@ -20,4 +21,26 @@ export async function submitInquiry(payload: InquiryPayload): Promise<{ id: stri
 }
 
 /** Where the visitor submitted from, for the "Source page" column. */
-export const currentSource = () => (typeof window === 'undefined' ? '' : `${window.location.pathname}${window.location.search}`.slice(0, 200));
+export const currentSource = () => {
+  if (typeof window === 'undefined') return '';
+  const current = `${window.location.pathname}${window.location.search}`;
+  if (window.location.search) {
+    return current.slice(0, 200);
+  }
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEYS.attribution);
+    if (raw) {
+      const attr = JSON.parse(raw);
+      const parts: string[] = [];
+      if (attr.utm_campaign) parts.push(`camp=${attr.utm_campaign}`);
+      if (attr.utm_source) parts.push(`src=${attr.utm_source}`);
+      if (attr.fbclid) parts.push(`fbclid=${String(attr.fbclid).slice(0, 16)}`);
+      if (parts.length > 0) {
+        return `${window.location.pathname} (${parts.join(',')})`.slice(0, 200);
+      }
+    }
+  } catch {
+    // Ignore storage parse issues
+  }
+  return current.slice(0, 200);
+};

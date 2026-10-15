@@ -5,16 +5,17 @@ import { CtaSection } from '@/components/ui/CtaBand';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
-import { CATALOG_CONFIG, PAGES } from '@/config';
+import { CATALOG_CONFIG, PAGES, ROUTES, SITE_URL } from '@/config';
 import { CATALOG, MODULES } from '@/content/catalog';
 import { fromPrices } from '@/content/catalog/prices';
-import { pageMeta } from '@/lib/seo';
+import { breadcrumbsJsonLd, pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta('CATALOGUE');
 
 export default function CataloguePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd([{ name: PAGES.HOME.name, path: ROUTES.HOME }, { name: PAGES.CATALOGUE.name, path: ROUTES.CATALOGUE }], SITE_URL)) }} />
       <PageHero
         eyebrow="Catalogue"
         title={['Every panel,', 'every size.']}
