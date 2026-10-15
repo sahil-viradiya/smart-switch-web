@@ -77,14 +77,17 @@ def write_wav(path, pcm, rate=44100):
 
 
 # ---- encode --------------------------------------------------------------------------------------------------
-def encode(out_mp4, frame_fn, total, events, style='bright'):
+def encode(out_mp4, frame_fn, total, events, style='bright', audio=None):
     """MP4 for Meta: 1080x1920, 30 fps, H.264 High + yuv420p (BT.709), AAC 160 kbps stereo, faststart."""
     out_mp4 = Path(out_mp4)
     out_mp4.parent.mkdir(parents=True, exist_ok=True)
     n = int(round(total * FPS))
     with tempfile.TemporaryDirectory() as tmp:
         wav = Path(tmp) / 'a.wav'
-        write_wav(wav, music.render(total, events, style))
+        if audio:
+            wav = Path(audio)       # a finished mix (voice-over and music)
+        else:
+            write_wav(wav, music.render(total, events, style))
         cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-', '-i', str(wav),
                '-vf', 'noise=alls=2:allf=t,scale=out_color_matrix=bt709:out_range=tv,format=yuv420p',
                '-c:v', 'libx264', '-preset', 'slow', '-crf', '19', '-profile:v', 'high', '-level', '4.1', '-x264-params', 'aq-mode=3',

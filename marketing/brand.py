@@ -35,6 +35,8 @@ PHONE = _grab('PHONE')
 EMAIL = _grab('SALES_EMAIL')
 WHATSAPP = _grab('WHATSAPP_NUMBER')
 COMPANY = re.search(r"entityName:\s*'([^']*)'", _read('config/legal.ts')).group(1) or BRAND
+ADDR = {k: re.search(k + r":\s*'([^']*)'", _site).group(1) for k in ('street', 'area', 'city', 'region', 'postalCode', 'country')}
+ADDRESS_ONE_LINE = f"{ADDR['street']}, {ADDR['area']}, {ADDR['city']} {ADDR['postalCode']}"
 WARRANTY_YEARS = int(re.search(r"warrantyYears:\s*(\d+)", _read('config/specs.ts')).group(1))
 _env_url = os.environ.get('NEXT_PUBLIC_SITE_URL', '')
 SITE_URL = _env_url.rstrip('/') if _env_url and 'localhost' not in _env_url else ''  # shown on images only once it is real
@@ -216,6 +218,18 @@ def icon(name, size, color, width=6):
     elif name == 'scene':
         for i, (x0, y0) in enumerate(((14, 14), (54, 14), (14, 54), (54, 54))):
             d.rounded_rectangle((u(x0), u(y0), u(x0 + 32), u(y0 + 32)), u(7), outline=c, width=wd, fill=c if i == 1 else None)
+    elif name == 'chat':
+        d.rounded_rectangle((u(10), u(14), u(90), u(70)), u(16), outline=c, width=wd)
+        d.polygon([(u(26), u(68)), (u(26), u(88)), (u(46), u(69))], fill=c)
+        for px in (32, 50, 68):
+            d.ellipse((u(px - 4), u(38), u(px + 4), u(46)), fill=c)
+    elif name == 'doc':
+        d.rounded_rectangle((u(22), u(8), u(78), u(92)), u(8), outline=c, width=wd)
+        for y in (30, 46, 62):
+            d.line((u(34), u(y), u(66), u(y)), fill=c, width=wd)
+        d.line((u(34), u(78), u(52), u(78)), fill=c, width=wd)
+    elif name == 'check':
+        d.line((u(18), u(52), u(42), u(76), u(84), u(26)), fill=c, width=wd + 2, joint='curve')
     elif name == 'hub':
         d.ellipse((u(38), u(38), u(62), u(62)), fill=c)
         for x, y in ((50, 10), (14, 76), (86, 76)):

@@ -16,6 +16,7 @@ Five social posts and one 30-second reel for Smart Switch, plus captions, tracke
 | `reels/<reel>/<reel>-organic.mp4` | For Instagram and Facebook Reels and Stories, YouTube Shorts, WhatsApp Status |
 | `reels/<reel>/<reel>-ads.mp4` | The same film for Meta **ads** (content kept out of the zones Meta covers) |
 | `reels/<reel>/<reel>-cover.jpg` | Cover image for each reel |
+| `meta_ads/videos/` | **Two voice-over video ads** for Meta (also fine as Reels): `voice-1-one-touch.mp4` and `voice-2-how-to-buy.mp4`, with covers and the scripts to record your own voice |
 | `meta_ads/` | **Meta ad images:** 8 creatives in 4 sizes (feed 1080x1350, square 1080x1080, story 1080x1920, link 1200x628), with their own `README.md` (which size for which placement, ad copy, test plan) |
 | `ads.md` | Ready-to-use Meta ads copy (primary text, headline, description, button) within the length limits |
 | `specs.md` | The size and format rules everything is checked against, with sources and what was fixed |

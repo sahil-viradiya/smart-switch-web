@@ -41,6 +41,20 @@ Limits checked by `check.py`: primary text 125, headline 27, description 27 char
 | `room` (Made for the wall you have.) | Send us your room details on WhatsApp and we suggest the series, size and functions. Installed by your electrician. | Made for your wall | Send your room details |
 | `connect` (Wi-Fi or Zigbee.) | Pick the version that suits your home: Wi-Fi, or Zigbee with a gateway. Message us and we help you choose. | Wi-Fi or Zigbee | Message us for a quote |
 
+## Video ads with a voice-over (`videos/`)
+
+Two 30-second films, drawn for the ad safe zone, with a spoken voice-over, big captions and a quiet music bed that dips while the voice speaks. They also work as normal Reels. Use them for the ads that should bring enquiries: people who hear a clear voice and see the contact details, the warranty and the address are more likely to message.
+
+| File | For | Story |
+| --- | --- | --- |
+| `videos/voice-1-one-touch.mp4` | Homeowners | A wall full of switches, one touch panel, what it controls, the two looks and six sizes, four ways to control it, the 10-year warranty and the licensed electrician, then WhatsApp |
+| `videos/voice-2-how-to-buy.mp4` | People who are interested but unsure | Four steps from "message us on WhatsApp" to "your electrician fits it", the written quote, the warranty, who sells it and where, then WhatsApp |
+
+- Cover images are next to each file. The words spoken are in `videos/voiceover-scripts.md`, with ad copy to paste.
+- **The voice is a computer voice** (an Indian English voice built into the Mac this was made on). It is clear, but a real person is more trusted. Record the lines from `voiceover-scripts.md` on your phone, name the files `1.m4a`, `2.m4a` and so on, put them in `marketing/voice/<video id>/` and run `python marketing/build.py ads-video`. Your recording replaces the computer voice for that line.
+- The brand name is not spoken (a computer voice may say it wrongly), but it is on screen. If you record the lines, add "Euxora Digital" to the last line.
+- These films have no people in them. A short clip of a real installation or a real customer wall (with permission) would make them more convincing. Send it to me and I can add it.
+
 ## Before you publish
 
 - Run `python marketing/check.py`. It fails on any mention of cost, supplier details, unsupported claims, wrong sizes, and anything outside the safe zones.

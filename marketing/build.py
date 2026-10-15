@@ -6,6 +6,7 @@ Builds the marketing material from the website's own data.
     python marketing/build.py posts      only the five posts (fast)
     python marketing/build.py reel       only the reels (both, organic + ads versions, about 3 minutes)
     python marketing/build.py text       only captions.md, links.md and ads.md
+    python marketing/build.py ads-video  only the two voice-over video ads in marketing/meta_ads/videos/ (about 4 minutes)
     python marketing/build.py meta       only the Meta ads images in marketing/meta_ads/ (fast)
 
 Needs:  pip install pillow   and   ffmpeg on the PATH   and   npm install (for the Inter font files).
@@ -83,6 +84,9 @@ def main():
         import reel, reel2
         reel.build(HERE / 'reels')
         reel2.build(HERE / 'reels')
+    if what in ('all', 'ads-video'):
+        import ad_reels
+        ad_reels.build()
     if what in ('all', 'meta'):
         import meta_ads
         meta_ads.build()

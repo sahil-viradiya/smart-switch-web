@@ -47,7 +47,7 @@ def main():
     texts = {}
     for f in ('captions.md', 'links.md'):
         texts[f] = [(HERE / f).read_text(encoding='utf8')]
-    for f in ('content.py', 'posts.py', 'reel.py', 'reel2.py', 'meta_ads.py'):
+    for f in ('content.py', 'posts.py', 'reel.py', 'reel2.py', 'meta_ads.py', 'ad_reels.py', 'voice.py'):
         texts[f] = strings_in(HERE / f)
     problems = []
     for name, chunks in texts.items():
@@ -200,11 +200,30 @@ def main():
             if abs(st / q - round(st / q)) * q > S.AUDIO_SYNC_TOLERANCE:
                 problems.append(f'{mod.__name__}: scene starts at {st:.3f}s, off the beat grid')
 
+    # voice-over video ads: one file each, drawn for the ad safe zone (so it also works as an organic reel)
+    import ad_reels as AR
+    for v in AR.VIDEOS:
+        for label, val, lim in (('primary text', v['ad'][0], S.AD_PRIMARY_MAX), ('headline', v['ad'][1], S.AD_HEADLINE_MAX), ('description', v['ad'][2], S.AD_DESCRIPTION_MAX)):
+            if len(val) > lim:
+                problems.append(f"video ad {v['id']}: {label} is {len(val)} characters (recommended limit {lim})")
+        for val in (v['ad'][0], v['ad'][1], v['ad'][2], v['caption'], *v['script']):
+            for pat, why in FORBIDDEN:
+                if re.search(pat, val, re.I):
+                    problems.append(f"video ad {v['id']}: \"{val[:40]}\" contains {why}")
+        if len(re.findall(r'#\w+', v['caption'])) > S.MAX_HASHTAGS:
+            problems.append(f"video ad {v['id']}: too many hashtags")
+    sc = HERE / 'meta_ads' / 'videos' / 'voiceover-scripts.md'
+    if not sc.exists():
+        problems.append('meta_ads/videos/voiceover-scripts.md missing')
+    elif any(ord(ch) > 126 for ch in sc.read_text(encoding='utf8')):
+        problems.append('voiceover-scripts.md: non-keyboard characters')
+
     n_vid = 0
-    for r in c.REELS:
-        d = HERE / 'reels' / r['id']
-        for mode in ('organic', 'ads'):
-            f = d / f"{r['id']}-{mode}.mp4"
+    for r in list(c.REELS) + [dict(id=v['id'], voice=True) for v in AR.VIDEOS]:
+        voiced = r.get('voice', False)
+        d = HERE / 'meta_ads' / 'videos' if voiced else HERE / 'reels' / r['id']
+        for mode in (('ads',) if voiced else ('organic', 'ads')):
+            f = d / (f"{r['id']}.mp4" if voiced else f"{r['id']}-{mode}.mp4")
             if not f.exists():
                 problems.append(f'reels: {f.name} missing'); continue
             n_vid += 1

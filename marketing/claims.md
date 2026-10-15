@@ -30,6 +30,12 @@ Every statement in the posts, reel and captions is on this list, with its source
 | Meta ads: Wi-Fi or Zigbee, "Zigbee uses a gateway" | Every price row has both versions; the Zigbee gateway is sold separately (price list page 38 and 39) |
 | Meta ads: panels with a socket, scene control, curtain control, dimmers, USB charger, doorbell | The layouts shown in `meta_ads/` are real renders from the price lists (`content/catalog/options.ts` names the example panel for each kind) |
 | Meta ads: room image | The website's illustration (real panel image on a sample wall), marked "Room image is an illustration." |
+| Video ads: replace several switches with one touch panel; one touch panel in glass or acrylic | Layout names in the price lists, for example "6 Switch 1 Fan", and the glass or acrylic columns on every row |
+| Video ads: lights, fan, curtains, dimmers and sockets in one matching style | Curtain and dimmer panels are their own 2M panels in the same Color or Edge style (price lists). The film says "in one matching style", not "on one panel" |
+| Video ads: six sizes, two series | `products.data.ts` (counted by the build) |
+| Video ads: a written quote with delivery and warranty terms; we suggest the series, size and layout | The website's Terms ("A sale happens only when we confirm a quotation or order in writing") and its enquiry flow |
+| Video ads: your licensed electrician fits it | The website's safety copy and Terms (installation must be done by a licensed electrician) |
+| Video ads: Based in Ahmedabad; the address on screen | `ADDRESS` in `src/config/site.ts` |
 | Smart Switch is sold by Euxora Digital | `config/legal.ts` (confirmed by the owner) |
 | WhatsApp, phone, email | `config/site.ts` |
 
